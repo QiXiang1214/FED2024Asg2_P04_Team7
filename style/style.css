@@ -1,0 +1,24 @@
+.body-swiftmall{
+    background-image:url('/image/background.jpg');
+}
+
+.logo{
+    display:flex;;
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: italic;
+    color:white;
+    font-size: 50px;
+    justify-content: center;
+    align-items: center;
+}
+.login{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    background-color:white;
+    width: 400px;
+    height: 400px;
+}
