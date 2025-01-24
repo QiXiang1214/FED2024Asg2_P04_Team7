@@ -137,17 +137,4 @@
     text-decoration: none;
 }
 
-.nav-bar {
-    font-family:Arial, sans-serif;
-    display:flex;
-    font-weight: bold;
-    justify-content: space-around;
-    background-color: black;
-    color: white;
-    align-items: center;
-    width: auto;
-    padding: 10px;
-}
-
-
 
