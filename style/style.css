@@ -132,13 +132,10 @@
 }
 
 /* Style the footer */
-.signup {
+.privacy {
     text-align: center;
     font-size: 14px;
     color: #777;
 }
 
-.signup a {
-    color: #3498db;
-    text-decoration: none;
-}
+
