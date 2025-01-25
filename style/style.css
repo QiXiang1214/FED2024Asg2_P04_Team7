@@ -30,12 +30,12 @@
     justify-content: center;
     align-items: center;
     background-color: white;
-    width: 500px;  /* Make the box 90% of the screen width */
-    height:300px;
+    width: 90%;  /* Make the box responsive to screen width */
     max-width: 400px; /* Set a max width to prevent it from being too wide */
     padding: 30px 20px; /* Add padding inside the box */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Add shadow for depth */
     border-radius: 10px;  /* Optional: Rounded corners */
+    margin-bottom: 20px; /* Add space between multiple login boxes */
 }
 
 /* Style the heading inside the login box */
@@ -46,13 +46,14 @@
     color: #333;
 }
 
+/* Google button styles */
 .google-btn {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     max-width: 350px;  /* Make the button responsive */
-    background-color: #e1d7d6; /* Google blue */
+    background-color: #e1d7d6; /* Button background color */
     color: rgb(0, 0, 0);
     padding: 12px;
     margin-bottom: 15px; /* Add space between buttons */
@@ -63,51 +64,51 @@
 }
 
 .google-btn:hover {
-    background-color: #b6aead; 
-    text-decoration: underline; /* Add underline effect */
+    background-color: #b6aead;
+    text-decoration: underline;
 }
 
 .google-btn span {
     margin-left: 8px;
 }
 
-/* Email button box */
+/* Email button styles */
 .email-btn {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 350px;  /* Make the button responsive */
-    background-color: #e1d7d6; /* Google red for email */
+    max-width: 350px;
+    background-color: #e1d7d6;
     color: rgb(0, 0, 0);
     padding: 12px;
-    margin-bottom: 20px; /* Space below the email button */
+    margin-bottom: 20px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
-
 }
 
 .email-btn:hover {
-    background-color: #b6aead; 
-    text-decoration: underline; 
+    background-color: #b6aead;
+    text-decoration: underline;
 }
 
 .email-btn span {
     margin-left: 8px;
 }
-/*login button box */
+
+/* Login button styles */
 .login-btn {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 350px;  /* Make the button responsive */
-    background-color: #e1d7d6; /* Google red for email */
+    max-width: 350px;
+    background-color: #e1d7d6;
     color: rgb(0, 0, 0);
     padding: 12px;
-    margin-bottom: 20px; /* Space below the email button */
+    margin-bottom: 20px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
@@ -115,20 +116,12 @@
 }
 
 .login-btn:hover {
-    background-color: #b6aead; 
+    background-color: #b6aead;
 }
 
-.button:hover {
-    text-decoration: underline; /* Add underline effect */
-}
-
-.login-btn a {
-    margin-left: 8px;
-}
-
-.button{
-    color: black;;
+.button {
     text-decoration: none;
+    color: black;
 }
 
 /* Style the footer */
@@ -136,6 +129,5 @@
     text-align: center;
     font-size: 14px;
     color: #777;
+    margin-top: 20px;
 }
-
-
