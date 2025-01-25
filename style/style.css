@@ -90,8 +90,8 @@
 }
 
 .email-btn:hover {
-    background-color: #b6aead; /* Darker red when hovering */
-    text-decoration: underline; /* Add underline effect */
+    background-color: #b6aead; 
+    text-decoration: underline; 
 }
 
 .email-btn span {
@@ -114,14 +114,21 @@
     font-weight: bold;
 }
 
-.login-btn a:hover {
-    background-color: #b6aead; /* Darker red when hovering */
+.login-btn:hover {
+    background-color: #b6aead; 
+}
+
+.button:hover {
     text-decoration: underline; /* Add underline effect */
 }
 
 .login-btn a {
     margin-left: 8px;
-    color: black;
+}
+
+.button{
+    color: black;;
+    text-decoration: none;
 }
 
 /* Style the footer */
