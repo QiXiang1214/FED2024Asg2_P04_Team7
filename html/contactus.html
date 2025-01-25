@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="../style/style.css" type="text/css">
+  </head>
+  <body class="bodycon">
+    <header>
+      <nav class="navbar">
+        <div class="logo-nav">
+            <img width="80px" height="80px" src="../image/mslogo.png" alt="logo Icon">
+            <h1>MokeSell</h1>
+        </div>
+        <a href="html/Home.html" class="button">Home</a>
+        <a href="html/contactus.html" class="button">Contact Us</a>
+        <a href="html/followus.html" class="button">Follow Us</a>
+      </nav>
+    </header>
+    <div class="slogan-contact">
+        <h2>CONTACT US</h2>
+        <p>Get in touch with us now for any inquiries and issues! Sit tight as we get back to you.</p>
+      </div>
+    <div class="contactus">
+      <form class="contact-form">
+        <div class="form-row">
+          <label for="fname">First Name</label><br><br>
+          <input type="text" name="firstName" placeholder="First Name" required>
+          <label for="fname">Last Name</label><br><br>
+          <input type="text" name="lastName" placeholder="Last Name" required>
+        </div>
+        <div class="form-row">
+          <label for="email">Email</label><br><br>
+          <input type="email" name="email" placeholder="Email" required>
+          <label for="phone">Phone Number</label><br><br>
+          <input type="tel" name="phone" placeholder="Phone Number" required>
+        </div>
+        <div class="form-row">
+          <label>Select Subject?</label>
+          <div class="radio-options">
+            <label><input type="radio" name="subject" value="seller" required> Seller</label>
+            <label><input type="radio" name="subject" value="buyer" required> Buyer</label>
+            <label><input type="radio" name="subject" value="other" required> Other</label>
+          </div>
+        </div>
+        <label for="message">Message  </label><br><br>
+        <textarea name="message" rows="5" placeholder="Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </body>
+</html>
