@@ -112,16 +112,16 @@
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
-
 }
 
-.login-btn:hover {
+.login-btn a:hover {
     background-color: #b6aead; /* Darker red when hovering */
     text-decoration: underline; /* Add underline effect */
 }
 
-.login-btn span {
+.login-btn a {
     margin-left: 8px;
+    color: black;
 }
 
 /* Style the footer */
@@ -129,51 +129,9 @@
     text-align: center;
     font-size: 14px;
     color: #777;
-
 }
 
 .signup a {
     color: #3498db;
     text-decoration: none;
-}
-
-.navbar {
-    font-family:Arial, sans-serif;
-    display:flex;
-    font-weight: bold;
-    justify-content: space-around;
-    background-color: rgb(66, 6, 122);
-    color: rgb(255, 255, 255);
-    align-items: center;
-    width: auto;
-    padding: 10px;
-}
-
-.bodycon{
-    padding:0;
-    margin:0;
-}
-
-.logo-nav{
-    display:flex;
-    margin:0;
-}
-
-.logo-nav h1{
-    font-family: "Inter", serif;
-    font-weight: 900;
-    font-style: italic;
-    color: white;
-    font-size: 30px;
-}
-
-.button{
-    color:white;
-    text-decoration: none;
-}
-
-.slogan-contact {
-    text-align: center;
-    color: rgb(0, 0, 0);
-    padding: 10px;
 }
