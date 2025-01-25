@@ -46,7 +46,7 @@ document
     }
   });
 
-// Show the register form
+/* Show the register form*/
 document.getElementById("register-link").addEventListener("click", function () {
   document.getElementById("login-container").style.display = "none";
   document.getElementById("signup-container").style.display = "block";
