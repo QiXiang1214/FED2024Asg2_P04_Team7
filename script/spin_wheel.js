@@ -11,3 +11,16 @@ const rotationValues = [
   { minDegree: 211, maxDegree: 270, value: "0 points" },
   { minDegree: 271, maxDegree: 330, value: "7 points" },
 ];
+
+// Size of each piece
+const data = [16, 16, 16, 16, 16, 16];
+
+// Background color for each piece
+var pieColors = [
+    "#8b35bc",  // purple
+    "#00bcd4",  // aqua 
+    "#8b35bc",  // purple
+    "#00bcd4",  // aqua
+    "#8b35bc",  // purple
+    "#00bcd4"   // aqua
+  ];
