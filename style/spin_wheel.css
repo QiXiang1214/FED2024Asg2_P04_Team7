@@ -8,7 +8,7 @@
   /* Body styling */
   body {
     height: 100vh;
-    background-image: url('/image/background.jpg'); /* Add the image URL here */
+    background-image: url('../image/background.jpg'); /* Add the image URL here */
     background-size: cover; /* Ensures the image covers the entire screen */
     background-position: center; 
     background-repeat: no-repeat; /* Prevents the image from repeating */
