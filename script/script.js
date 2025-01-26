@@ -1,4 +1,3 @@
-// Import the Firebase functions
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
 
@@ -21,92 +20,87 @@ const auth = getAuth(app);
 document.getElementById("login-container").style.display = "block";
 
 // Handle login form submission
-document
-  .getElementById("login-form")
-  .addEventListener("submit", async function (event) {
-    event.preventDefault();
-    const email = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+document.getElementById("login-form").addEventListener("submit", async function (event) {
+  event.preventDefault();
+  const email = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
 
-    // Firebase login logic
-    if (email && password) {
-      try {
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-        alert(`Welcome back, ${user.email}`);
-        document.getElementById("login-container").style.display = "none";
-        document.getElementById("otp-container").style.display = "block";
-      } catch (error) {
-        console.error("Login failed:", error);
-        alert(`Login failed: ${error.message}`);
-        document.getElementById("error-message").style.display = "block";
-      }
-    } else {
+  // Firebase login logic
+  if (email && password) {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // Log the user in and redirect to the spin page with their data
+      alert(`Welcome back, ${user.email}`);
+      document.getElementById("login-container").style.display = "none";
+
+      // Store email and UID in sessionStorage (or you can use localStorage)
+      sessionStorage.setItem("email", user.email);
+      sessionStorage.setItem("uid", user.uid);
+
+      // Redirect to the Spin The Wheel page
+      window.location.href = "http://127.0.0.1:5500/html/spin_wheel.html"; // Replace with your spin page URL
+    } catch (error) {
+      console.error("Login failed:", error);
+      alert(`Login failed: ${error.message}`);
       document.getElementById("error-message").style.display = "block";
     }
-  });
+  } else {
+    document.getElementById("error-message").style.display = "block";
+  }
+});
 
-/* Show the register form*/
+// Show the register form
 document.getElementById("register-link").addEventListener("click", function () {
   document.getElementById("login-container").style.display = "none";
   document.getElementById("signup-container").style.display = "block";
 });
 
 // Handle user registration
-document
-  .getElementById("signup-form")
-  .addEventListener("submit", async function (event) {
-    event.preventDefault();
-    const email = document.getElementById("signup-email").value;
-    const password = document.getElementById("signup-password").value;
+document.getElementById("signup-form").addEventListener("submit", async function (event) {
+  event.preventDefault();
+  const email = document.getElementById("signup-email").value;
+  const password = document.getElementById("signup-password").value;
 
-    console.log("Attempting to register user with email:", email); // Debugging
-
-    try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      console.log("User created successfully:", user); // Debugging
-      alert("Registration successful! You can now log in.");
-      document.getElementById("signup-container").style.display = "none";
-      document.getElementById("login-container").style.display = "block";
-    } catch (error) {
-      console.error("Registration failed:", error); // Debugging
-      alert(`Registration failed: ${error.message}`);
-      document.getElementById("signup-error-message").style.display = "block";
-    }
-  });
-
-// Handle forgot password form submission
-document
-  .getElementById("forget-form")
-  .addEventListener("submit", async function (event) {
-    event.preventDefault();
-    const email = document.getElementById("forget-email").value;
-
-    try {
-      await sendPasswordResetEmail(auth, email);
-      alert("Password reset email sent!");
-      document.getElementById("forget-container").style.display = "none";
-      document.getElementById("login-container").style.display = "block";
-    } catch (error) {
-      console.error("Password reset failed:", error); // Debugging
-      alert(`Failed to send reset email: ${error.message}`);
-      document.getElementById("forget-error-message").style.display = "block";
-    }
-  });
-
-// Handle back to login from register form
-document
-  .getElementById("back-to-login-link")
-  .addEventListener("click", function () {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+    alert("Registration successful! You can now log in.");
     document.getElementById("signup-container").style.display = "none";
     document.getElementById("login-container").style.display = "block";
-  });
+  } catch (error) {
+    console.error("Registration failed:", error);
+    alert(`Registration failed: ${error.message}`);
+    document.getElementById("signup-error-message").style.display = "block";
+  }
+});
 
-// Handle back to login from forgot password form
-document
-  .getElementById("back-to-login-from-forget-link")
-  .addEventListener("click", function () {
+// Handle forgot password form submission
+document.getElementById("forget-form").addEventListener("submit", async function (event) {
+  event.preventDefault();
+  const email = document.getElementById("forget-email").value;
+
+  try {
+    await sendPasswordResetEmail(auth, email);
+    alert("Password reset email sent!");
     document.getElementById("forget-container").style.display = "none";
     document.getElementById("login-container").style.display = "block";
-  });
+  } catch (error) {
+    console.error("Password reset failed:", error);
+    alert(`Failed to send reset email: ${error.message}`);
+    document.getElementById("forget-error-message").style.display = "block";
+  }
+});
+
+// Handle back to login from register form
+document.getElementById("back-to-login-link").addEventListener("click", function () {
+  document.getElementById("signup-container").style.display = "none";
+  document.getElementById("login-container").style.display = "block";
+});
+
+// Handle back to login from forgot password form
+document.getElementById("back-to-login-from-forget-link").addEventListener("click", function () {
+  document.getElementById("forget-container").style.display = "none";
+  document.getElementById("login-container").style.display = "block";
+});

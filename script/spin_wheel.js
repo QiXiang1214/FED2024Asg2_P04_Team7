@@ -1,4 +1,6 @@
+// Import necessary Firebase SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
 import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 
 // Firebase configuration
@@ -15,13 +17,14 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
 
-// DOM elements
+// DOM elements for the wheel
 const wheel = document.getElementById("wheel");
 const spinBtn = document.getElementById("spin-btn");
 const finalValue = document.getElementById("final-value");
 
-// Rotation values for wheel
+// Rotation values for the wheel
 const rotationValues = [
   { minDegree: 0, maxDegree: 30, value: "2 points" },
   { minDegree: 31, maxDegree: 90, value: "5 points" },
@@ -133,11 +136,14 @@ const valueGenerator = (angleValue) => {
       const spinResult = i.value;
       finalValue.innerHTML = `<p>You receive ${spinResult}</p>`;
 
-      const userId = "09876"; // Replace with actual UID
-      const username = "Riz"; // Replace with actual username
+      const user = auth.currentUser;
+      if (user) {
+        const userId = user.uid;
+        const username = user.email; // Use email as the username
 
-      // Log the spin result in Firestore
-      logResult(spinResult, userId, username);
+        // Log the spin result in Firestore
+        logResult(spinResult, userId, username);
+      }
       break;
     }
   }
@@ -169,4 +175,14 @@ spinBtn.addEventListener("click", () => {
       spinBtn.disabled = false;
     }
   }, 10);
+});
+
+// Firebase auth state observer (user logged in)
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    console.log(`User logged in: ${user.email}`);
+    // Do something once user is logged in, like show the spin wheel or whatever
+  } else {
+    console.log("No user logged in");
+  }
 });
