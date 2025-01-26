@@ -30,7 +30,7 @@
     justify-content: center;
     align-items: center;
     background-color: white;
-    width: 500px;  /* Make the box 90% of the screen width */
+    width: 500px; 
     height:300px;
     max-width: 400px; /* Set a max width to prevent it from being too wide */
     padding: 30px 20px; /* Add padding inside the box */

@@ -39,3 +39,26 @@
     color: rgb(0, 0, 0);
     padding: 10px;
 }
+
+.contactus{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: slategrey;
+}
+
+.form-row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.select-form{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
