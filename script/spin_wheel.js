@@ -66,3 +66,35 @@ const valueGenerator = (angleValue) => {
     }
   };
   
+  // Spinner count and initial rotation value
+let count = 0;
+let resultValue = 101;
+let randomDegree = 0;  // Declare randomDegree outside
+
+// Start spinning
+spinBtn.addEventListener("click", () => {
+  // Disable the spin button after the first spin
+  spinBtn.disabled = true;
+  finalValue.innerHTML = `<p>Good Luck!</p>`;
+
+  // Generate a random degree between 0 and 359 (full circle)
+  randomDegree = Math.floor(Math.random() * 360);
+
+  let rotationInterval = window.setInterval(() => {
+    // Set rotation for piechart
+    myChart.options.rotation = myChart.options.rotation + resultValue;
+    myChart.update();
+
+    // If rotation exceeds 360, reset it back to 0
+    if (myChart.options.rotation >= 360) {
+      count += 1;
+      resultValue -= 5;
+      myChart.options.rotation = 0;
+    } else if (count > 15 && myChart.options.rotation == randomDegree) {
+      valueGenerator(randomDegree);
+      clearInterval(rotationInterval);
+      count = 0;
+      resultValue = 101;  // Reset result value for next spin
+    }
+  }, 10);  // Update the chart every 10ms for smooth animation
+});
