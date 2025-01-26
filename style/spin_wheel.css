@@ -26,3 +26,18 @@
     border-radius: 1em;
     box-shadow: 0 4em 5em rgba(69, 220, 236, 0.25);
   }
+  
+/* Container for the wheel and button */
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Wheel canvas styling */
+  #wheel {
+    max-height: inherit;
+    width: inherit;
+    top: 0;
+    padding: 0;
+  }
