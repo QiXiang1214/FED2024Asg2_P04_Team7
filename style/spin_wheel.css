@@ -66,3 +66,19 @@
         background: radial-gradient(#e96c6c 5%, #e90808 95%);
       }
     
+        /* Arrow image positioning */
+  img {
+    position: absolute;
+    width: 4em;
+    top: 45%;
+    right: -8%;
+  }
+  
+  /* Final value display styling */
+  #final-value {
+    font-size: 1.5em;
+    text-align: center;
+    margin-top: .5em;
+    color: #202020;
+    font-weight: 500;
+  }
