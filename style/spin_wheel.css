@@ -26,7 +26,7 @@
     border-radius: 1em;
     box-shadow: 0 4em 5em rgba(69, 220, 236, 0.25);
   }
-  
+
 /* Container for the wheel and button */
 .container {
     position: relative;
@@ -41,3 +41,28 @@
     top: 0;
     padding: 0;
   }
+
+    /* Spin button styling */
+    #spin-btn {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        height: 26%;
+        width: 26%;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 0;
+        background: radial-gradient(#e96c6c 10%, #d84040 85%);
+        color: #ffffff;
+        text-transform: uppercase;
+        font-size: 1.8em;
+        letter-spacing: 0.1em;
+        font-weight: 600;
+        transition: background 0.3s ease;
+      }
+      
+      #spin-btn:hover {
+        background: radial-gradient(#e96c6c 5%, #e90808 95%);
+      }
+    
