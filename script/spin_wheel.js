@@ -24,3 +24,34 @@ var pieColors = [
     "#8b35bc",  // purple
     "#00bcd4"   // aqua
   ];
+
+  // Create chart
+let myChart = new Chart(wheel, {
+    plugins: [ChartDataLabels],
+    type: "pie",
+    data: {
+      labels: ["5 points", "2 points", "7 points", "0 points", "1 point", "0 points"],
+      datasets: [
+        {
+          backgroundColor: pieColors,
+          data: data,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      animation: { duration: 0 },
+      plugins: {
+        tooltip: false,
+        legend: {
+          display: false,
+        },
+        datalabels: {
+          color: "#ffffff",
+          formatter: (_, context) => context.chart.data.labels[context.dataIndex],
+          font: { size: 24 },
+        },
+      },
+    },
+  });
+  
