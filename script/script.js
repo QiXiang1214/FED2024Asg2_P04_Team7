@@ -40,7 +40,7 @@ document.getElementById("login-form").addEventListener("submit", async function 
       sessionStorage.setItem("uid", user.uid);
 
       // Redirect to the Spin The Wheel page
-      window.location.href = "http://127.0.0.1:5500/html/spin_wheel.html"; // Replace with your spin page URL
+      window.location.href = "../html/spin_wheel.html"; // Replace with your spin page URL
     } catch (error) {
       console.error("Login failed:", error);
       alert(`Login failed: ${error.message}`);
