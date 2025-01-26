@@ -5,3 +5,24 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
   }
+  /* Body styling */
+  body {
+    height: 100vh;
+    background-image: url('/image/background.jpg'); /* Add the image URL here */
+    background-size: cover; /* Ensures the image covers the entire screen */
+    background-position: center; 
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+  }
+  .wrapper {
+    width: 90%;
+    max-width: 34.37em;
+    max-height: 90vh;
+    background-color: rgba(255, 255, 255, 0.65); 
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    padding: 3em;
+    border-radius: 1em;
+    box-shadow: 0 4em 5em rgba(69, 220, 236, 0.25);
+  }
