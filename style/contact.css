@@ -1,26 +1,25 @@
 /*contact us page */
-.navbar {
-    font-family:Arial, sans-serif;
-    display:flex;
-    font-weight: bold;
-    justify-content: space-around;
-    background-color: rgb(66, 6, 122);
-    color: rgb(255, 255, 255);
-    align-items: center;
-    width: auto;
-    padding: 10px;
-}
-
 .bodycon{
     padding:0;
     margin:0;
 }
 
-.logo-nav{
-    display:flex;
-    margin:0;
+.navbar {
+    background: rgb(66, 6, 122);
+    box-shadow: 0 4px 6px -1px rgb(0, 0, 0, 0.5);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-/*navbar*/
+  
+.logo-nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: transform 0.3s ease;
+}
+  
 .logo-nav h1{
     font-family: "Inter", serif;
     font-weight: 900;
@@ -28,11 +27,32 @@
     color: white;
     font-size: 30px;
 }
-
-.button{
-    color:white;
-    text-decoration: none;
+  
+.logo-nav:hover {
+    transform: scale(1.05);
 }
+  
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+  
+.btn {
+    color: var(--light);
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-weight: 500;
+}
+  
+.btn:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/*navbar*/
 
 .slogan-contact {
     text-align: center;
