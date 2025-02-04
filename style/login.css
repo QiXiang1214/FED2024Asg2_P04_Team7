@@ -12,6 +12,16 @@ body {
     padding: 20px;
 }
   
+.logo-container{
+  display: flex;
+  font-family: "Inter", serif;
+  font-weight: 900;
+  font-style: italic;
+  color: white;
+  font-size: 30px;
+  justify-content: center;
+  align-items: center;
+}
   /* Form Container */
   .login-container,
   .signup-container,
