@@ -28,20 +28,32 @@
   }
 
   .return-button {
-    color: rgb(121, 203, 225);
-    padding: 0.5rem 1.5rem;
-    border-radius: 9999px;
-    transition: all 0.3s ease;
+    /* Positioning */
+    position: absolute;
+    left: 1.5em;
+    top: 6em; /* Adjust this value to control vertical position */
+    
+    /* Visual styling */
+    color: rgb(129, 0, 141);
+    padding: 0.7em 2em;
+    border-radius: 30px;
+    background-color: bisque;
     text-decoration: none;
-    font-weight: 500;
-    display: flex;
-    gap: 1rem;
+    font-weight: 600;
+    box-shadow: 0 3px 8px rgba(255, 255, 255, 0.35);
+    border: 2px solid rgba(0, 110, 141, 0.3);
+    
+    /* Effects */
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
   }
   
   .return-button:hover {
-    background: var(--primary);
-    color: rgb(209, 159, 159);
+    background: rgb(129, 0, 141);
+    color: bisque;
     transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
   }
 
 /* Container for the wheel and button */
