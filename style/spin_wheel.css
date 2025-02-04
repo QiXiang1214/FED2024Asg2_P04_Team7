@@ -27,6 +27,23 @@
     box-shadow: 0 4em 5em rgba(69, 220, 236, 0.25);
   }
 
+  .return-button {
+    color: rgb(121, 203, 225);
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .return-button:hover {
+    background: var(--primary);
+    color: rgb(209, 159, 159);
+    transform: translateY(-2px);
+  }
+
 /* Container for the wheel and button */
 .container {
     position: relative;
