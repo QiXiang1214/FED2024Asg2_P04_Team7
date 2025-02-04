@@ -168,6 +168,54 @@ body {
   transform: scale(1.05);
 }
 
+/* Search Section */
+
+.search-container {
+  max-width: 1440px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.search-bar {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 1rem 2.5rem;
+  border: 2px solid rgb(66, 6, 122);
+  border-radius: 9999px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#searchInput:focus {
+  outline: none;
+  box-shadow: 0 4px 12px rgba(66, 6, 122, 0.2);
+  border-color: #4f46e5;
+}
+
+.search-icon {
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgb(66, 6, 122);
+}
+
+.no-results {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #4a5568;
+  margin: 2rem 0;
+  display: none;
+}
+
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .navbar {

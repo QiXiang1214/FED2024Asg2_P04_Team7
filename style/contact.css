@@ -5,7 +5,7 @@
     --accent: #f59e0b;
     --dark: #1e293b;
     --light: #f8fafc;
-}
+  }
 
 body {
     font-family: 'Inter', sans-serif;
@@ -69,6 +69,7 @@ body {
     transform: translateY(-2px);
 }
 
+
 /* Contact Section */
 .slogan-contact {
     text-align: center;
@@ -91,11 +92,11 @@ body {
     justify-content: center;
     align-items: center;
     padding: 2rem;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     margin: 2rem auto;
     max-width: 800px;
     border-radius: 1rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px -1px rgba(144, 5, 114, 0.6);
 }
 
 .contact-form {
@@ -152,7 +153,7 @@ body {
 
 .submit-btn {
     background: var(--primary);
-    color: white;
+    color: rgb(255, 255, 255);
     border: none;
     padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
