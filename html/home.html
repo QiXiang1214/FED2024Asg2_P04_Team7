@@ -1,316 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Contact Us</title>
-    <link rel="stylesheet" href="../style/home.css" type="text/css">
-  </head>
-  <body class="bodycon">
-    <header>
-      <nav class="navbar"> <!--navbar-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MokeSell - Modern Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/style/home.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
         <div class="logo-nav">
-            <img width="80px" height="80px" src="../image/mslogo.png" alt="logo Icon">
+            <img width="80" height="80" src="../image/mslogo.png" alt="MokeSell Logo">
             <h1>MokeSell</h1>
         </div>
-        <a href="home.html" class="button">Home</a>
-        <a href="html/contactus.html" class="button">Contact Us</a>
-        <a href="html/followus.html" class="button">Follow Us</a>
-      </nav>
-  </div>
-  
-  <div class="small-container">
-    <div class="row row-2">
-      <h2>All Products</h2>
-      <select>
-        <option value="">Default Shorting</option>
-        <option value="">Short by price</option>
-        <option value="">Short by popularity</option>
-        <option value="">Short by rating</option>
-        <option value="">Short by sale</option>
-      </select>
+        <div class="nav-links">
+            <a href="home.html" class="button">Home</a>
+            <a href="contact.html" class="button">Contact</a>
+            <a href="follow.html" class="button">Follow Us</a>
+        </div>
+    </nav>
+
+    <!-- Product Grid -->
+    <div class="small-container">
+        <div class="row-2">
+            <h2>Featured Products</h2>
+            <select class="filter-select">
+                <option>Sort by</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+                <option>Most Popular</option>
+            </select>
+        </div>
+
+        <div class="product-grid">
+            <!-- Product Card 1 -->
+            <div class="product-card">
+                <img src="https://i.ibb.co/47Sk9QL/product-1.jpg" alt="Product" class="product-image">
+                <div class="product-info">
+                    <h4 class="product-title">Premium Cotton T-Shirt</h4>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p class="product-price">$49.99</p>
+                    <button class="btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="product-card">
+                <img src="https://i.ibb.co/b7ZVzYr/product-2.jpg" alt="Product" class="product-image">
+                <div class="product-info">
+                    <h4 class="product-title">Classic Denim Jeans</h4>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p class="product-price">$79.99</p>
+                    <button class="btn">Add to Cart</button>
+                </div>
+            </div>
+
+          <div class="product-card">
+            <img src="https://i.ibb.co/b7ZVzYr/product-2.jpg" alt="Product" class="product-image">
+            <div class="product-info">
+                <h4 class="product-title">iphone 16 pro max</h4>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <p class="product-price">$1899.99</p>
+                <button class="btn">Add to Cart</button>
+            </div>
+        </div>
+            <!-- Add more product cards as needed -->
+        </div>
+        
     </div>
-    <div class="row">
-      <div class="col-4">
-        <img src="https://i.ibb.co/47Sk9QL/product-1.jpg" alt="" />
-        <h4>Red Printed T-shirt</h4>
-        <div class="rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Get Our App</h3>
+                <div class="app-logo">
+                    <img src="https://i.ibb.co/KbPTYYQ/play-store.png" alt="Play Store">
+                    <img src="https://i.ibb.co/hVM4X2p/app-store.png" alt="App Store">
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Company</h3>
+                <ul>
+                    <li>About Us</li>
+                    <li>Careers</li>
+                    <li>Sustainability</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Support</h3>
+                <ul>
+                    <li>Contact</li>
+                    <li>Shipping</li>
+                    <li>Returns</li>
+                </ul>
+            </div>
         </div>
-        <p>$500.00</p>
-      </div>
-  
-      <div class="col-4">
-        <img src="https://i.ibb.co/b7ZVzYr/product-2.jpg" alt="" />
-        <h4>Red Printed T-shirt</h4>
-        <div class="rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-        </div>
-        <p>$500.00</p>
-      </div>
-  
-      <div class="col-4">
-        <img src="https://i.ibb.co/KsMVr26/product-3.jpg" alt="" />
-        <h4>Red Printed T-shirt</h4>
-        <div class="rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
-        </div>
-        <p>$500.00</p>
-      </div>
-  
-      <div class="col-4">
-        <img src="https://i.ibb.co/0cMfpcr/product-4.jpg" alt="" />
-        <h4>Red Printed T-shirt</h4>
-        <div class="rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-        </div>
-        <p>$500.00</p>
-      </div>
-    </div>
-  
-    <div class="row">
-      <div class="col-4">
-        <img src="https://i.ibb.co/47Sk9QL/product-1.jpg" alt="" />
-        <h4>Red Printed T-shirt</h4>
-        <div class="rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
-        </div>
-        <p>$500.00</p>
-      </div>
-  
-      <div class="col-4">
-        <img src="https://i.ibb.co/b7ZVzYr/product-2.jpg" alt="" />
-        <h4>Red Printed T-shirt</h4>
-        <div class="rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-        </div>
-        <p>$500.00</p>
-      </div>
-  
-      <div class="col-4">
-        <img src="https://i.ibb.co/KsMVr26/product-3.jpg" alt="" />
-        <h4>Red Printed T-shirt</h4>
-        <div class="rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
-        </div>
-        <p>$500.00</p>
-      </div>
-  
-      <div class="col-4">
-        <img src="https://i.ibb.co/0cMfpcr/product-4.jpg" alt="" />
-        <h4>Red Printed T-shirt</h4>
-        <div class="rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-        </div>
-        <p>$500.00</p>
-      </div>
-    </div>
-  
-    <div class="row">
-      <div class="col-4">
-        <img src="https://i.ibb.co/bQ5t8bR/product-5.jpg" alt="" />
-        <h4>Red Printed T-shirt</h4>
-        <div class="rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
-        </div>
-        <p>$500.00</p>
-      </div>
-  
-      <div class="col-4">
-        <img src="https://i.ibb.co/vVpTyBD/product-6.jpg" alt="" />
-        <h4>Red Printed T-shirt</h4>
-        <div class="rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-        </div>
-        <p>$500.00</p>
-      </div>
-  
-      <div class="col-4">
-        <img src="https://i.ibb.co/hR5FGwH/product-7.jpg" alt="" />
-        <h4>Red Printed T-shirt</h4>
-        <div class="rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
-        </div>
-        <p>$500.00</p>
-      </div>
-  
-      <div class="col-4">
-        <img src="https://i.ibb.co/QfCgdXZ/product-8.jpg" alt="" />
-        <h4>Red Printed T-shirt</h4>
-        <div class="rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-        </div>
-        <p>$500.00</p>
-      </div>
-    </div>
-  
-    <div class="row">
-      <div class="col-4">
-        <img src="https://i.ibb.co/nw5xZwk/product-9.jpg" alt="" />
-        <h4>Red Printed T-shirt</h4>
-        <div class="rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
-        </div>
-        <p>$500.00</p>
-      </div>
-  
-      <div class="col-4">
-        <img src="https://i.ibb.co/9HCsmjf/product-10.jpg" alt="" />
-        <h4>Red Printed T-shirt</h4>
-        <div class="rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-        </div>
-        <p>$500.00</p>
-      </div>
-  
-      <div class="col-4">
-        <img src="https://i.ibb.co/JQ2MBHR/product-11.jpg" alt="" />
-        <h4>Red Printed T-shirt</h4>
-        <div class="rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
-        </div>
-        <p>$500.00</p>
-      </div>
-  
-      <div class="col-4">
-        <img src="https://i.ibb.co/nRZMs6Y/product-12.jpg" alt="" />
-        <h4>Red Printed T-shirt</h4>
-        <div class="rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-        </div>
-        <p>$500.00</p>
-      </div>
-    </div>
-  
-    <div class="page-btn">
-      <span>1</span>
-      <span>2</span>
-      <span>3</span>
-      <span>4</span>
-      <span>&#8594;</span>
-    </div>
-  </div>
-  
-  <!-- Footer -->
-  <div class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="footer-col-1">
-          <h3>Download Our App</h3>
-          <p>Download App for Android and iso mobile phone.</p>
-          <div class="app-logo">
-            <img src="https://i.ibb.co/KbPTYYQ/play-store.png" alt="" />
-            <img src="https://i.ibb.co/hVM4X2p/app-store.png" alt="" />
-          </div>
-        </div>
-  
-        <div class="footer-col-2">
-          <img src="https://i.ibb.co/j3FNGj7/logo-white.png" alt="" />
-          <p>
-            Our Purpose Is To Sustainably Make the Pleasure and Benefits of
-            Sports Accessible to the Many.
-          </p>
-        </div>
-  
-        <div class="footer-col-3">
-          <h3>Useful Links</h3>
-          <ul>
-            <li>Coupons</li>
-            <li>Blog Post</li>
-            <li>Return Policy</li>
-            <li>Join Affiliate</li>
-          </ul>
-        </div>
-  
-        <div class="footer-col-4">
-          <h3>Follow us</h3>
-          <ul>
-            <li>Facebook</li>
-            <li>Twitter</li>
-            <li>Instagram</li>
-            <li>YouTube</li>
-          </ul>
-        </div>
-      </div>
-      <hr />
-      <p class="copyright">Copyright &copy; 2021 - Red Store</p>
-    </div>
-  </div>
-  
-  <!-- js for toggle menu -->
-  <script>
-    var MenuItems = document.getElementById('MenuItems');
-    MenuItems.style.maxHeight = '0px';
-  
-    function menutoggle() {
-      if (MenuItems.style.maxHeight == '0px') {
-        MenuItems.style.maxHeight = '200px';
-      } else {
-        MenuItems.style.maxHeight = '0px';
-      }
-    }
-  </script>
+    </footer>
+</body>
+</html>
