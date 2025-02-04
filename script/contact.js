@@ -34,21 +34,33 @@ form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
   // Get form data
-  const firstName = form.firstName.value.trim();
-  const lastName = form.lastName.value.trim();
   const email = form.email.value.trim();
-  const phone = form.phone.value.trim();
   const subject = form.subject.value;
   const message = form.message.value.trim();
+
+// Function to format dates in dd/mm/yyyy and HH:MM AM/PM format
+const formatSGTDate = (date) => {
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    let hours = date.getHours();
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    
+    return `${day}/${month}/${year} ${hours}:${minutes} ${ampm}`;
+  };
+
+  const now = new Date();
+  const formattedNow = formatSGTDate(now);
+
 
   try {
     // Check for existing document with matching email, phone, first name, last name, and subject
     const q = query(
       collection(db, 'ContactUs'),
       where('email', '==', email),
-      where('phone', '==', phone),
-      where('firstName', '==', firstName),
-      where('lastName', '==', lastName),
       where('subject', '==', subject)
     );
 
@@ -59,7 +71,7 @@ form.addEventListener('submit', async (e) => {
       const docRef = querySnapshot.docs[0].ref;
       await updateDoc(docRef, {
         message: message,
-        timestamp: new Date()
+        timestamp: formattedNow
       });
       console.log('Document updated:', docRef.id);
     } else {
@@ -67,26 +79,9 @@ form.addEventListener('submit', async (e) => {
       const emailQuery = query(collection(db, 'ContactUs'), where('email', '==', email));
       const emailQuerySnapshot = await getDocs(emailQuery);
 
-      if (!emailQuerySnapshot.empty) {
-        let isPhoneValid = true;
-        emailQuerySnapshot.forEach((doc) => {
-          if (doc.data().phone !== phone || doc.data().firstName !== firstName || doc.data().lastName !== lastName) {
-            isPhoneValid = false;
-          }
-        });
-
-        if (!isPhoneValid) {
-          alert('Invalid phone number or name for the linked email.');
-          return;
-        }
-      }
-
       // Create new document
       await addDoc(collection(db, 'ContactUs'), {
-        firstName,
-        lastName,
         email,
-        phone,
         subject,
         message,
         timestamp: new Date()
