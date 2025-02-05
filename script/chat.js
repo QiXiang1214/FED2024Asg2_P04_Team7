@@ -44,8 +44,9 @@ auth.onAuthStateChanged(user => {
     }
 });
 
-// Function to format dates in dd/mm/yyyy and HH:MM AM/PM format
 const formatSGTDate = (date) => {
+    if (!date) return "";  // Return empty string if date is invalid
+
     const day = String(date.getDate()).padStart(2, '0');
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const year = date.getFullYear();
@@ -108,21 +109,49 @@ messageInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') sendMessage();
 });
 
+const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dhgrd42d5/upload";
+const uploadPreset = "Chatpics"; // Create in Cloudinary settings
+
+async function uploadToCloudinary(file) {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", uploadPreset);
+
+    try {
+        const response = await fetch(CLOUDINARY_URL, {
+            method: "POST",
+            body: formData,
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            return data.secure_url;  // If successful, return URL
+        } else {
+            console.error("Cloudinary Upload Error:", data.error);
+            alert('Upload failed: ' + data.error.message);  // Provide more context
+            return null;
+        }
+    } catch (error) {
+        console.error("Cloudinary Upload Error:", error);
+        alert('Error uploading file: ' + error.message);
+        return null;
+    }
+}
+
 async function sendMessage() {
     if (!selectedUserId) return alert('Please select a user to chat with.');
 
     const message = messageInput.value.trim();
     const file = fileInput.files[0];
-    if (!message && !file) return;
+    let imageUrl = '';
+
+    if (file) {
+        imageUrl = await uploadToCloudinary(file); // Upload to Cloudinary
+    }
+
+    if (!message && !imageUrl) return;
 
     try {
-        let imageUrl = '';
-        if (file) {
-            const storageRef = storage.ref(`chat_images/${currentUser.uid}/${Date.now()}_${file.name}`);
-            await storageRef.put(file);
-            imageUrl = await storageRef.getDownloadURL();
-        }
-
         const now = new Date();
         const formattedNow = formatSGTDate(now);
 
@@ -131,7 +160,7 @@ async function sendMessage() {
             imageUrl,
             senderId: currentUser.uid,
             receiverId: selectedUserId,
-            participants: [currentUser.uid, selectedUserId],  // New field
+            participants: [currentUser.uid, selectedUserId],
             timestamp: firebase.firestore.FieldValue.serverTimestamp() 
         });
 
@@ -165,7 +194,7 @@ function loadMessages(targetUserId) {
 
     // Use a single query with 'array-contains-any' to get all messages between two users
     unsubscribeMessages1 = db.collection('messages')
-        .where('participants', 'array-contains-any', [currentUser.uid, targetUserId]) // New query using 'array-contains-any'
+        .where('participants', 'array-contains-any', [currentUser.uid, targetUserId]) 
         .orderBy('timestamp', 'asc')
         .onSnapshot(snapshot => {
             allMessages = snapshot.docs;
@@ -173,24 +202,38 @@ function loadMessages(targetUserId) {
         });
 }
 
+const imageOverlay = document.getElementById('imageOverlay');
+
+function setupImageClickHandler(images) {
+    images.forEach(image => {
+        image.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const clonedImage = image.cloneNode();
+            clonedImage.classList.remove('message-image');
+            imageOverlay.innerHTML = '';
+            imageOverlay.appendChild(clonedImage);
+            imageOverlay.classList.add('active');
+            
+            // Add loaded class when image is loaded
+            clonedImage.onload = () => {
+                clonedImage.classList.add('loaded');
+            };
+        });
+    });
+}
+
+imageOverlay.addEventListener('click', (e) => {
+    if (e.target === imageOverlay) {
+        imageOverlay.classList.remove('active');
+    }
+});
 
 function displayMessages(messages) {
-    // Remove duplicates
-    const uniqueMessages = messages.filter((v, i, a) => 
-        a.findIndex(t => (t.id === v.id)) === i
-    );
-
-    // Sort by timestamp
-    uniqueMessages.sort((a, b) => 
-        a.data().timestamp?.toMillis() - b.data().timestamp?.toMillis()
-    );
-
-    // Display messages
     messagesContainer.innerHTML = '';
-    uniqueMessages.forEach(doc => {
+    messages.forEach(doc => {
         const message = doc.data();
         const isCurrentUser = message.senderId === currentUser.uid;
-        const timestamp = message.timestamp?.toDate() || new Date();
+        const timestamp = message.timestamp ? message.timestamp.toDate() : null;
 
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${isCurrentUser ? 'self' : ''}`;
@@ -202,65 +245,61 @@ function displayMessages(messages) {
         if (message.text) {
             content += `<div class="message-text">${message.text}</div>`;
         }
-        content += `<div class="message-info">${formatSGTDate(timestamp)}</div>`;
+
+        if (timestamp) {
+            content += `<div class="message-info">${formatSGTDate(timestamp)}</div>`;
+        }
 
         messageDiv.innerHTML = content;
         messagesContainer.appendChild(messageDiv);
     });
 
-    // Auto-scroll to bottom
+    // Call the image click handler after the messages are displayed
+    setupImageClickHandler(document.querySelectorAll('.message-image'));
+
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
-
-
-function processMessages(messages) {
-    // Remove duplicates
-    const uniqueMessages = messages.filter((v, i, a) => 
-        a.findIndex(t => (t.id === v.id)) === i
-    );
-    
-    // Sort by timestamp
-    uniqueMessages.sort((a, b) => 
-        a.data().timestamp?.toMillis() - b.data().timestamp?.toMillis()
-    );
-
-    // Display messages
-    messagesContainer.innerHTML = '';
-    uniqueMessages.forEach(doc => {
-        const message = doc.data();
-        const isCurrentUser = message.senderId === currentUser.uid;
-        const timestamp = message.timestamp?.toDate();
-        
-        const messageDiv = document.createElement('div');
-        messageDiv.className = `message ${isCurrentUser ? 'self' : ''}`;
-        
-        let content = '';
-        if (message.imageUrl) {
-            content += `<img src="${message.imageUrl}" class="message-image">`;
-        }
-        if (message.text) {
-            content += `<div class="message-text">${message.text}</div>`;
-        }
-        content += `<div class="message-info">${formatSGTDate(timestamp)}</div>`;
-        
-        messageDiv.innerHTML = content;
-        messagesContainer.appendChild(messageDiv);
+// Modify image click handler
+function setupImageClickHandler(images) {
+    images.forEach(image => {
+        image.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const clonedImage = image.cloneNode();
+            clonedImage.classList.remove('message-image');
+            imageOverlay.innerHTML = '';
+            imageOverlay.appendChild(clonedImage);
+            imageOverlay.classList.add('active');
+            
+            // Add loaded class when image is loaded
+            clonedImage.onload = () => {
+                clonedImage.classList.add('loaded');
+            };
+        });
     });
-
-    // Scroll to bottom
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
-// Update the file input handler
+// Close overlay when clicking anywhere on the screen (including the image itself)
+document.addEventListener('click', (e) => {
+
+    if (!imageOverlay.contains(e.target)) {
+        imageOverlay.classList.remove('active');  
+    }
+});
+
+// Prevent propagation on image click, but still close overlay when image is clicked
+imageOverlay.addEventListener('click', (e) => {
+    imageOverlay.classList.remove('active');
+});
+
+
+// File Input handler and Send Button handler
 fileInput.addEventListener('change', (e) => {
     if (e.target.files[0]) {
-        // Preview image or enable send button
         sendBtn.disabled = false;
     }
 });
 
-// Modify send button handler to clear file after send
 sendBtn.addEventListener('click', () => {
     sendMessage();
     fileInput.value = '';
