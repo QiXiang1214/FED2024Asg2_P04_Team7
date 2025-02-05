@@ -144,29 +144,45 @@ body {
   color: white;
 }
 
-/* Footer */
-.footer {
+/* Bottom Footer */
+.bottom-bar {
   background: var(--dark);
+  color: rgb(255, 255, 255);
+  padding: 2rem 1rem;
+  text-align: center;
+  margin-top: 4rem; /* Space between content and footer */
+}
+
+.footer-content h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.footer-content p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.app-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.app-store, .google-play {
+  background: white;
+  color: var(--dark);
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-weight: 600;
+}
+
+.app-store:hover, .google-play:hover {
+  background: var(--accent);
   color: white;
-  padding: 4rem 2rem;
-  margin-top: 4rem;
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  max-width: 1440px;
-  margin: 0 auto;
-}
-
-.app-logo img {
-  height: 45px;
-  transition: transform 0.3s ease;
-}
-
-.app-logo img:hover {
-  transform: scale(1.05);
 }
 
 /* Search Section */
@@ -215,7 +231,136 @@ body {
   display: none;
 }
 
+/* Points and Voucher Section */
+.rewards-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
 
+.reward-box {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  text-align: center;
+}
+
+/* Create Listing Button */
+.create-listing-btn {
+  display: block;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.create-listing-btn:hover {
+  background: var(--secondary);
+}
+
+/* Category Selection */
+.categories {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.category-grid {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.category-item {
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 150px;
+}
+
+.category-item img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 0.5rem;
+}
+
+/* Trending Section */
+.trending-section {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.trending-grid {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.trending-item {
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 200px;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  background: grey;
+  border-radius: 50%;
+  margin: 0 auto 0.5rem auto;
+}
+
+.product-placeholder {
+  width: 100%;
+  height: 150px;
+  background: lightgray;
+  border-radius: 10px;
+}
+
+/* App Download Banner */
+.app-banner {
+  text-align: center;
+  background: var(--dark);
+  color: white;
+  padding: 2rem;
+  margin-top: 4rem;
+}
+
+.app-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.app-store, .google-play {
+  background: white;
+  color: var(--dark);
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.app-store:hover, .google-play:hover {
+  background: var(--accent);
+  color: white;
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {
