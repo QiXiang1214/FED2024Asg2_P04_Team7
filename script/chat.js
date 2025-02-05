@@ -61,7 +61,7 @@ const formatSGTDate = (date) => {
 
 // Load Users
 async function loadUsers(searchTerm = "") {
-    const usersSnapshot = await db.collection('users').get();
+    const usersSnapshot = await db.collection('register').get();
     chatList.innerHTML = '';
 
     usersSnapshot.forEach(doc => {
