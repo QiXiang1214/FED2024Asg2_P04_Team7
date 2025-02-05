@@ -1,12 +1,21 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+import { 
+    getAuth, 
+    signInWithEmailAndPassword, 
+    createUserWithEmailAndPassword, 
+    sendPasswordResetEmail, 
+    setPersistence, 
+    browserLocalPersistence
+} from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+
+import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 
 // Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCeZEByafoJgLvZDxc0DCuUIYL2_37XT2c",
   authDomain: "fed-assignment-2-54ec3.firebaseapp.com",
   projectId: "fed-assignment-2-54ec3",
-  storageBucket: "fed-assignment-2-54ec3.firebasestorage.app",
+  storageBucket: "fed-assignment-2-54ec3.appspot.com",
   messagingSenderId: "398158834633",
   appId: "1:398158834633:web:c025708b57da0f4e109618",
   measurementId: "G-HC6YLQLFK5"
@@ -15,92 +24,112 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
-// Show login form initially
-document.getElementById("login-container").style.display = "block";
+// Set authentication persistence
+setPersistence(auth, browserLocalPersistence)
+    .catch(error => console.error("Error setting persistence:", error));
 
-// Handle login form submission
-document.getElementById("login-form").addEventListener("submit", async function (event) {
-  event.preventDefault();
-  const email = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
+//  Ensure the DOM is fully loaded before adding event listeners
+document.addEventListener("DOMContentLoaded", function () {
 
-  // Firebase login logic
-  if (email && password) {
-    try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
+    console.log("DOM fully loaded, attaching event listeners.");
 
-      // Log the user in and redirect to the spin page with their data
-      alert(`Welcome back, ${user.email}`);
-      document.getElementById("login-container").style.display = "none";
-
-      // Store email and UID in sessionStorage (or you can use localStorage)
-      sessionStorage.setItem("email", user.email);
-      sessionStorage.setItem("uid", user.uid);
-
-      // Redirect to the Spin The Wheel page
-      window.location.href = "../html/home.html"; // Replace with your spin page URL
-    } catch (error) {
-      console.error("Login failed:", error);
-      alert(`Login failed: ${error.message}`);
-      document.getElementById("error-message").style.display = "block";
+    //  Fix for Register Button Not Working
+    const registerLink = document.getElementById("register-link");
+    if (registerLink) {
+        registerLink.addEventListener("click", function (event) {
+            event.preventDefault();
+            console.log("Register button clicked!");
+            document.getElementById("login-container").style.display = "none";
+            document.getElementById("signup-container").style.display = "block";
+        });
+    } else {
+        console.error("Register link not found in the document.");
     }
-  } else {
-    document.getElementById("error-message").style.display = "block";
-  }
+
+    //  Fix for "Back to Login" link
+    const backToLoginLink = document.getElementById("back-to-login-link");
+    if (backToLoginLink) {
+        backToLoginLink.addEventListener("click", function (event) {
+            event.preventDefault();
+            console.log("Back to login button clicked!");
+            document.getElementById("signup-container").style.display = "none";
+            document.getElementById("login-container").style.display = "block";
+        });
+    }
+
+    //  Fix for "Back to Login" from Forgot Password Page
+    const backToLoginForget = document.getElementById("back-to-login-from-forget-link");
+    if (backToLoginForget) {
+        backToLoginForget.addEventListener("click", function (event) {
+            event.preventDefault();
+            console.log("Back to login from forgot password clicked!");
+            document.getElementById("forget-container").style.display = "none";
+            document.getElementById("login-container").style.display = "block";
+        });
+    }
+
+    //  Handle login form submission
+    document.getElementById("login-form").addEventListener("submit", async function (event) {
+        event.preventDefault();
+        const email = document.getElementById("login-email").value;
+        const password = document.getElementById("password").value;
+
+        if (email && password) {
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                alert(`Welcome back, ${user.email}`);
+                
+                //  Redirect to homepage **only after successful login**
+                window.location.href = "../html/home.html";
+            } catch (error) {
+                console.error("Login failed:", error);
+                alert(`Login failed: ${error.message}`);
+                document.getElementById("error-message").style.display = "block";
+            }
+        } else {
+            document.getElementById("error-message").style.display = "block";
+        }
+    });
+
+   //  Handle user registration
+   document.getElementById("signup-form").addEventListener("submit", async function (event) {
+    event.preventDefault();
+    
+    const email = document.getElementById("signup-email").value.trim();
+    const password = document.getElementById("signup-password").value.trim();
+    const username = document.getElementById("signup-username").value.trim();
+
+    if (!email || !password || !username) {
+        alert("All fields are required!");
+        return;
+    }
+
+    try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        //  Save user data to Firestore (storing password normally)
+        await setDoc(doc(db, "register", user.uid), {
+            email: user.email,
+            username: username,
+            password: password,  //  Password stored normally (NOT RECOMMENDED for security)
+            createdAt: new Date()
+        });
+
+        alert("Registration successful! You can now log in.");
+        document.getElementById("signup-container").style.display = "none";
+        document.getElementById("login-container").style.display = "block";
+    } catch (error) {
+        if (error.code === "auth/email-already-in-use") {
+            alert("This email is already registered. Please log in instead.");
+        } else {
+            console.error("Registration failed:", error);
+            alert(`Registration failed: ${error.message}`);
+        }
+    }
 });
-
-// Show the register form
-document.getElementById("register-link").addEventListener("click", function () {
-  document.getElementById("login-container").style.display = "none";
-  document.getElementById("signup-container").style.display = "block";
-});
-
-// Handle user registration
-document.getElementById("signup-form").addEventListener("submit", async function (event) {
-  event.preventDefault();
-  const email = document.getElementById("signup-email").value;
-  const password = document.getElementById("signup-password").value;
-
-  try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-    alert("Registration successful! You can now log in.");
-    document.getElementById("signup-container").style.display = "none";
-    document.getElementById("login-container").style.display = "block";
-  } catch (error) {
-    console.error("Registration failed:", error);
-    alert(`Registration failed: ${error.message}`);
-    document.getElementById("signup-error-message").style.display = "block";
-  }
-});
-
-// Handle forgot password form submission
-document.getElementById("forget-form").addEventListener("submit", async function (event) {
-  event.preventDefault();
-  const email = document.getElementById("forget-email").value;
-
-  try {
-    await sendPasswordResetEmail(auth, email);
-    alert("Password reset email sent!");
-    document.getElementById("forget-container").style.display = "none";
-    document.getElementById("login-container").style.display = "block";
-  } catch (error) {
-    console.error("Password reset failed:", error);
-    alert(`Failed to send reset email: ${error.message}`);
-    document.getElementById("forget-error-message").style.display = "block";
-  }
-});
-
-// Handle back to login from register form
-document.getElementById("back-to-login-link").addEventListener("click", function () {
-  document.getElementById("signup-container").style.display = "none";
-  document.getElementById("login-container").style.display = "block";
-});
-
-// Handle back to login from forgot password form
-document.getElementById("back-to-login-from-forget-link").addEventListener("click", function () {
-  document.getElementById("forget-container").style.display = "none";
-  document.getElementById("login-container").style.display = "block";
 });
