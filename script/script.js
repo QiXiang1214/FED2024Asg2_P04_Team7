@@ -95,8 +95,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-   //  Handle user registration
-   document.getElementById("signup-form").addEventListener("submit", async function (event) {
+   // Handle user registration
+document.getElementById("signup-form").addEventListener("submit", async function (event) {
     event.preventDefault();
     
     const email = document.getElementById("signup-email").value.trim();
@@ -111,13 +111,15 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
+        const uid = user.uid; //  Get the UID
 
-        //  Save user data to Firestore (storing password normally)
-        await setDoc(doc(db, "register", user.uid), {
-            email: user.email,
-            username: username,
-            password: password,  //  Password stored normally (NOT RECOMMENDED for security)
-            createdAt: new Date()
+        //  Save user data to Firestore (including UID)
+        await setDoc(doc(db, "register", uid), {
+            uid: uid,          //  Store UID
+            email: user.email, // Store email
+            username: username, // Store username
+            password: password, //  Password stored as plain text (not recommended)
+            createdAt: new Date() // Store registration time
         });
 
         alert("Registration successful! You can now log in.");
@@ -132,4 +134,5 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 });
+
 });
