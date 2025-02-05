@@ -156,7 +156,7 @@ function loadMessages(targetUserId) {
         return;
     }
 
-    showLoading();5
+    showLoading();
 
     // Clear previous listeners
     if (unsubscribeMessages1) unsubscribeMessages1();

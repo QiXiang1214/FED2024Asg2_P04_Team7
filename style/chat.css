@@ -10,20 +10,72 @@
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background-image: url('../image/background.jpg'); /* Background image from inspiration */
+    margin-bottom: 120px;
+    background-color: rgba(90, 0, 135); /* Background image from inspiration */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     height: 100vh;
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
 }
 
+
+.navbar {
+    background: rgb(66, 6, 122);
+    box-shadow: 0 4px 6px -1px rgb(0, 0, 0, 0.5);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.logo-nav h1 {
+    font-family: "Inter", serif;
+    font-weight: 900;
+    font-style: italic;
+    color: white;
+    font-size: 30px;
+}
+
+.logo-nav:hover {
+    transform: scale(1.05);
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.button {
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.button:hover {
+    background: #2563eb;
+    color: white;
+    transform: translateY(-2px);
+}
+
+
 .chat-container {
     width: 100%;
     max-width: 1200px;
-    height: 90vh;
+    height: calc(90vh); /* Adjust height to account for navbar */
+    margin: 30px auto ; /* Push down by navbar height */
     background: var(--background);
     border-radius: 10px;
     box-shadow: 0 4em 5em rgba(146, 244, 255, 0.2);
