@@ -114,6 +114,11 @@
     text-align: center;
     margin-top: 4rem;
   }
+
+  .bottom-bar-content h2{
+    align-items: center;
+    color:white;
+  }
   
   .app-buttons {
     display: flex;

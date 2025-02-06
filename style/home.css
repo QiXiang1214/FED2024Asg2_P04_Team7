@@ -5,6 +5,7 @@
   --accent: #f59e0b;
   --dark: #1e293b;
   --light: #f8fafc;
+  --darker:#061928;
 }
 
 body {
@@ -144,32 +145,67 @@ body {
   color: white;
 }
 
-/* Bottom Footer */
 .bottom-bar {
-  background: var(--dark);
-  color: rgb(255, 255, 255);
+  background: var(--darker);
+  color: white;
   padding: 2rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Reduce space between elements */
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 65%; /* Reduce width to bring content closer */
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+}
+
+.footer-logo img {
+  width: 200px; /* Adjust size */
+  height: auto;
+  margin-right: 10px; /* Reduce margin */
+}
+
+.bottom-bar-text {
+  flex-grow: 1; /* Pushes the text towards the middle */
   text-align: center;
-  margin-top: 4rem; /* Space between content and footer */
-}
-
-.footer-content h2 {
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-.footer-content p {
-  font-size: 1rem;
-  margin-bottom: 1rem;
 }
 
 .app-buttons {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.app-buttons a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.app-buttons a img {
+  display: inline-block;
+}
+
+.app-buttons a span {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .app-store, .google-play {
+  text-align: center;
   background: white;
   color: var(--dark);
   padding: 0.75rem 1.5rem;
@@ -178,6 +214,7 @@ body {
   transition: all 0.3s ease;
   border: none;
   font-weight: 600;
+  text-decoration: none;
 }
 
 .app-store:hover, .google-play:hover {
