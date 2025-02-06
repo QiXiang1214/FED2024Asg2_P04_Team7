@@ -144,7 +144,7 @@ body {
   background: var(--primary);
   color: white;
 }
-
+/*bottom bar*/
 .bottom-bar {
   background: var(--darker);
   color: white;
@@ -152,29 +152,23 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px; /* Reduce space between elements */
+  gap: 10px;
 }
 
 .footer-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 65%; /* Reduce width to bring content closer */
-}
-
-.footer-logo {
-  display: flex;
-  align-items: center;
+  width: 65%;
 }
 
 .footer-logo img {
-  width: 200px; /* Adjust size */
+  width: 200px;
   height: auto;
-  margin-right: 10px; /* Reduce margin */
+  margin-right: 10px;
 }
 
 .bottom-bar-text {
-  flex-grow: 1; /* Pushes the text towards the middle */
   text-align: center;
 }
 
@@ -195,21 +189,11 @@ body {
   font-size: 1rem;
 }
 
-.app-buttons a img {
-  display: inline-block;
-}
-
-.app-buttons a span {
-  display: inline-block;
-  vertical-align: middle;
-}
-
 .app-store, .google-play {
-  text-align: center;
   background: white;
   color: var(--dark);
   padding: 0.75rem 1.5rem;
-  border-radius: 9999px;
+  border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
   border: none;
@@ -221,6 +205,7 @@ body {
   background: var(--accent);
   color: white;
 }
+
 
 /* Search Section */
 
@@ -337,36 +322,8 @@ body {
 }
 
 
-/* App Download Banner */
-.app-banner {
-  text-align: center;
-  background: var(--dark);
-  color: white;
-  padding: 2rem;
-  margin-top: 4rem;
-}
 
-.app-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1rem;
-}
 
-.app-store, .google-play {
-  background: white;
-  color: var(--dark);
-  padding: 0.75rem 1.5rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: none;
-}
-
-.app-store:hover, .google-play:hover {
-  background: var(--accent);
-  color: white;
-}
 
 /* Responsive Design */
 @media (max-width: 768px) {

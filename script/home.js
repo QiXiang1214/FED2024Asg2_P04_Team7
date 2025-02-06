@@ -1,3 +1,24 @@
+// Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCeZEByafoJgLvZDxc0DCuUIYL2_37XT2c",
+    authDomain: "fed-assignment-2-54ec3.firebaseapp.com",
+    projectId: "fed-assignment-2-54ec3",
+    storageBucket: "fed-assignment-2-54ec3.firebasestorage.app",
+    messagingSenderId: "398158834633",
+    appId: "1:398158834633:web:c025708b57da0f4e109618",
+    measurementId: "G-HC6YLQLFK5"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     const productCards = document.querySelectorAll('.product-card');
@@ -72,3 +93,34 @@ document.addEventListener('DOMContentLoaded', () => {
       productCards.forEach(card => productGrid.appendChild(card));
     });
   });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const productGrid = document.querySelector('.product-grid');
+
+    // Fetch listings from Firestore
+    db.collection("listings").orderBy("createdAt", "desc").get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                const listing = doc.data();
+
+                // Create product card for each listing
+                const productCard = document.createElement('div');
+                productCard.classList.add('product-card');
+
+                productCard.innerHTML = `
+                    <img src="${listing.image}" alt="Product Image" class="product-image">
+                    <div class="product-info">
+                        <h4 class="product-title">${listing.name}</h4>
+                        <p class="product-price">${listing.price}</p>
+                        <p class="product-description">${listing.description}</p>
+                        <button class="btn">Add to Cart</button>
+                    </div>
+                `;
+
+                productGrid.appendChild(productCard);
+            });
+        })
+        .catch(error => {
+            console.error("Error fetching listings:", error);
+        });
+});

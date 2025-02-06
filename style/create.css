@@ -6,6 +6,7 @@
     --accent: #f59e0b;
     --dark: #1e293b;
     --light: #f8fafc;
+    --darker:#061928;
   }
   
   body {
@@ -67,7 +68,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
-  h2 {
+  .small-container h2{
     text-align: center;
     color: var(--primary);
   }
@@ -108,23 +109,48 @@
   }
   
   .bottom-bar {
-    background: var(--dark);
+    background: var(--darker);
     color: white;
-    padding: 2rem;
-    text-align: center;
-    margin-top: 4rem;
-  }
-
-  .bottom-bar-content h2{
+    padding: 2rem 1rem;
+    display: flex;
     align-items: center;
-    color:white;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 65%;
+  }
+  
+  .footer-logo img {
+    width: 200px;
+    height: auto;
+    margin-right: 10px;
+  }
+  
+  .bottom-bar-text {
+    text-align: center;
+    color: white;
   }
   
   .app-buttons {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin-top: 1rem;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .app-buttons a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 1rem;
   }
   
   .app-store, .google-play {
@@ -135,6 +161,8 @@
     cursor: pointer;
     transition: all 0.3s ease;
     border: none;
+    font-weight: 600;
+    text-decoration: none;
   }
   
   .app-store:hover, .google-play:hover {
