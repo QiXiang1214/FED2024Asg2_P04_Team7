@@ -14,6 +14,10 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 const storage = firebase.storage();
 
+function generateThreadId(userId1, userId2) {
+    return [userId1, userId2].sort().join('_');
+}
+
 // DOM Elements
 const messageInput = document.getElementById('messageInput');
 const sendBtn = document.getElementById('sendBtn');
@@ -71,11 +75,10 @@ async function loadUsers(searchTerm = "") {
                 const userElement = document.createElement('div');
                 userElement.className = 'chat-user';
                 userElement.dataset.userId = user.uid; // Add user ID to dataset
-                userElement.innerHTML = `
-                    <div class="user-info">
+                userElement.innerHTML = 
+                    `<div class="user-info">
                         <div class="user-email">${user.email}</div>
-                    </div>
-                `;
+                    </div>`;
 
                 userElement.addEventListener('click', () => {
                     // Remove selection from previously selected user
@@ -140,28 +143,40 @@ async function uploadToCloudinary(file) {
 
 async function sendMessage() {
     if (!selectedUserId) return alert('Please select a user to chat with.');
-
+    
     const message = messageInput.value.trim();
     const file = fileInput.files[0];
     let imageUrl = '';
 
     if (file) {
-        imageUrl = await uploadToCloudinary(file); // Upload to Cloudinary
+        imageUrl = await uploadToCloudinary(file);
     }
 
     if (!message && !imageUrl) return;
 
     try {
+        const threadId = generateThreadId(currentUser.uid, selectedUserId);
         const now = new Date();
-        const formattedNow = formatSGTDate(now);
+        const timestamp = firebase.firestore.Timestamp.fromDate(now);
 
-        await db.collection('messages').add({
+        const newMessage = {
             text: message,
             imageUrl,
             senderId: currentUser.uid,
             receiverId: selectedUserId,
+            timestamp: timestamp,
+        };
+
+        // Update document with arrayUnion
+        await db.collection('chats').doc(threadId).set({
             participants: [currentUser.uid, selectedUserId],
-            timestamp: firebase.firestore.FieldValue.serverTimestamp() 
+            lastMessage: message || 'Image',
+            lastMessageTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        }, { merge: true });
+
+        // Add message to array
+        await db.collection('chats').doc(threadId).update({
+            messages: firebase.firestore.FieldValue.arrayUnion(newMessage)
         });
 
         messageInput.value = '';
@@ -171,13 +186,13 @@ async function sendMessage() {
     }
 }
 
+
 // Add loading indicator to messages container
 function showLoading() {
     messagesContainer.innerHTML = '<div class="loading">Loading messages...</div>';
 }
 
-let unsubscribeMessages1 = null;
-let unsubscribeMessages2 = null;
+let unsubscribeMessages = null;
 
 function loadMessages(targetUserId) {
     if (!targetUserId) {
@@ -187,18 +202,17 @@ function loadMessages(targetUserId) {
 
     showLoading();
 
-    // Clear previous listeners
-    if (unsubscribeMessages1) unsubscribeMessages1();
+    const threadId = generateThreadId(currentUser.uid, targetUserId);
 
-    let allMessages = [];
+    // Clear previous listener
+    if (unsubscribeMessages) unsubscribeMessages();
 
-    // Use a single query with 'array-contains-any' to get all messages between two users
-    unsubscribeMessages1 = db.collection('messages')
-        .where('participants', 'array-contains-any', [currentUser.uid, targetUserId]) 
-        .orderBy('timestamp', 'asc')
-        .onSnapshot(snapshot => {
-            allMessages = snapshot.docs;
-            displayMessages(allMessages);
+    // Listen to document changes
+    unsubscribeMessages = db.collection('chats').doc(threadId)
+        .onSnapshot(doc => {
+            const data = doc.data();
+            const messages = data?.messages || [];
+            displayMessages(messages);
         });
 }
 
@@ -230,8 +244,7 @@ imageOverlay.addEventListener('click', (e) => {
 
 function displayMessages(messages) {
     messagesContainer.innerHTML = '';
-    messages.forEach(doc => {
-        const message = doc.data();
+    messages.forEach(message => {
         const isCurrentUser = message.senderId === currentUser.uid;
         const timestamp = message.timestamp ? message.timestamp.toDate() : null;
 
@@ -254,9 +267,7 @@ function displayMessages(messages) {
         messagesContainer.appendChild(messageDiv);
     });
 
-    // Call the image click handler after the messages are displayed
     setupImageClickHandler(document.querySelectorAll('.message-image'));
-
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
