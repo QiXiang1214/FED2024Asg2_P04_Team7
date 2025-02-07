@@ -35,19 +35,28 @@ let selectedUserElement = null;
 auth.onAuthStateChanged(user => {
     if (user) {
         currentUser = user;
-        loadUsers();
+        const urlParams = new URLSearchParams(window.location.search);
+        const sellerUsername = urlParams.get('seller');
+
+        // Set search input if seller parameter exists
+        if (sellerUsername) {
+            userSearch.value = decodeURIComponent(sellerUsername);
+        }
+
+        loadUsers(sellerUsername ? decodeURIComponent(sellerUsername) : "");
         setupEventListeners();
         setupThreadListeners();
-        
+
         // Automatically select the first user if no user is selected
         if (!selectedUserId && chatList.children.length > 0) {
             const firstUser = chatList.children[0];
             firstUser.click();
         }
     } else {
-        window.location.href = '/login.html'; // Redirect if not logged in
+        window.location.href = '/login.html';
     }
 });
+
 
 // Cleanup on logout
 function cleanup() {
@@ -81,27 +90,23 @@ async function loadUsers(searchTerm = "") {
     usersSnapshot.forEach(doc => {
         const user = doc.data();
         if (user.uid !== currentUser.uid) {
-            if (user.email.toLowerCase().includes(searchTerm.toLowerCase())) {
+            // Changed from email to username comparison
+            if (user.username.toLowerCase().includes(searchTerm.toLowerCase())) {
                 const userElement = document.createElement('div');
                 userElement.className = 'chat-user';
-                userElement.dataset.userId = user.uid; // Add user ID to dataset
+                userElement.dataset.userId = user.uid;
                 userElement.innerHTML = 
                     `<div class="user-info">
                         <div class="user-username">${user.username}</div>
                     </div>`;
 
                 userElement.addEventListener('click', () => {
-                    // Remove selection from previously selected user
                     if (selectedUserElement) {
                         selectedUserElement.classList.remove('selected');
                     }
-                    
-                    // Set new selection
                     selectedUserElement = userElement;
                     selectedUserId = user.uid;
                     userElement.classList.add('selected');
-                    
-                    // Load messages for this user
                     loadMessages(user.uid);
                 });
 
@@ -110,6 +115,7 @@ async function loadUsers(searchTerm = "") {
         }
     });
 }
+
 
 // Listen for search input
 userSearch.addEventListener('input', (e) => {
