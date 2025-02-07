@@ -64,6 +64,23 @@ body {
     transform: translateY(-2px);
   }
 
+
+  /* Points and Voucher Section */
+.rewards-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .reward-box {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center;
+  }
 /* Profile Section */
 .profile-container {
     max-width: 600px;
@@ -99,8 +116,6 @@ body {
 .edit-profile-btn:hover {
     background: var(--secondary);
 }
-
-/* Edit Profile Container */
 
 
 /* Edit Profile Form */

@@ -264,23 +264,6 @@ body {
   display: none;
 }
 
-/* Points and Voucher Section */
-.rewards-container {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.reward-box {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 200px;
-  text-align: center;
-}
-
 /* Create Listing Button */
 .create-listing-btn {
   display: block;
