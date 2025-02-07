@@ -130,11 +130,16 @@
     margin-bottom: 1.5rem;
 }
 
+
 .seller-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    width: 50px; /* Adjust size */
+    height: 50px; /* Adjust size */
+    border-radius: 50%; /* Makes it circular */
+    object-fit: cover; /* Ensures the image fits the container */
+    border: 2px solid #ccc; /* Optional: border around the image */
+    box-shadow: 0 2px 5px rgba(31, 143, 0, 0.9); /* Optional: adds subtle shadow */
 }
+
 
 .seller-stats {
     margin: 1.5rem 0;
