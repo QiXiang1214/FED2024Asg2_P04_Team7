@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
 
     // Update seller information
-    document.querySelector('.seller-avatar').src = productData.seller.avatar;
-    document.querySelector('.seller-details h3').textContent = productData.seller.name;
+    document.querySelector('.seller-avatar').src = productData.createdBy.avatar || "mslogo.png";
+    document.querySelector('.seller-details h3').textContent = productData.createdBy.username || "Unknown Seller";
     document.querySelector('.stat-item span').textContent = 
         `Usually responds within 5 hours`;
         

@@ -78,7 +78,7 @@ async function fetchListings(category = null) {
                   price: listing.price,
                   image: listing.image,
                   description: listing.description,
-                  seller: listing.seller || { name: "Unknown Seller" }
+                  createdBy: listing.createdBy || { username: "Unknown Seller", avatar: "mslogo.png" }
               };
   
               sessionStorage.setItem('currentProduct', JSON.stringify(productData));
