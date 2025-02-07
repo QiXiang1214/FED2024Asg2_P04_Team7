@@ -3,9 +3,10 @@ import { auth, db } from "../script/firebase.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
 import { doc, getDoc, collection, query, where, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 
+
 console.log("profile.js is loaded");
 
-// ✅ Function to Load User Profile Data (Unchanged)
+// ✅ Function to Load User Profile Data
 async function loadUserProfile(user) {
     if (!user) {
         alert("You must be logged in to view your profile.");
@@ -14,14 +15,14 @@ async function loadUserProfile(user) {
     }
 
     try {
-        // Fetch user profile from Firestore
+        // Fetch user profile from Firestore (register collection)
         const userDocRef = doc(db, "register", user.uid);
         const userDocSnap = await getDoc(userDocRef);
 
         if (userDocSnap.exists()) {
             const userData = userDocSnap.data();
 
-            // ✅ Update HTML with user info
+            // Update HTML with user info
             document.getElementById("profile-name").textContent = userData.username || "No Username";
             document.getElementById("profile-email").textContent = user.email;
             document.getElementById("profile-bio").textContent = userData.bio || "No bio available.";
@@ -29,10 +30,27 @@ async function loadUserProfile(user) {
             console.error("User profile not found in Firestore.");
             alert("Profile not found. Please complete your profile.");
         }
+
+        // Fetch totalPoints from spinTheWheel collection
+        const spinDocRef = doc(db, "spinTheWheel", user.uid); // Use user.uid to fetch from spinTheWheel
+        const spinDocSnap = await getDoc(spinDocRef);
+
+        if (spinDocSnap.exists()) {
+            const spinData = spinDocSnap.data();
+
+            // Update points display
+            const totalPoints = Number(spinData.totalPoints) || 0; // Ensure totalPoints is a number
+            console.log("Fetched totalPoints: ", totalPoints); // Debug log
+            document.getElementById("user-points").textContent = totalPoints; // Show totalPoints
+        } else {
+            console.error("Spin the Wheel data not found for this user.");
+            alert("Spin data not found. Please try again.");
+        }
     } catch (error) {
         console.error("Error loading profile:", error);
     }
 }
+
 
 // ✅ Function to Load User Listings
 async function loadUserListings(user) {
