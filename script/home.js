@@ -68,6 +68,23 @@ async function fetchListings(category = null) {
               </div>
           `;
 
+          // Add Click Event Listener
+          productCard.addEventListener('click', function(e) {
+              if (e.target.tagName === 'BUTTON') return;
+              
+              const productData = {
+                  id: doc.id,
+                  name: listing.name,
+                  price: listing.price,
+                  image: listing.image,
+                  description: listing.description,
+                  seller: listing.seller || { name: "Unknown Seller" }
+              };
+  
+              sessionStorage.setItem('currentProduct', JSON.stringify(productData));
+              window.location.href = 'product.html';
+          });
+
           productGrid.appendChild(productCard);
       });
 
@@ -75,6 +92,7 @@ async function fetchListings(category = null) {
       console.error("Error fetching listings:", error);
   }
 }
+
 
 // Load all listings on page load
 document.addEventListener('DOMContentLoaded', () => {
@@ -174,13 +192,10 @@ document.querySelectorAll('.product-card').forEach(card => {
         if (e.target.tagName === 'BUTTON') return;
         
         const productData = {
-            id: this.dataset.productId,
             name: this.dataset.productName,
             price: this.dataset.productPrice,
-            rating: this.dataset.productRating,
             image: this.dataset.productImage,
             description: this.dataset.productDescription || 'Nil',
-            specs: JSON.parse(this.dataset.productSpecs),
             seller: JSON.parse(this.dataset.seller)
         };
 
