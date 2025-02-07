@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../style/home.css">
 </head>
 <body>
+    <div id="imageOverlay" class="image-overlay"></div>
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo-nav">
@@ -23,6 +24,29 @@
         </div>
     </nav>
 
+    <!-- Search Bar -->
+    <div class="search-container">
+        <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search products by name or description...">
+        <i class="fas fa-search search-icon"></i>
+        </div>
+    </div>
+
+    <div class="rewards-container">
+        <div class="reward-box">
+            <h3>Points:</h3>
+            <p id="user-points">0</p>
+        </div>
+        <div class="reward-box">
+            <h3>Voucher:</h3>
+            <p id="user-vouchers">0</p>
+        </div>
+    </div>
+    
+    <!-- Create New Listing -->
+    <a href="create.html" class="no-underline">
+        <button class="create-listing-btn">Create New Listing</button>
+    </a>  
     <!-- Product Grid -->
     <div class="small-container">
         <div class="row-2">
@@ -34,18 +58,33 @@
                 <option>Most Popular</option>
             </select>
         </div>
+        <!-- Category Selection -->
+        <div class="categories">
+            <h2>What would you like to find?</h2>
+            <div class="category-grid">
+                <div class="category-item">
+                    <img src="https://via.placeholder.com/50" alt="Women's Fashion">
+                    <p>Women's Fashion</p>
+                </div>
+                <div class="category-item">
+                    <img src="https://via.placeholder.com/50" alt="Men's Fashion">
+                    <p>Men's Fashion</p>
+                </div>
+                <div class="category-item">
+                    <img src="https://via.placeholder.com/50" alt="Mobile Phones & Gadgets">
+                    <p>Mobile Phones & Gadgets</p>
+                </div>
+                <div class="category-item">
+                    <img src="https://via.placeholder.com/50" alt="Luxury">
+                    <p>Luxury</p>
+                </div>
+            </div>
+        </div>
 
+        <a href="product.html" class="product-link">
         <div class="product-grid">
             <!-- Product Card 1 -->
-            <div class="product-card" 
-                 data-product-id="1"
-                 data-product-name="Premium Cotton T-Shirt"
-                 data-product-price="49.99"
-                 data-product-rating="4"
-                 data-product-image="https://i.ibb.co/47Sk9QL/product-1.jpg"
-                 data-product-description="High-quality 100% cotton t-shirt with premium finish."
-                 data-product-specs='{"Material":"100% Organic Cotton","Size":"S, M, L, XL","Colors":"Red, Blue, Black, White","Care":"Machine wash cold"}'
-                 data-seller='{"name":"Johnny Stores","rating":4.3,"avatar":"https://via.placeholder.com/50","responseTime":"1 hour"}'>
+            <div class="product-card">
                 <img src="https://i.ibb.co/47Sk9QL/product-1.jpg" alt="Product" class="product-image">
                 <div class="product-info">
                     <h4 class="product-title">Premium Cotton T-Shirt</h4>
@@ -62,15 +101,7 @@
             </div>
 
             <!-- Product Card 2 -->
-            <div class="product-card" 
-                 data-product-id="2"
-                 data-product-name="Classic Denim Jeans"
-                 data-product-price="79.99"
-                 data-product-rating="3"
-                 data-product-image="https://i.ibb.co/b7ZVzYr/product-2.jpg"
-                 data-product-description=""
-                 data-product-specs='{"Material":"Denim","Size":"28-40","Colors":"Blue, Black","Care":"Machine wash"}'
-                 data-seller='{"name":"Denim World","rating":4.7,"avatar":"https://via.placeholder.com/50","responseTime":"2 hours"}'>
+            <div class="product-card">
                 <img src="https://i.ibb.co/b7ZVzYr/product-2.jpg" alt="Product" class="product-image">
                 <div class="product-info">
                     <h4 class="product-title">Classic Denim Jeans</h4>
@@ -85,9 +116,62 @@
                     <button class="btn">Add to Cart</button>
                 </div>
             </div>
+
+          <div class="product-card">
+            <img src="https://i.ibb.co/b7ZVzYr/product-2.jpg" alt="Product" class="product-image">
+            <div class="product-info">
+                <h4 class="product-title">iphone 16 pro max</h4>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <p class="product-price">$1899.99</p>
+                <button class="btn">Add to Cart</button>
+            </div>            
+        </div>
+          <div class="product-card">
+            <img src="https://i.ibb.co/b7ZVzYr/product-2.jpg" alt="Product" class="product-image">
+            <div class="product-info">
+                <h4 class="product-title">Apple skin peeler</h4>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <p class="product-price">$4.99</p>
+                <button class="btn">Add to Cart</button>
+            </div>
+          </div>
         </div>
     </div>
-
-    <script type="module" src="../script/home.js"></script>
-</body>
+    </a>
+        <!-- Bottom Bar Footer -->
+        <footer class="bottom-bar">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../image/mokesell-logo.jpeg" alt="MokeSell-bottom-Logo">
+                </div>
+                <div class="bottom-bar-text">
+                    <h2>Unlock the Power of MokeSell</h2>
+                    <p>Download the App Now!</p>
+                    <div class="app-buttons">
+                        <a href="https://www.apple.com/app-store/" target="_blank" class="app-store">
+                            <img width="30" height="30" src="../image/applestore.png" alt="App Store">
+                            <span>Download on App Store</span>
+                        </a>
+                        <a href="https://play.google.com/store" target="_blank" class="google-play">
+                            <img width="30" height="30" src="../image/googleplay.png" alt="Google Play">
+                            <span>Get it on Google Play</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script type="module" src="../script/home.js"></script>
+    </body>
 </html>

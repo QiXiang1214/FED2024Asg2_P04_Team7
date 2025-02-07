@@ -21,41 +21,43 @@ const db = getFirestore(app); // ✅ Now Firestore is properly initialized
 
 // ✅ Function to Fetch Listings from Firestore
 async function fetchListings() {
-    const productGrid = document.querySelector('.product-grid');
-    productGrid.innerHTML = ""; // Clear existing products
+  const productGrid = document.querySelector('.product-grid');
+  productGrid.innerHTML = ""; // Clear existing products
 
-    try {
-        const q = query(collection(db, "listings"), orderBy("createdAt", "desc"));
-        const querySnapshot = await getDocs(q);
+  try {
+      const q = query(collection(db, "listings"), orderBy("createdAt", "desc"));
+      const querySnapshot = await getDocs(q);
 
-        if (querySnapshot.empty) {
-            productGrid.innerHTML = "<p>No listings available.</p>";
-            return;
-        }
+      if (querySnapshot.empty) {
+          productGrid.innerHTML = "<p>No listings available.</p>";
+          return;
+      }
 
-        querySnapshot.forEach((doc) => {
-            const listing = doc.data();
-            const productCard = document.createElement('div');
-            productCard.classList.add('product-card');
+      querySnapshot.forEach((doc) => {
+          const listing = doc.data();
+          const productCard = document.createElement('div');
+          productCard.classList.add('product-card');
 
-            productCard.innerHTML = `
-                <img src="${listing.image}" alt="Product Image" class="product-image">
-                <div class="product-info">
-                    <h4 class="product-title">${listing.name}</h4>
-                    <p class="product-price">${listing.price}</p>
-                    <p class="product-description">${listing.description}</p>
-                    <button class="btn">Add to Cart</button>
-                </div>
-            `;
-            productGrid.appendChild(productCard);
-        });
+          // ✅ Ensure Cloudinary URL is being used
+          productCard.innerHTML = `
+              <img src="${listing.image}" alt="Product Image" class="product-image" onerror="this.src='default-image.jpg';">
+              <div class="product-info">
+                  <h4 class="product-title">${listing.name}</h4>
+                  <p class="product-price">${listing.price}</p>
+                  <p class="product-description">${listing.description}</p>
+                  <button class="btn">Add to Cart</button>
+              </div>
+          `;
+          productGrid.appendChild(productCard);
+      });
 
-    } catch (error) {
-        console.error("Error fetching listings:", error);
-    }
+  } catch (error) {
+      console.error("Error fetching listings:", error);
+  }
 }
 
-// ✅ Ensure Firestore Loads Listings on Page Load
+
+// ✅ Load listings when the page loads
 document.addEventListener('DOMContentLoaded', fetchListings);
 
 // ✅ Your Existing Search Function (Unchanged)
@@ -135,29 +137,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-
-// Add click event to all product cards
+// ✅ Handle Clicking on Products to View Details (Unchanged)
 document.querySelectorAll('.product-card').forEach(card => {
-  card.addEventListener('click', function(e) {
-      // Don't navigate if clicking on buttons inside the card
-      if (e.target.tagName === 'BUTTON') return;
-      
-      // Get all product data
-      const productData = {
-          id: this.dataset.productId,
-          name: this.dataset.productName,
-          price: this.dataset.productPrice,
-          rating: this.dataset.productRating,
-          image: this.dataset.productImage,
-          description: this.dataset.productDescription || 'Nil',
-          specs: JSON.parse(this.dataset.productSpecs),
-          seller: JSON.parse(this.dataset.seller)
-      };
-      
-      // Store in session storage
-      sessionStorage.setItem('currentProduct', JSON.stringify(productData));
-      
-      // Navigate to product page
-      window.location.href = 'product.html';
-  });
+    card.addEventListener('click', function (e) {
+        if (e.target.tagName === 'BUTTON') return;
+        
+        const productData = {
+            id: this.dataset.productId,
+            name: this.dataset.productName,
+            price: this.dataset.productPrice,
+            rating: this.dataset.productRating,
+            image: this.dataset.productImage,
+            description: this.dataset.productDescription || 'Nil',
+            specs: JSON.parse(this.dataset.productSpecs),
+            seller: JSON.parse(this.dataset.seller)
+        };
+
+        sessionStorage.setItem('currentProduct', JSON.stringify(productData));
+        window.location.href = 'product.html';
+    });
 });
