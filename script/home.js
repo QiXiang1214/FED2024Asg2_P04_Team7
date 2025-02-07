@@ -124,3 +124,30 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("Error fetching listings:", error);
         });
 });
+
+
+// Add click event to all product cards
+document.querySelectorAll('.product-card').forEach(card => {
+  card.addEventListener('click', function(e) {
+      // Don't navigate if clicking on buttons inside the card
+      if (e.target.tagName === 'BUTTON') return;
+      
+      // Get all product data
+      const productData = {
+          id: this.dataset.productId,
+          name: this.dataset.productName,
+          price: this.dataset.productPrice,
+          rating: this.dataset.productRating,
+          image: this.dataset.productImage,
+          description: this.dataset.productDescription || 'Nil',
+          specs: JSON.parse(this.dataset.productSpecs),
+          seller: JSON.parse(this.dataset.seller)
+      };
+      
+      // Store in session storage
+      sessionStorage.setItem('currentProduct', JSON.stringify(productData));
+      
+      // Navigate to product page
+      window.location.href = 'product.html';
+  });
+});
