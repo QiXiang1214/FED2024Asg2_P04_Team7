@@ -306,15 +306,6 @@ body {
   margin-top: 1rem;
 }
 
-.category-item {
-  background: white;
-  padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  width: 150px;
-}
-
 .category-item img {
   width: 100px;
   height: 95px;
@@ -322,9 +313,24 @@ body {
   border-radius: 100%;
 }
 
+.category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  padding: 1rem;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 150px;
+  cursor: pointer; /* ✅ Makes it clickable */
+  transition: transform 0.2s ease-in-out;
+}
 
-
-
+.category-item:hover {
+  transform: scale(1.05); /* ✅ Adds hover effect */
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {
