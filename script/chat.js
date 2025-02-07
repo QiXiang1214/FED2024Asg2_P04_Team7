@@ -25,6 +25,7 @@ const fileInput = document.getElementById('fileInput');
 const userSearch = document.getElementById('userSearch');
 const messagesContainer = document.getElementById('messagesContainer');
 const chatList = document.getElementById('chatList');
+const imageOverlay = document.getElementById('imageOverlay');
 
 // Global Variables
 let currentUser = null;
@@ -56,7 +57,6 @@ auth.onAuthStateChanged(user => {
         window.location.href = '/login.html';
     }
 });
-
 
 // Cleanup on logout
 function cleanup() {
@@ -115,7 +115,6 @@ async function loadUsers(searchTerm = "") {
         }
     });
 }
-
 
 // Listen for search input
 userSearch.addEventListener('input', (e) => {
@@ -205,7 +204,6 @@ async function sendMessage() {
     setupThreadListeners();
 }
 
-
 // Add loading indicator to messages container
 function showLoading() {
     messagesContainer.innerHTML = '<div class="loading">Loading messages...</div>';
@@ -245,32 +243,6 @@ async function loadMessages(targetUserId) {
         messagesContainer.innerHTML = '<div class="error">Failed to load messages. Please try again.</div>';
     }
 }
-
-const imageOverlay = document.getElementById('imageOverlay');
-
-function setupImageClickHandler(images) {
-    images.forEach(image => {
-        image.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const clonedImage = image.cloneNode();
-            clonedImage.classList.remove('message-image');
-            imageOverlay.innerHTML = '';
-            imageOverlay.appendChild(clonedImage);
-            imageOverlay.classList.add('active');
-            
-            // Add loaded class when image is loaded
-            clonedImage.onload = () => {
-                clonedImage.classList.add('loaded');
-            };
-        });
-    });
-}
-
-imageOverlay.addEventListener('click', (e) => {
-    if (e.target === imageOverlay) {
-        imageOverlay.classList.remove('active');
-    }
-});
 
 function displayMessages(messages) {
     messagesContainer.innerHTML = '';
@@ -321,37 +293,23 @@ function setupImageClickHandler(images) {
 }
 
 // Close overlay when clicking anywhere on the screen (including the image itself)
-document.addEventListener('click', (e) => {
-
-    if (!imageOverlay.contains(e.target)) {
-        imageOverlay.classList.remove('active');  
-    }
-});
-
-// Prevent propagation on image click, but still close overlay when image is clicked
 imageOverlay.addEventListener('click', (e) => {
     imageOverlay.classList.remove('active');
 });
 
-
 // File Input handler and Send Button handler
 fileInput.addEventListener('change', (e) => {
     if (e.target.files[0]) {
-        sendBtn.disabled = false;
+        sendBtn.disabled = false;  // Enable send button if a file is selected
     }
 });
 
-sendBtn.addEventListener('click', () => {
-    sendMessage();
-    fileInput.value = '';
+// Prevent file input from sending the message automatically
+fileInput.addEventListener('change', (e) => {
+    if (e.target.files[0]) {
+        sendBtn.disabled = false;  // Enable send button if a file is selected
+    }
 });
-
-// Event Listeners
-function setupEventListeners() {
-    fileInput.addEventListener('change', () => {
-        if (fileInput.files[0]) sendMessage();
-    });
-}
 
 // Add to chat.js
 let threadUnsubscribe = null;
