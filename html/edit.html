@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile - MokeSell</title>
+    <title>Edit Profile - MokeSell</title>
     <link rel="stylesheet" href="../style/profile.css">
 </head>
 <body>
-    <!-- Navbar -->
     <nav class="navbar">
         <div class="logo-nav">
             <img width="80" height="80" src="../image/mslogo.png" alt="MokeSell Logo">
@@ -23,24 +22,23 @@
         </div>
     </nav>
 
-    <!-- Profile Section -->
-<div class="profile-container">
-    <div class="profile-card">
-        <h1>Welcome</h1>
-        <h2 id="profile-name">Username</h2>
-        <p id="profile-email">email@example.com</p>
-        <p id="profile-bio">No bio available.</p>
-        <a href="edit.html" class="edit-profile-btn">Edit Profile</a>
-    </div>
-</div>
-    <!-- User Listings -->
-    <div class="user-listings-container">
-        <h2>Your Listings</h2>
-        <div class="product-grid" id="user-listings">
-            <!-- Listings will be dynamically inserted here -->
+    <div class="profile-container">
+        <h2>Edit Profile</h2>
+        
+        <div class="edit-profile-form">
+            <label for="editUsername">Username:</label>
+            <input type="text" id="editUsername" placeholder="Enter new username">
+    
+            <label for="editBio">Bio:</label>
+            <textarea id="editBio" placeholder="Write something about yourself..."></textarea>
+    
+            <div class="button-container">
+                <button id="cancelEditBtn" class="cancel-btn">Cancel</button>
+                <button id="saveProfileBtn" class="save-btn">Save Changes</button>
+            </div>
         </div>
     </div>
-    <script type="module" src="../script/firebase.js"></script>
-    <script type="module" src="../script/profile.js"></script>
+
+    <script type="module" src="../script/edit.js"></script>
 </body>
 </html>

@@ -1,25 +1,7 @@
-// Import Firebase SDKs
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
-import { getFirestore, collection, getDocs, query, orderBy, where } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
+// Import Firebase from firebase.js
+import { db } from "../script/firebase.js";
+import { collection, getDocs, query, orderBy, where } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 
-// Firebase Config
-const firebaseConfig = {
-    apiKey: "AIzaSyCeZEByafoJgLvZDxc0DCuUIYL2_37XT2c",
-    authDomain: "fed-assignment-2-54ec3.firebaseapp.com",
-    projectId: "fed-assignment-2-54ec3",
-    storageBucket: "fed-assignment-2-54ec3.appspot.com",
-    messagingSenderId: "398158834633",
-    appId: "1:398158834633:web:c025708b57da0f4e109618",
-    measurementId: "G-HC6YLQLFK5"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const db = getFirestore(app); //  Now Firestore is properly initialized
-
-//  Function to Fetch Listings from Firestore
 // Function to Fetch and Display Listings from Firestore (Supports Category Filtering)
 async function fetchListings(category = null) {
   const productGrid = document.querySelector('.product-grid');
@@ -93,7 +75,6 @@ async function fetchListings(category = null) {
   }
 }
 
-
 // Load all listings on page load
 document.addEventListener('DOMContentLoaded', () => {
   fetchListings();
@@ -107,7 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   });
 });
-
 
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
