@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - MokeSell</title>
+    <link rel="stylesheet" href="../style/profile.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo-nav">
+            <img width="80" height="80" src="../image/mslogo.png" alt="MokeSell Logo">
+            <h1>MokeSell</h1>
+        </div>
+        <div class="nav-links">
+            <a href="home.html" class="button">Home</a>
+            <a href="spin_wheel.html" class="button">Spin The Wheel</a>
+            <a href="contactus.html" class="button">Contact</a>
+            <a href="followus.html" class="button">Follow Us</a>
+            <a href="chat.html" class="button">Chats</a>
+            <a href="profile.html" class="button active">Profile</a>
+        </div>
+    </nav>
+
+    <!-- Profile Section -->
+<div class="profile-container">
+    <div class="profile-card">
+        <h2 id="profile-name">Username</h2>
+        <p id="profile-email">email@example.com</p>
+        <p id="profile-bio">No bio available.</p>
+        <button class="edit-profile-btn" id="editProfileBtn">Edit Profile</button>
+    </div>
+</div>
+
+<!-- Edit Profile Form (Initially Hidden) -->
+<div class="edit-profile-form" id="editProfileForm" style="display: none;">
+    <h2>Edit Profile</h2>
+    <label for="newUsername">Username:</label>
+    <input type="text" id="newUsername" placeholder="Enter new username">
+    <label for="newBio">Bio:</label>
+    <textarea id="newBio" placeholder="Write something about yourself..."></textarea>
+    <button id="saveProfileBtn" class="save-btn">Save Changes</button>
+    <button id="cancelEditBtn" class="cancel-btn">Cancel</button>
+</div>
+
+        
+    <!-- User Listings -->
+    <div class="user-listings-container">
+        <h2>Your Listings</h2>
+        <div class="product-grid" id="user-listings">
+            <!-- Listings will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script type="module" src="../script/profile.js"></script>
+</body>
+</html>
