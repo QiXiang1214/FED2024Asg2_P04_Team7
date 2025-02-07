@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - MokeSell</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../style/home.css">
+    <link rel="stylesheet" href="../style/product.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo-nav">
+            <img width="80" height="80" src="../image/mslogo.png" alt="MokeSell_Logo">
+            <h1>MokeSell</h1>
+        </div>
+        <div class="nav-links">
+            <a href="home.html" class="button">Home</a>
+            <a href="spin_wheel.html" class="button">Spin The Wheel</a>
+            <a href="contactus.html" class="button">Contact</a>
+            <a href="followus.html" class="button">Follow Us</a>
+            <a href="chat.html" class="button">Chats</a>
+        </div>
+    </nav>
+
+    <!-- Product Details Container -->
+    <div class="product-details-container">
+        <!-- Product Images -->
+        <div class="product-images">
+            <div class="main-image">
+                <img id="mainProductImage" src="https://i.ibb.co/47Sk9QL/product-1.jpg" alt="Main Product Image">
+            </div>
+            <div class="thumbnail-grid">
+                <img class="thumbnail active" src="https://i.ibb.co/47Sk9QL/product-1.jpg" alt="Thumbnail 1">
+                <img class="thumbnail" src="https://i.ibb.co/b7ZVzYr/product-2.jpg" alt="Thumbnail 2">
+                <img class="thumbnail" src="https://via.placeholder.com/100" alt="Thumbnail 3">
+                <img class="thumbnail" src="https://via.placeholder.com/100" alt="Thumbnail 4">
+            </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="product-info">
+            <h1 class="product-title">Premium Cotton T-Shirt</h1>
+            <div class="price-rating">
+                <p class="product-price">$49.99</p>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <span>(128 reviews)</span>
+                </div>
+            </div>
+            
+            <div class="product-description">
+                <h3>Description</h3>
+                <p>High-quality 100% cotton t-shirt with premium finish. Available in various sizes and colors. Perfect for casual wear or sports activities.</p>
+            </div>
+
+            <div class="product-specs">
+                <h3>Specifications</h3>
+                <ul>
+                    <li><strong>Material:</strong> 100% Organic Cotton</li>
+                    <li><strong>Size:</strong> S, M, L, XL</li>
+                    <li><strong>Colors:</strong> Red, Blue, Black, White</li>
+                    <li><strong>Care:</strong> Machine wash cold</li>
+                </ul>
+            </div>
+
+            <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+
+        <!-- Seller Information -->
+        <div class="seller-info">
+            <div class="seller-header">
+                <img src="https://via.placeholder.com/50" alt="Seller Avatar" class="seller-avatar">
+                <div class="seller-details">
+                    <h3>John's Fashion Store</h3>
+                    <div class="seller-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <i class="far fa-star"></i>
+                        <span>4.3 (256 reviews)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="seller-stats">
+                <div class="stat-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Usually responds within 1 hour</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-shipping-fast"></i>
+                    <span>Free shipping available</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Verified Seller</span>
+                </div>
+            </div>
+
+            <button class="chat-seller-btn" onclick="location.href='chat.html'">
+                <i class="fas fa-comments"></i> Chat with Seller
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bottom-bar">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="../image/mokesell-logo.jpeg" alt="MokeSell-bottom-Logo">
+            </div>
+            <div class="bottom-bar-text">
+                <h2>Unlock the Power of MokeSell</h2>
+                <p>Download the App Now!</p>
+                <div class="app-buttons">
+                    <a href="https://www.apple.com/app-store/" target="_blank" class="app-store">
+                        <img width="30" height="30" src="../image/applestore.png" alt="App Store">
+                        <span>Download on App Store</span>
+                    </a>
+                    <a href="https://play.google.com/store" target="_blank" class="google-play">
+                        <img width="30" height="30" src="../image/googleplay.png" alt="Google Play">
+                        <span>Get it on Google Play</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script/product.js"></script>
+</body>
+</html>
