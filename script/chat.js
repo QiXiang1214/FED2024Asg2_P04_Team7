@@ -87,7 +87,7 @@ async function loadUsers(searchTerm = "") {
                 userElement.dataset.userId = user.uid; // Add user ID to dataset
                 userElement.innerHTML = 
                     `<div class="user-info">
-                        <div class="user-email">${user.email}</div>
+                        <div class="user-username">${user.username}</div>
                     </div>`;
 
                 userElement.addEventListener('click', () => {

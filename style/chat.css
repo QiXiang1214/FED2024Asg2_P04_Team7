@@ -128,8 +128,8 @@ body {
 }
 
 .chat-user.selected {
-    background-color: var(--primary);
-    color: white;
+    background-color: #715e57;
+    color: #e3ffff;
     font-weight: 500;
 }
 

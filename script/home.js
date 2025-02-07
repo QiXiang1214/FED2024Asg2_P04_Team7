@@ -109,10 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-//  Your Existing Search Function (Unchanged)
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
-    const productCards = document.querySelectorAll('.product-card');
     const productGrid = document.querySelector('.product-grid');
     const noResults = document.createElement('div');
     noResults.className = 'no-results';
@@ -121,11 +119,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     searchInput.addEventListener('input', () => {
         const query = searchInput.value.toLowerCase().trim();
+        const productCards = document.querySelectorAll('.product-card'); // Dynamic selection
         let hasVisibleProducts = false;
 
         productCards.forEach(card => {
-            const title = card.querySelector('.product-title').textContent.toLowerCase();
-            const description = card.querySelector('.product-description')?.textContent.toLowerCase() || '';
+            const title = card.dataset.productName.toLowerCase();
+            const description = card.dataset.productDescription.toLowerCase();
 
             if (title.includes(query) || description.includes(query)) {
                 card.style.display = 'block';
@@ -139,50 +138,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-//  Your Existing Sorting Function (Unchanged)
+// Modified Sorting Function
 document.addEventListener('DOMContentLoaded', () => {
     const filterSelect = document.querySelector('.filter-select');
     const productGrid = document.querySelector('.product-grid');
-    const productCards = Array.from(document.querySelectorAll('.product-card'));
 
-    filterSelect.addEventListener('change', (event) => {
+    filterSelect.addEventListener('change', async (event) => {
         const sortBy = event.target.value;
+        const productCards = Array.from(document.querySelectorAll('.product-card')); // Dynamic selection
 
-        // Sort products based on the selected option
+        // Convert to sortable array with price data
+        const productsWithPrices = productCards.map(card => ({
+            element: card,
+            price: parseFloat(card.dataset.productPrice.replace(/[^0-9.-]+/g, ""))
+        }));
+
+        // Sort products based on selection
         switch (sortBy) {
             case 'Price: Low to High':
-                productCards.sort((a, b) => {
-                    const priceA = parseFloat(a.querySelector('.product-price').textContent.replace('$', ''));
-                    const priceB = parseFloat(b.querySelector('.product-price').textContent.replace('$', ''));
-                    return priceA - priceB;
-                });
+                productsWithPrices.sort((a, b) => a.price - b.price);
                 break;
-
             case 'Price: High to Low':
-                productCards.sort((a, b) => {
-                    const priceA = parseFloat(a.querySelector('.product-price').textContent.replace('$', ''));
-                    const priceB = parseFloat(b.querySelector('.product-price').textContent.replace('$', ''));
-                    return priceB - priceA;
-                });
+                productsWithPrices.sort((a, b) => b.price - a.price);
                 break;
-
             case 'Most Popular':
-                // Assuming popularity is based on the number of stars (rating)
-                productCards.sort((a, b) => {
-                    const ratingA = a.querySelectorAll('.rating .fas').length;
-                    const ratingB = b.querySelectorAll('.rating .fas').length;
-                    return ratingB - ratingA;
-                });
+                // Implement popularity sorting logic if available
                 break;
-
             default:
-                // Default sorting (no change)
-                break;
+                return;
         }
 
-        // Clear the grid and re-append sorted products
+        // Clear grid and re-append sorted products
         productGrid.innerHTML = '';
-        productCards.forEach(card => productGrid.appendChild(card));
+        productsWithPrices.forEach(product => {
+            productGrid.appendChild(product.element);
+        });
     });
 });
 
