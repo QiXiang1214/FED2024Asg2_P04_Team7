@@ -21,40 +21,58 @@ const db = getFirestore(app); //  Now Firestore is properly initialized
 
 //  Function to Fetch Listings from Firestore
 async function fetchListings() {
-  const productGrid = document.querySelector('.product-grid');
-  productGrid.innerHTML = ""; // Clear existing products
-
-  try {
-      const q = query(collection(db, "listings"), orderBy("createdAt", "desc"));
-      const querySnapshot = await getDocs(q);
-
-      if (querySnapshot.empty) {
-          productGrid.innerHTML = "<p>No listings available.</p>";
-          return;
-      }
-
-      querySnapshot.forEach((doc) => {
-          const listing = doc.data();
-          const productCard = document.createElement('div');
-          productCard.classList.add('product-card');
-
-          //  Ensure Cloudinary URL is being used
-          productCard.innerHTML = `
-              <img src="${listing.image}" alt="Product Image" class="product-image" onerror="this.src='default-image.jpg';">
-              <div class="product-info">
-                  <h4 class="product-title">${listing.name}</h4>
-                  <p class="product-price">${listing.price}</p>
-                  <p class="product-description">${listing.description}</p>
-                  <button class="btn">Add to Cart</button>
-              </div>
-          `;
-          productGrid.appendChild(productCard);
-      });
-
-  } catch (error) {
-      console.error("Error fetching listings:", error);
+    const productGrid = document.querySelector('.product-grid');
+    productGrid.innerHTML = "";
+  
+    try {
+        const q = query(collection(db, "listings"), orderBy("createdAt", "desc"));
+        const querySnapshot = await getDocs(q);
+  
+        querySnapshot.forEach((doc) => {
+            const listing = doc.data();
+            const productCard = document.createElement('div');
+            productCard.classList.add('product-card');
+            
+            // Store all necessary data in dataset
+            productCard.dataset.productId = doc.id;
+            productCard.dataset.productName = listing.name;
+            productCard.dataset.productPrice = listing.price;
+            productCard.dataset.productImage = listing.image;
+            productCard.dataset.productDescription = listing.description;
+  
+            productCard.innerHTML = `
+                <img src="${listing.image}" alt="Product Image" class="product-image">
+                <div class="product-info">
+                    <h4 class="product-title">${listing.name}</h4>
+                    <p class="product-price">$${listing.price}</p>
+                    <p class="product-description">${listing.description}</p>
+                    <button class="btn">Add to Cart</button>
+                </div>
+            `;
+            
+            productCard.addEventListener('click', function(e) {
+                if (e.target.tagName === 'BUTTON') return;
+                
+                const productData = {
+                    id: doc.id,
+                    name: listing.name,
+                    price: listing.price,
+                    image: listing.image,
+                    description: listing.description,
+                    seller: listing.seller || { name: "Unknown Seller" }
+                };
+  
+                sessionStorage.setItem('currentProduct', JSON.stringify(productData));
+                window.location.href = 'product.html';
+            });
+  
+            productGrid.appendChild(productCard);
+        });
+  
+    } catch (error) {
+        console.error("Error fetching listings:", error);
+    }
   }
-}
 
 
 //  Load listings when the page loads
