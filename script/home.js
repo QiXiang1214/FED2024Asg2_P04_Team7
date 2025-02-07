@@ -17,9 +17,9 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-const db = getFirestore(app); // ✅ Now Firestore is properly initialized
+const db = getFirestore(app); //  Now Firestore is properly initialized
 
-// ✅ Function to Fetch Listings from Firestore
+//  Function to Fetch Listings from Firestore
 async function fetchListings() {
   const productGrid = document.querySelector('.product-grid');
   productGrid.innerHTML = ""; // Clear existing products
@@ -38,7 +38,7 @@ async function fetchListings() {
           const productCard = document.createElement('div');
           productCard.classList.add('product-card');
 
-          // ✅ Ensure Cloudinary URL is being used
+          //  Ensure Cloudinary URL is being used
           productCard.innerHTML = `
               <img src="${listing.image}" alt="Product Image" class="product-image" onerror="this.src='default-image.jpg';">
               <div class="product-info">
@@ -57,10 +57,10 @@ async function fetchListings() {
 }
 
 
-// ✅ Load listings when the page loads
+//  Load listings when the page loads
 document.addEventListener('DOMContentLoaded', fetchListings);
 
-// ✅ Your Existing Search Function (Unchanged)
+//  Your Existing Search Function (Unchanged)
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     const productCards = document.querySelectorAll('.product-card');
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// ✅ Your Existing Sorting Function (Unchanged)
+//  Your Existing Sorting Function (Unchanged)
 document.addEventListener('DOMContentLoaded', () => {
     const filterSelect = document.querySelector('.filter-select');
     const productGrid = document.querySelector('.product-grid');
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// ✅ Handle Clicking on Products to View Details (Unchanged)
+//  Handle Clicking on Products to View Details (Unchanged)
 document.querySelectorAll('.product-card').forEach(card => {
     card.addEventListener('click', function (e) {
         if (e.target.tagName === 'BUTTON') return;
