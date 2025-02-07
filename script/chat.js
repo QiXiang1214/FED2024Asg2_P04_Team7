@@ -37,6 +37,7 @@ auth.onAuthStateChanged(user => {
         currentUser = user;
         loadUsers();
         setupEventListeners();
+        setupThreadListeners();
         
         // Automatically select the first user if no user is selected
         if (!selectedUserId && chatList.children.length > 0) {
@@ -47,6 +48,15 @@ auth.onAuthStateChanged(user => {
         window.location.href = '/login.html'; // Redirect if not logged in
     }
 });
+
+// Cleanup on logout
+function cleanup() {
+    if (unsubscribeMessages) unsubscribeMessages();
+    if (threadUnsubscribe) threadUnsubscribe();
+}
+
+// Call cleanup when leaving the page
+window.addEventListener('beforeunload', cleanup);
 
 const formatSGTDate = (date) => {
     if (!date) return "";  // Return empty string if date is invalid
@@ -184,6 +194,9 @@ async function sendMessage() {
     } catch (error) {
         console.error('Error sending message:', error);
     }
+
+    if (threadUnsubscribe) threadUnsubscribe();
+    setupThreadListeners();
 }
 
 
@@ -194,7 +207,7 @@ function showLoading() {
 
 let unsubscribeMessages = null;
 
-function loadMessages(targetUserId) {
+async function loadMessages(targetUserId) {
     if (!targetUserId) {
         messagesContainer.innerHTML = '<div class="no-user-selected">Select a user to start chatting</div>';
         return;
@@ -202,18 +215,29 @@ function loadMessages(targetUserId) {
 
     showLoading();
 
+    // Ensure threadId is properly initialized
     const threadId = generateThreadId(currentUser.uid, targetUserId);
 
-    // Clear previous listener
-    if (unsubscribeMessages) unsubscribeMessages();
-
-    // Listen to document changes
-    unsubscribeMessages = db.collection('chats').doc(threadId)
-        .onSnapshot(doc => {
-            const data = doc.data();
-            const messages = data?.messages || [];
-            displayMessages(messages);
+    try {
+        // Update last read time when opening chat
+        await db.collection('chats').doc(threadId).update({
+            [`lastRead.${currentUser.uid}`]: firebase.firestore.FieldValue.serverTimestamp()
         });
+
+        // Clear previous listener
+        if (unsubscribeMessages) unsubscribeMessages();
+
+        // Listen to document changes
+        unsubscribeMessages = db.collection('chats').doc(threadId)
+            .onSnapshot(doc => {
+                const data = doc.data();
+                const messages = data?.messages || [];
+                displayMessages(messages);
+            });
+    } catch (error) {
+        console.error('Error loading messages:', error);
+        messagesContainer.innerHTML = '<div class="error">Failed to load messages. Please try again.</div>';
+    }
 }
 
 const imageOverlay = document.getElementById('imageOverlay');
@@ -321,4 +345,67 @@ function setupEventListeners() {
     fileInput.addEventListener('change', () => {
         if (fileInput.files[0]) sendMessage();
     });
+}
+
+// Add to chat.js
+let threadUnsubscribe = null;
+
+function setupThreadListeners() {
+    threadUnsubscribe = db.collection('chats')
+        .where('participants', 'array-contains', currentUser.uid)
+        .onSnapshot(snapshot => {
+            const threads = {};
+            let totalUnread = 0;
+            
+            snapshot.forEach(doc => {
+                const thread = doc.data();
+                const otherUserId = thread.participants.find(id => id !== currentUser.uid);
+                const lastRead = thread.lastRead?.[currentUser.uid]?.toDate();
+                const lastMessage = thread.messages?.[thread.messages.length - 1];
+                const lastMessageTime = lastMessage?.timestamp?.toDate();
+
+                const hasUnread = lastMessageTime > lastRead;
+                threads[otherUserId] = { hasUnread };
+
+                if (hasUnread) totalUnread++;
+            });
+
+            updateUserUnreadIndicators(threads);
+            updateNavbarBadge(totalUnread);
+        });
+}
+
+function updateUserUnreadIndicators(threads) {
+    const userElements = document.querySelectorAll('.chat-user');
+    userElements.forEach(userElement => {
+        const userId = userElement.dataset.userId;
+        const hasUnread = threads[userId]?.hasUnread;
+        let indicator = userElement.querySelector('.unread-indicator');
+
+        if (hasUnread) {
+            if (!indicator) {
+                indicator = document.createElement('div');
+                indicator.className = 'unread-indicator';
+                userElement.appendChild(indicator);
+            }
+        } else if (indicator) {
+            indicator.remove();
+        }
+    });
+}
+
+function updateNavbarBadge(unreadCount) {
+    const chatButton = document.querySelector('a[href="chat.html"]');
+    let badge = chatButton.querySelector('.unread-badge');
+    
+    if (unreadCount > 0) {
+        if (!badge) {
+            badge = document.createElement('span');
+            badge.className = 'unread-badge';
+            chatButton.appendChild(badge);
+        }
+        badge.textContent = '●';
+    } else if (badge) {
+        badge.remove();
+    }
 }

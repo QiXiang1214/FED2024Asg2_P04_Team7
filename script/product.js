@@ -1,33 +1,50 @@
-// Image Thumbnail Interaction
-document.querySelectorAll('.thumbnail').forEach(thumb => {
-    thumb.addEventListener('click', function() {
-        // Remove active class from all thumbnails
-        document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
-        
-        // Add active class to clicked thumbnail
-        this.classList.add('active');
-        
-        // Update main image
-        const mainImage = document.getElementById('mainProductImage');
-        mainImage.src = this.src;
-        mainImage.alt = this.alt;
-    });
-});
+document.addEventListener('DOMContentLoaded', function() {
+    const productData = JSON.parse(sessionStorage.getItem('currentProduct'));
+    
+    if (!productData) {
+        window.location.href = 'home.html';
+        return;
+    }
 
-// Add to Cart Functionality
-document.querySelector('.add-to-cart-btn').addEventListener('click', function() {
-    // Add your cart logic here
-    console.log('Product added to cart');
-    this.textContent = 'Added to Cart!';
-    this.disabled = true;
-    setTimeout(() => {
-        this.textContent = 'Add to Cart';
-        this.disabled = false;
-    }, 2000);
-});
+    // Update product details
+    document.getElementById('mainProductImage').src = productData.image;
+    document.querySelector('.product-title').textContent = productData.name;
+    document.querySelector('.product-price').textContent = `$${productData.price}`;
+    document.querySelector('.product-description p').textContent = productData.description;
+    
+    // Update rating
+    const ratingContainer = document.querySelector('.rating');
+    ratingContainer.innerHTML = '';
+    for (let i = 1; i <= 5; i++) {
+        const star = document.createElement('i');
+        star.className = i <= productData.rating ? 'fas fa-star' : 'far fa-star';
+        ratingContainer.appendChild(star);
+    }
 
-// Chat Button Interaction
-document.querySelector('.chat-seller-btn').addEventListener('click', function() {
-    // Chat initiation logic
-    console.log('Initiating chat with seller');
+    // Update specifications
+    const specsList = document.querySelector('.product-specs ul');
+    specsList.innerHTML = '';
+    for (const [key, value] of Object.entries(productData.specs)) {
+        const li = document.createElement('li');
+        li.innerHTML = `<strong>${key}:</strong> ${value}`;
+        specsList.appendChild(li);
+    }
+
+    // Update seller information
+    document.querySelector('.seller-avatar').src = productData.seller.avatar;
+    document.querySelector('.seller-details h3').textContent = productData.seller.name;
+    document.querySelector('.stat-item span').textContent = 
+        `Usually responds within ${productData.seller.responseTime}`;
+        
+    // Update seller rating
+    const sellerRatingContainer = document.querySelector('.seller-rating');
+    sellerRatingContainer.innerHTML = '';
+    for (let i = 1; i <= 5; i++) {
+        const star = document.createElement('i');
+        star.className = i <= Math.floor(productData.seller.rating) ? 'fas fa-star' : 
+                         (i === Math.ceil(productData.seller.rating) && !Number.isInteger(productData.seller.rating)) ? 
+                         'fas fa-star-half-alt' : 'far fa-star';
+        sellerRatingContainer.appendChild(star);
+    }
+    sellerRatingContainer.innerHTML += ` <span>${productData.seller.rating} (256 reviews)</span>`;
 });
