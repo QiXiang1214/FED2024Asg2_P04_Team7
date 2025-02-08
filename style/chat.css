@@ -22,6 +22,7 @@ body {
 }
 
 
+/* Navbar */
 .navbar {
     background: rgb(66, 6, 122);
     box-shadow: 0 4px 6px -1px rgb(0, 0, 0, 0.5);
@@ -29,48 +30,71 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.logo-nav {
+  }
+  
+  .menu-toggle {
+    display: none; /* Hide by default */
+    background: rgb(66, 6, 122);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .menu-toggle:hover {
+    background: var(--secondary);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .logo-nav {
     display: flex;
     align-items: center;
     gap: 1rem;
     transition: transform 0.3s ease;
-    width:"80";
-    height:"80";
-}
+  }
+  
+  .logo-nav img {
+    width: 80px;
+    height: 80px;
+  }
 
-.logo-nav h1 {
+  .logo-nav h1{
     font-family: "Inter", serif;
     font-weight: 900;
     font-style: italic;
     color: white;
     font-size: 30px;
-}
-
-.logo-nav:hover {
+  }
+  
+  .logo-nav:hover {
     transform: scale(1.05);
-}
-
-.nav-links {
+  }
+  
+  .nav-links {
+    color: white;
     display: flex;
     gap: 1rem;
-}
-
-.button {
-    color: white;
+  }
+  
+  .button {
+    color: var(--light);
     padding: 0.5rem 1.5rem;
     border-radius: 9999px;
     transition: all 0.3s ease;
     text-decoration: none;
     font-weight: 500;
-}
-
-.button:hover {
-    background: #2563eb;
+  }
+  
+  .button:hover {
+    background: var(--primary);
     color: white;
     transform: translateY(-2px);
-}
+  }
 
 
 .chat-container {
@@ -344,43 +368,44 @@ body {
         font-size: 20px;
     }
 
-    .navbar {
-        flex-direction: row;
-        padding: 0.5rem 1rem;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 100;
-    }
-
-    .logo-nav {
-        display: flex;
+    .menu-toggle {
+        display: block; /* Show only for mobile */
+        margin: 10px auto; 
+      }
+    
+      .nav-links {
+        display: none; 
+        flex-direction: column;
         align-items: center;
-        gap: 0.5rem;
-        transition: transform 0.3s ease;
-        left: 0;
-    }
-
-    /* Add specific styles for the logo image */
-    .logo-nav img {
-        width: 35px;
-        height: 35px;
-        object-fit: contain;
-    }
-
-    .logo-nav h1 {
-        font-size: 15px;
-    }
-
-    .nav-links {
-        display: flex;
-        gap: 0.5rem;
-    }
+      }
+    
+      .nav-links.active {
+        display: flex; 
+      }
+  
+      
+      .navbar {
+        flex-direction: column;
+        align-items: center;
+        padding: 12px 0;
+      }
+    
+      .logo-nav {
+          margin-bottom: 10px;
+      }
+  
+      .logo-nav img {
+          width: 80px;
+          height: 80px;
+      }
+  
+      .logo-nav h1 {
+          font-size: 30px;
+      }
+  
 
     .button {
         padding: 0.5rem 1rem;
-        font-size: 12px;
     }
 
     .chat-container {
@@ -504,4 +529,23 @@ body {
     .message-image:active {
         transform: scale(0.98);
     }
+}
+
+@media (max-width: 480px) {
+
+    .menu-toggle {
+        display: block; 
+        margin: 10px auto; /
+      }
+    
+      .nav-links {
+        display: none; 
+        flex-direction: column;
+        align-items: center;
+      }
+    
+      .nav-links.active {
+        display: flex; 
+      }
+
 }

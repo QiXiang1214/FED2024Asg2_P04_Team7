@@ -55,3 +55,13 @@ function handleAddToCart() {
 
 // Add click event listener to your add to cart button
 document.querySelector('.add-to-cart-btn').addEventListener('click', handleAddToCart);
+
+//Toggle Menu
+document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuToggle.addEventListener("click", function () {
+        navLinks.classList.toggle("active");
+    });
+});

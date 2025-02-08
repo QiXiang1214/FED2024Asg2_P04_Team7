@@ -25,6 +25,25 @@
     align-items: center;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
   }
+
+  .menu-toggle {
+    display: none; /* Hide by default */
+    background: rgb(66, 6, 122);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .menu-toggle:hover {
+    background: var(--secondary);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
   
   .logo-nav {
     display: flex;
@@ -32,7 +51,8 @@
     gap: 1rem;
   }
   
-  .logo-nav h1 {
+  .logo-nav h1{
+    font-family: "Inter", serif;
     font-weight: 900;
     font-style: italic;
     color: white;
@@ -171,14 +191,121 @@
   }
   
   @media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* ✅ Show hamburger menu */
+        background: rgb(66, 6, 122);
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .menu-toggle:hover {
+        background: var(--secondary);
+        transform: scale(1.05);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
     .navbar {
         flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
+        align-items: center;
+        padding: 12px 0;
     }
-  
-    .small-container {
-        width: 90%;
-    }
+
+    .logo-nav {
+      margin-bottom: 10px;
   }
+
+    .nav-links {
+        display: none; /* Hide by default */
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-links.active {
+        display: flex; /* Show when menu is toggled */
+    }
+
+    .small-container {
+      width: 85%; /* ✅ Reduce width for tablets */
+      padding: 15px;
+      margin: 3rem auto;
+  }
+
+  .listing-form input,
+  .listing-form select,
+  .listing-form textarea {
+      width: auto;
+      font-size: 1rem;
+      padding: 10px;
+  }
+
+  .submit-btn {
+      font-size: 1rem;
+      padding: 12px;
+  }
+  .bottom-bar {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-logo img {
+    width: 160px;
+  }
+
+  .app-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+    .menu-toggle {
+        display: block; /* ✅ Show for mobile */
+        margin: 10px auto;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-links.active {
+        display: flex; /* ✅ Display when toggled */
+    }
+
+    .logo-nav {
+        justify-content: center;
+    }
+
+    .small-container {
+      width: 85%; /* ✅ Reduce width for tablets */
+      padding: 15px;
+      margin: 3rem auto;
+  }
+
+  .listing-form input,
+  .listing-form select,
+  .listing-form textarea {
+      font-size: 1rem;
+      padding: 10px;
+  }
+
+  .submit-btn {
+      font-size: 1rem;
+      padding: 12px;
+  }
+}
+
   

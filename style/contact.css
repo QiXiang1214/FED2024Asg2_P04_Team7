@@ -30,6 +30,25 @@ body {
     align-items: center;
 }
 
+.menu-toggle {
+    display: none; /* Hide by default */
+    background: rgb(66, 6, 122);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+  
+.menu-toggle:hover {
+    background: var(--secondary);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
 .logo-nav {
     display: flex;
     align-items: center;
@@ -167,24 +186,84 @@ body {
 }
 
 /* Responsive Design */
+/* 📌 Responsive Navbar for Tablets (768px and below) */
 @media (max-width: 768px) {
-    .form-row {
-        flex-direction: column;
-    }
+  .menu-toggle {
+    display: block; /* Show menu button */
+    margin-left: 10px;
+  }
 
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+  .nav-links {
+    display: none; 
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .nav-links {
-        flex-direction: column;
-        width: 100%;
-    }
+  .nav-links.active {
+    display: flex; /* Show menu when active */
+  }
 
-    .btn {
-        width: 100%;
-        text-align: left;
-        padding: 0.75rem 1rem;
-    }
+  .nav-links a {
+    color: white;
+    padding: 10px 15px;
+    width: 100%;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    background: var(--secondary);
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 0;
+  }
+
+  .logo-nav {
+    margin-bottom: 10px;
+  }
+
+  .logo-nav img {
+    width: 80px;
+    height: 80px;
+  }
+
+}
+
+/* 📌 Responsive Navbar for Mobile (480px and below) */
+@media (max-width: 480px) {
+  .menu-toggle {
+    display: block; /* Keep menu button visible */
+    font-size: 1.8rem;
+    padding: 8px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .nav-links a {
+    font-size: 15px;
+    padding: 12px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  .logo-nav {
+    gap: 0.5rem;
+  }
+
+  .logo-nav img {
+    width: 80px;
+    height: 80px;
+  }
+
+
 }
