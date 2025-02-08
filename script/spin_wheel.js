@@ -60,10 +60,18 @@ let myChart = new Chart(wheel, {
       datalabels: {
         color: "#ffffff",
         formatter: (_, context) => context.chart.data.labels[context.dataIndex],
-        font: { size: 24 }
+        font: { 
+          size: window.innerWidth <= 768 ? 12 : 24 // Smaller font on mobile
+        }
       }
     }
   }
+});
+
+// Add window resize handler to update font size when screen size changes
+window.addEventListener('resize', () => {
+  myChart.options.plugins.datalabels.font.size = window.innerWidth <= 768 ? 12 : 24;
+  myChart.update();
 });
 
 // Function to format dates in dd/mm/yyyy and HH:MM AM/PM format
@@ -186,3 +194,11 @@ onAuthStateChanged(auth, (user) => {
     console.log("No user logged in");
   }
 });
+
+// Add this check for mobile
+const textSize = window.innerWidth <= 768 ? '14px' : '16px'; // Adjust sizes as needed
+
+// Update where you set the text properties
+wheel.style.fontSize = textSize;
+// Or if using d3.js
+wheel.attr('font-size', textSize);

@@ -25,13 +25,15 @@
     padding: 3em;
     border-radius: 1em;
     box-shadow: 0 4em 5em rgba(69, 220, 236, 0.25);
+    margin-top: 20px; /* Add margin to avoid overlap with return button */
   }
 
   .return-button {
     /* Positioning */
-    position: absolute;
+    position: fixed; /* Change from absolute to fixed */
     left: 1.5em;
-    top: 6em; /* Adjust this value to control vertical position */
+    top: 1em; /* Move it higher */
+    z-index: 1000; /* Ensure it's always on top */
     
     /* Visual styling */
     color: rgb(129, 0, 141);
@@ -119,5 +121,56 @@
     }
     img {
       right: -5%;
+    }
+
+    /* Adjust wheel text size */
+    .wheel text {
+        font-size: 5px; /* Reduce from default size */
+        font-weight: bold;
+        text-anchor: middle;
+        fill: #fff;
+    }
+
+    /* If you're using a different method to display text, like divs */
+    .wheel-item-text {
+        font-size: 5px;
+    }
+
+    .return-button {
+        padding: 0.5em 1.5em; /* Slightly smaller padding on mobile */
+        font-size: 0.9em; /* Slightly smaller font on mobile */
+    }
+  }
+
+   /* For smaller screens */
+   @media screen and (max-width: 480px) {
+    .wrapper {
+      font-size: 12px;
+    }
+    img {
+      right: -5%;
+    }
+
+    /* Adjust wheel text size */
+    .wheel text {
+        font-size: 5px; /* Reduce from default size */
+        font-weight: bold;
+        text-anchor: middle;
+        fill: #fff;
+    }
+
+    /* If you're using a different method to display text, like divs */
+    .wheel-item-text {
+        font-size: 5px;
+    }
+
+    .return-button {
+        padding: 0.4em 1.2em; /* Even smaller padding on very small screens */
+        font-size: 0.85em; /* Even smaller font on very small screens */
+    }
+
+    /* Adjust arrow image size */
+    img {
+        width: 3em;
     }
   }
