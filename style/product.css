@@ -183,3 +183,21 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+.lottie-animation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 1000;
+    background: rgba(190, 255, 240, 0.85);
+    border-radius: 50%;
+    padding: 20px;
+}
+
+/* Style the dotlottie-player */
+dotlottie-player {
+    width: 350px;
+    height: 350px;
+}
