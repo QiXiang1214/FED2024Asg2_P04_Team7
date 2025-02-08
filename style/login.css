@@ -8,7 +8,7 @@ input, textarea, select, button {
   padding: 10px;
   margin: 0;
   box-sizing: border-box;
-  background-color: #ffffff; /* Ensure white background */
+  background-color: #ffffff; 
 }
 
 /* Body Styling */
@@ -20,8 +20,9 @@ body {
 /* General Container Styling */
 .container {
   max-width: 500px;
-  margin: 50px auto;
+  margin: 20px auto; 
   padding: 20px;
+  position: relative; 
 }
 
 .logo-container {
@@ -33,6 +34,13 @@ body {
   font-size: 30px;
   justify-content: center;
   align-items: center;
+  gap: 10px; 
+  margin-bottom: 20px; 
+}
+
+.logo-container img {
+  width: 60px; 
+  height: 60px;
 }
 
 /* Form Container */
@@ -41,7 +49,7 @@ body {
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
-  padding: 50px 15px;
+  padding: 20px 15px;
 }
 
 /* Form Styling */
@@ -68,7 +76,7 @@ body {
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
-  background-color: #ffffff; /* Ensure white background */
+  background-color: #ffffff; 
 }
 
 /* Focused Input Field */
@@ -122,19 +130,19 @@ input:-webkit-autofill {
   color: black !important;
 }
 
-/* Hide animation initially */
-/* Ensure Lottie animation is hidden by default */
+
 #lottie-container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(66, 6, 122, 0.9);
+  background: rgba(66, 6, 122, 0.65); 
   display: none;
   align-items: center;
   justify-content: center;
   z-index: 9999;
+  backdrop-filter: blur(8px); /
 }
 
 #lottie-animation {
@@ -143,28 +151,84 @@ input:-webkit-autofill {
   background: rgb(255, 255, 255);
   border-radius: 50%;
   padding: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .hidden {
   display: none;
 }
 
-/* Responsive Design */
+/* Enhanced mobile responsiveness */
 @media (max-width: 768px) {
   .container {
-    width: 95%;
-    padding: 15px;
+    width: 100%;
+    margin: 10px auto;
+    padding: 10px;
   }
 
   .login-container,
   .signup-container {
-    padding: 20px 10px;
+    padding: 15px 10px;
+  }
+
+  .logo-container {
+    font-size: 24px; 
+  }
+
+  .logo-container img {
+    width: 50px; 
+    height: 50px;
+  }
+
+  .login-form,
+  .signup-form {
+    padding: 20px;
+    margin: 0 10px; 
+  }
+
+  .form-control {
+    font-size: 14px; 
+    padding: 8px;
   }
 
   .btn-custom {
+    padding: 12px;
+    font-size: 16px;
+  }
+
+
+  #lottie-animation {
+    width: 250px; 
+    height: 250px;
+    padding: 15px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  .container {
+    margin: 5px auto;
+    padding: 5px;
+  }
+
+  .logo-container {
+    font-size: 20px;
+  }
+
+  .logo-container img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .login-form,
+  .signup-form {
+    padding: 15px;
+  }
+
+  #lottie-animation {
+    width: 200px;
+    height: 200px;
     padding: 10px;
-    font-size: 14px;
   }
 }
 
