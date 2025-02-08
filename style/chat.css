@@ -343,49 +343,6 @@ body {
     .file-input-label i {
         font-size: 20px;
     }
-}
-
-#sendBtn {
-    background: red;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-#sendBtn:hover {
-    background: rgb(255, 140, 0);
-}
-
-.message-info {
-    font-size: 0.8em;
-    color: var(--text-secondary);
-    margin-top: 5px;
-}
-
-.message-info .sender {
-    font-weight: bold;
-}
-
-.message-info .timestamp {
-    margin-left: 10px;
-    color: var(--text-secondary);
-}
-
-.chat-user {
-    position: relative;
-    padding-right: 25px;
-}
-
-@media screen and (max-width: 768px) {
-    body {
-        margin: 0;
-        height: 100vh;
-        overflow: hidden;
-    }
 
     .navbar {
         flex-direction: row;
@@ -453,6 +410,9 @@ body {
         position: relative;
         z-index: 91;
         margin-right: 90px;
+        background: none; /* Remove translucent background */
+        box-shadow: none; /* Remove shadow */
+        padding: 0; /* Remove padding */
     }
 
     .search-bar input {
@@ -502,6 +462,19 @@ body {
     .message {
         max-width: 85%;
         font-size: 14px;
+        padding: 8px; /* Reduce padding for better image fit */
+    }
+
+    .message img {
+        
+        margin-bottom: 5px; /* Add some space below image if there's text */
+        border-radius: 8px 8px 0 0; /* Round only top corners if image is at top */
+        margin: 5px 0;
+        cursor: pointer; /* Add cursor pointer for better UX */
+    }
+
+    .message-text {
+        margin-top: 5px; /* Add space above text if there's an image */
     }
 
     .image-overlay img {
