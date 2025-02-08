@@ -90,25 +90,19 @@ async function loadUsers(searchTerm = "") {
     usersSnapshot.forEach(doc => {
         const user = doc.data();
         if (user.uid !== currentUser.uid) {
-            // Changed from email to username comparison
             if (user.username.toLowerCase().includes(searchTerm.toLowerCase())) {
                 const userElement = document.createElement('div');
                 userElement.className = 'chat-user';
                 userElement.dataset.userId = user.uid;
-                userElement.innerHTML = 
-                    `<div class="user-info">
+                userElement.innerHTML = `
+                    <div class="user-info">
                         <div class="user-username">${user.username}</div>
                     </div>`;
-
-                userElement.addEventListener('click', () => {
-                    if (selectedUserElement) {
-                        selectedUserElement.classList.remove('selected');
-                    }
-                    selectedUserElement = userElement;
-                    selectedUserId = user.uid;
+                
+                if (user.uid === selectedUserId) {
                     userElement.classList.add('selected');
-                    loadMessages(user.uid);
-                });
+                    selectedUserElement = userElement;
+                }
 
                 chatList.appendChild(userElement);
             }
@@ -119,6 +113,9 @@ async function loadUsers(searchTerm = "") {
 // Listen for search input
 userSearch.addEventListener('input', (e) => {
     loadUsers(e.target.value);
+    if (window.innerWidth <= 768) {
+        document.querySelector('.sidebar').classList.add('expanded');
+    }
 });
 
 // Send Message
@@ -334,4 +331,72 @@ function setupThreadListeners() {
                 }
             });
         });
+}
+
+// Toggle chat list visibility
+function toggleChatList() {
+    const chatList = document.querySelector('.chat-list');
+    const searchBar = document.querySelector('.search-bar');
+    chatList.style.display = chatList.style.display === 'block' ? 'none' : 'block';
+    searchBar.classList.toggle('active');
+}
+
+// Close chat list when a user is selected
+document.querySelectorAll('.chat-user').forEach(user => {
+    user.addEventListener('click', () => {
+        document.querySelector('.chat-list').style.display = 'none';
+        document.querySelector('.search-bar').classList.remove('active');
+    });
+});
+
+function setupEventListeners() {
+    const sidebar = document.querySelector('.sidebar');
+    const searchBar = document.querySelector('.search-bar');
+    const chatList = document.querySelector('.chat-list');
+    
+    // Toggle sidebar expansion when clicking search bar on mobile
+    searchBar.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+            e.stopPropagation();
+            sidebar.classList.toggle('expanded');
+        }
+    });
+
+    // Update user selection handler
+    document.addEventListener('click', function(e) {
+        const chatUser = e.target.closest('.chat-user');
+        if (chatUser) {
+            if (selectedUserElement) {
+                selectedUserElement.classList.remove('selected');
+            }
+            selectedUserElement = chatUser;
+            selectedUserId = chatUser.dataset.userId;
+            chatUser.classList.add('selected');
+            loadMessages(selectedUserId);
+
+            // Close sidebar on mobile after selection
+            if (window.innerWidth <= 768) {
+                sidebar.classList.remove('expanded');
+            }
+        } else if (window.innerWidth <= 768 && !sidebar.contains(e.target)) {
+            // Close sidebar when clicking outside on mobile
+            sidebar.classList.remove('expanded');
+        }
+    });
+
+    // Prevent search input from closing sidebar
+    searchBar.querySelector('input').addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (window.innerWidth <= 768) {
+            sidebar.classList.add('expanded');
+        }
+    });
+
+    // Update search functionality
+    userSearch.addEventListener('input', (e) => {
+        loadUsers(e.target.value);
+        if (window.innerWidth <= 768) {
+            sidebar.classList.add('expanded');
+        }
+    });
 }
