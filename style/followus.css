@@ -16,53 +16,72 @@
   }
   
   /* Navbar */
-  .navbar {
-    background: rgb(66, 6, 122);
-    box-shadow: 0 4px 6px -1px rgb(0, 0, 0, 0.5);
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .logo-nav {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    transition: transform 0.3s ease;
-  }
-  
-  .logo-nav h1{
-    font-family: "Inter", serif;
-    font-weight: 900;
-    font-style: italic;
-    color: white;
-    font-size: 30px;
-  }
-  
-  .logo-nav:hover {
-    transform: scale(1.05);
-  }
-  
-  .nav-links {
-    display: flex;
-    gap: 1rem;
-  }
-  
-  .button {
-    color: var(--light);
-    padding: 0.5rem 1.5rem;
-    border-radius: 9999px;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    font-weight: 500;
-  }
-  
-  .button:hover {
-    background: var(--primary);
-    color: white;
-    transform: translateY(-2px);
-  }
+.navbar {
+  background: rgb(66, 6, 122);
+  box-shadow: 0 4px 6px -1px rgb(0, 0, 0, 0.5);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-toggle {
+  display: none; /* Hide by default */
+  background: rgb(66, 6, 122);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.menu-toggle:hover {
+  background: var(--secondary);
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.logo-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.logo-nav h1{
+  font-family: "Inter", serif;
+  font-weight: 900;
+  font-style: italic;
+  color: white;
+  font-size: 30px;
+}
+
+.logo-nav:hover {
+  transform: scale(1.05);
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.button {
+  color: var(--light);
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.button:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+}
   
   /* Follow Us Page Styles */
 .follow-us-container {
@@ -133,11 +152,138 @@
   
   /* Responsive Design */
   @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      align-items: center;
+      padding: 12px 0;
+    }
+  
+    .nav-links {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding-bottom: 12px;
+    }
+
+    .logo-nav {
+        margin-bottom: 10px;
+    }
+
+    .logo-nav img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .logo-nav h1 {
+        font-size: 30px;
+    }
+
+    .button {
+        padding: 0.4rem 1rem;
+        font-size: 14px;
+    }
+
+    /* Follow Us content adjustments */
+    .follow-us-container {
+        margin-top: 120px;
+    }
+
     .socials-header h2 {
-      font-size: 2rem;
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
     }
-    
+
+    .subheading {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
     .social-grid {
-      grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        padding: 0 10px;
     }
+
+    .social-card {
+        padding: 1.5rem;
+    }
+
+    .social-card i {
+        font-size: 2rem;
+    }
+
+    .social-card span {
+        font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    @media (max-width: 480px) {
+      /* ✅ Navbar Fix */
+      .menu-toggle {
+        display: block; /* Show only for mobile */
+        margin: 10px auto; /* Center it */
+      }
+    
+      .nav-links {
+        display: none; /* Initially hides nav links */
+        flex-direction: column;
+        align-items: center;
+      }
+    
+      .nav-links.active {
+        display: flex; /* Show when menu is toggled */
+      }
+
+
+    /* Follow Us content for smaller screens */
+    .social-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .socials-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .subheading {
+        font-size: 0.9rem;
+        padding: 0 15px;
+    }
+
+    .social-card {
+        padding: 1.2rem;
+        margin: 0 15px;
+    }
+
+    .social-card i {
+        font-size: 1.8rem;
+    }
+
+    .social-card span {
+        font-size: 0.9rem;
+    }
+
+    .footer-text {
+        font-size: 0.9rem;
+        margin-top: 2rem;
+        padding: 0 15px;
+    }
+
+    .follow-us-container {
+        margin-top: 80px;
+    }
+  }
+
+  /* Touch device optimizations */
+  @media (hover: none) {
+    .social-card:active {
+        transform: scale(0.98);
+    }
+
+    .button:active {
+        transform: translateY(0);
+        background: var(--primary);
+    }
+  }
   }
