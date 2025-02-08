@@ -369,25 +369,27 @@ body {
     font-size: 15px;
   }
 
-  /* ✅ Categories Section */
+
   .categories {
-    margin-top: 18px;
+    text-align: center;
+    margin-top: 3rem;
+    padding: 0;
+    width: 100%;
   }
 
   .category-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 items per row */
-    gap: 50px; /* Small gap between categories */
+    grid-template-columns: repeat(2, 120px); 
+    gap: 40px; 
+    margin: 0 auto;
     justify-content: center;
-    align-items: center;
-    max-width: 400px; /* Prevents too much stretching */
-    margin: 0 auto; /* Centers the category grid */
+    width: fit-content; 
   }
 
   .category-item {
-    width: 100%;
+    width: 120px; 
     padding: 1rem;
-    height: 140px; /* ✅ Ensures all boxes have the same height */
+    height: 140px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -395,14 +397,14 @@ body {
   }
 
   .category-item img {
-    width: 80px; /* ✅ Consistent image size */
+    width: 80px; 
     height: 80px;
     object-fit: contain;
   }
 
-  /* ✅ Product Grid */
+
   .product-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* Adjust for better spacing */
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
     gap: 15px;
     padding: 15px;
     max-width: 90%;
@@ -414,7 +416,6 @@ body {
     font-size: 14px;
   }
 
-  /* ✅ Footer Adjustments */
   .bottom-bar {
     flex-direction: column;
     text-align: center;
@@ -436,42 +437,40 @@ body {
   }
 }
 
-/* 📌 Responsive for Mobile (Below 480px) */
+
 @media (max-width: 480px) {
-  /* ✅ Navbar Fix */
   .menu-toggle {
-    display: block; /* Show only for mobile */
-    margin: 10px auto; /* Center it */
+    display: block; 
+    margin: 10px auto; 
   }
 
   .nav-links {
-    display: none; /* Initially hides nav links */
+    display: none; 
     flex-direction: column;
     align-items: center;
   }
 
   .nav-links.active {
-    display: flex; /* Show when menu is toggled */
+    display: flex; 
   }
 
   .search-container {
-    width: 90%; /* Adjusted from 100% to 90% */
+    width: 90%; 
     margin: 10px auto;
   }
 
   #searchInput {
     font-size: 14px;
     padding: 8px;
-    width: calc(100% - 50px); /* Ensures it's not too wide */
+    width: calc(100% - 50px); 
   }
 
   .search-icon {
-    right: 12px; /* Adjust search icon position */
+    right: 12px; 
   }
 
-  /* ✅ Category Section */
-  .category-grid {
-    grid-template-columns: 1fr; /* Stacks categories vertically */
+ .category-grid {
+    grid-template-columns: 1fr; 
     gap: 15px;
   }
 
@@ -479,7 +478,7 @@ body {
     height: 130px;
   }
 
-  /* ✅ Product Listings */
+
   .product-grid {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 10px;
@@ -490,9 +489,3 @@ body {
     font-size: 13px;
   }
 }
-
-
-
-
-
-
