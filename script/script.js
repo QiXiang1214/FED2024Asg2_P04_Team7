@@ -83,23 +83,25 @@ document.addEventListener("DOMContentLoaded", function () {
     
                 alert(`Welcome back, ${user.email}`);
     
-                // 🎬 Show Lottie Animation
+                // Show animation container
                 const lottieContainer = document.getElementById("lottie-container");
-                lottieContainer.style.display = "flex"; // Make it visible
+                lottieContainer.style.display = "flex";
     
-                // ✅ Load Lottie Animation
+                // Create and play animation
                 const animation = lottie.loadAnimation({
-                    container: document.getElementById("lottie-animation"), // Animation container
+                    container: document.getElementById("lottie-animation"),
                     renderer: "svg",
                     loop: false,
                     autoplay: true,
-                    path: "../json/animation.json", // ✅ Path to local JSON file
+                    path: "../json/animation.json"
                 });
     
-                // ⏳ Wait for animation (2.5s) then redirect
-                setTimeout(() => {
-                    window.location.href = "../html/home.html"; // Redirect after animation
-                }, 3000);
+                // Wait for animation to complete then redirect
+                animation.addEventListener('complete', () => {
+                    setTimeout(() => {
+                        window.location.href = "../html/home.html";
+                    }, 500);
+                });
     
             } catch (error) {
                 console.error("Login failed:", error);
