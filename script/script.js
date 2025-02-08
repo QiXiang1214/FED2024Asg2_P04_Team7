@@ -75,25 +75,42 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault();
         const email = document.getElementById("login-email").value;
         const password = document.getElementById("password").value;
-
+    
         if (email && password) {
             try {
                 const userCredential = await signInWithEmailAndPassword(auth, email, password);
                 const user = userCredential.user;
-
+    
                 alert(`Welcome back, ${user.email}`);
-                
-                //  Redirect to homepage **only after successful login**
-                window.location.href = "../html/home.html";
+    
+                // 🎬 Show Lottie Animation
+                const lottieContainer = document.getElementById("lottie-container");
+                lottieContainer.style.display = "flex"; // Make it visible
+    
+                // ✅ Load Lottie Animation
+                const animation = lottie.loadAnimation({
+                    container: document.getElementById("lottie-animation"), // Animation container
+                    renderer: "svg",
+                    loop: false,
+                    autoplay: true,
+                    path: "../json/animation.json", // ✅ Path to local JSON file
+                });
+    
+                // ⏳ Wait for animation (2.5s) then redirect
+                setTimeout(() => {
+                    window.location.href = "../html/home.html"; // Redirect after animation
+                }, 3000);
+    
             } catch (error) {
                 console.error("Login failed:", error);
                 alert(`Login failed: ${error.message}`);
-                document.getElementById("error-message").style.display = "block";
             }
-        } else {
-            document.getElementById("error-message").style.display = "block";
         }
     });
+    
+    
+
+    
 
    // Handle user registration
 document.getElementById("signup-form").addEventListener("submit", async function (event) {
