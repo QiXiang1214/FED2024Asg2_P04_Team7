@@ -124,7 +124,10 @@ userSearch.addEventListener('input', (e) => {
 // Send Message
 sendBtn.addEventListener('click', sendMessage);
 messageInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') sendMessage();
+    if (e.key === 'Enter') {
+        e.preventDefault(); // Prevent form submission
+        sendMessage();
+    }
 });
 
 const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dhgrd42d5/upload";
@@ -158,7 +161,7 @@ async function uploadToCloudinary(file) {
 
 async function sendMessage() {
     if (!selectedUserId) return alert('Please select a user to chat with.');
-    
+
     const message = messageInput.value.trim();
     const file = fileInput.files[0];
     let imageUrl = '';
@@ -318,9 +321,6 @@ function setupThreadListeners() {
     threadUnsubscribe = db.collection('chats')
         .where('participants', 'array-contains', currentUser.uid)
         .onSnapshot(snapshot => {
-            const threads = {};
-            let totalUnread = 0;
-            
             snapshot.forEach(doc => {
                 const thread = doc.data();
                 const otherUserId = thread.participants.find(id => id !== currentUser.uid);
@@ -329,47 +329,9 @@ function setupThreadListeners() {
                 const lastMessageTime = lastMessage?.timestamp?.toDate();
 
                 const hasUnread = lastMessageTime > lastRead;
-                threads[otherUserId] = { hasUnread };
-
-                if (hasUnread) totalUnread++;
+                if (hasUnread) {
+                    // Handle unread messages if needed
+                }
             });
-
-            updateUserUnreadIndicators(threads);
-            updateNavbarBadge(totalUnread);
         });
-}
-
-function updateUserUnreadIndicators(threads) {
-    const userElements = document.querySelectorAll('.chat-user');
-    userElements.forEach(userElement => {
-        const userId = userElement.dataset.userId;
-        const hasUnread = threads[userId]?.hasUnread;
-        let indicator = userElement.querySelector('.unread-indicator');
-
-        if (hasUnread) {
-            if (!indicator) {
-                indicator = document.createElement('div');
-                indicator.className = 'unread-indicator';
-                userElement.appendChild(indicator);
-            }
-        } else if (indicator) {
-            indicator.remove();
-        }
-    });
-}
-
-function updateNavbarBadge(unreadCount) {
-    const chatButton = document.querySelector('a[href="chat.html"]');
-    let badge = chatButton.querySelector('.unread-badge');
-    
-    if (unreadCount > 0) {
-        if (!badge) {
-            badge = document.createElement('span');
-            badge.className = 'unread-badge';
-            chatButton.appendChild(badge);
-        }
-        badge.textContent = '●';
-    } else if (badge) {
-        badge.remove();
-    }
 }
