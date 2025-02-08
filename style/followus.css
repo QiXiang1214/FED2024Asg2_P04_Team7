@@ -152,18 +152,30 @@
   
   /* Responsive Design */
   @media (max-width: 768px) {
+    
+    .menu-toggle {
+      display: block; /* Show only for mobile */
+      margin: 10px auto; 
+    }
+  
+    .nav-links {
+      display: none; 
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .nav-links.active {
+      display: flex; 
+    }
+
+    
     .navbar {
       flex-direction: column;
       align-items: center;
       padding: 12px 0;
     }
   
-    .nav-links {
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      padding-bottom: 12px;
-    }
+
 
     .logo-nav {
         margin-bottom: 10px;
@@ -183,7 +195,7 @@
         font-size: 14px;
     }
 
-    /* Follow Us content adjustments */
+    
     .follow-us-container {
         margin-top: 120px;
     }
@@ -218,25 +230,23 @@
   }
 
   @media (max-width: 480px) {
-    @media (max-width: 480px) {
-      /* ✅ Navbar Fix */
+
       .menu-toggle {
-        display: block; /* Show only for mobile */
-        margin: 10px auto; /* Center it */
+        display: block; 
+        margin: 10px auto; /
       }
     
       .nav-links {
-        display: none; /* Initially hides nav links */
+        display: none; 
         flex-direction: column;
         align-items: center;
       }
     
       .nav-links.active {
-        display: flex; /* Show when menu is toggled */
+        display: flex; 
       }
 
 
-    /* Follow Us content for smaller screens */
     .social-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
@@ -275,7 +285,6 @@
     }
   }
 
-  /* Touch device optimizations */
   @media (hover: none) {
     .social-card:active {
         transform: scale(0.98);
@@ -286,4 +295,4 @@
         background: var(--primary);
     }
   }
-  }
+  
