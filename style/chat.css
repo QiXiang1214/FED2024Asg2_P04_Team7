@@ -36,6 +36,8 @@ body {
     align-items: center;
     gap: 1rem;
     transition: transform 0.3s ease;
+    width:"80";
+    height:"80";
 }
 
 .logo-nav h1 {
@@ -395,8 +397,23 @@ body {
         z-index: 100;
     }
 
+    .logo-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: transform 0.3s ease;
+        left: 0;
+    }
+
+    /* Add specific styles for the logo image */
+    .logo-nav img {
+        width: 35px;
+        height: 35px;
+        object-fit: contain;
+    }
+
     .logo-nav h1 {
-        font-size: 20px;
+        font-size: 15px;
     }
 
     .nav-links {
@@ -411,8 +428,8 @@ body {
 
     .chat-container {
         flex-direction: column;
-        height: calc(100vh - 56px); /* Subtract navbar height */
-        margin: 56px 0 0 0; /* Add top margin equal to navbar height */
+        height: calc(100vh - 36px); /* Subtract navbar height */
+        margin: 36px 0 0 0; /* Add top margin equal to navbar height */
         border-radius: 0;
         position: relative;
     }
