@@ -1,7 +1,7 @@
 // Import Firebase instances
 import { auth, db } from "../script/firebase.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
-import { doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
+import { doc, getDoc, updateDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 
 console.log("edit-profile.js loaded");
 
@@ -32,6 +32,28 @@ async function loadUserData(user) {
     }
 }
 
+// ✅ Function to Update Username in Listings Collection
+async function updateListingsUsername(user, newUsername) {
+    try {
+        const q = query(collection(db, "listings"), where("createdBy.uid", "==", user.uid));
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+            const updatePromises = [];
+
+            querySnapshot.forEach((docSnap) => {
+                const listingRef = doc(db, "listings", docSnap.id);
+                updatePromises.push(updateDoc(listingRef, { "createdBy.username": newUsername }));
+            });
+
+            await Promise.all(updatePromises); // Wait for all updates to finish
+            console.log("Listings updated successfully.");
+        }
+    } catch (error) {
+        console.error("Error updating listings:", error);
+    }
+}
+
 // ✅ Function to Save Updated User Data
 async function saveUserData(user) {
     const newUsername = document.getElementById("editUsername").value.trim();
@@ -43,12 +65,15 @@ async function saveUserData(user) {
     }
 
     try {
+        // ✅ Update username in "register" collection
         const userDocRef = doc(db, "register", user.uid);
-
         await updateDoc(userDocRef, {
             username: newUsername,
             bio: newBio
         });
+
+        // ✅ Update username in "listings" collection
+        await updateListingsUsername(user, newUsername);
 
         alert("Profile updated successfully!");
         window.location.href = "profile.html"; // Redirect to profile page
