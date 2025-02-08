@@ -145,6 +145,7 @@ body {
     padding: 20px;
     overflow-y: auto;
     background: var(--card-bg);
+    padding-bottom: 100px; /* Add extra padding at bottom */
 }
 
 .message {
@@ -254,6 +255,12 @@ body {
     transform: scale(1.02);
 }
 
+/* Base styles for file input (applies to both desktop and mobile) */
+.input-area input[type="file"] {
+    display: none;
+}
+
+/* Desktop styles */
 .input-area {
     padding: 20px;
     display: flex;
@@ -273,14 +280,67 @@ body {
 }
 
 .file-input-label {
-    cursor: pointer;
     padding: 12px;
+    cursor: pointer;
     color: var(--text-secondary);
     transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.file-input-label i {
+    font-size: 20px;
 }
 
 .file-input-label:hover {
     color: red;
+}
+
+/* Mobile styles */
+@media screen and (max-width: 768px) {
+    .input-area {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 10px 15px;
+        gap: 8px;
+        background: var(--card-bg);
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        z-index: 95;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .input-area input[type="text"] {
+        flex: 1;
+        font-size: 14px;
+        padding: 10px 15px;
+        height: 40px;
+        width: calc(100% - 100px);
+        margin: 0 5px;
+    }
+
+    .file-input-label {
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: var(--text-secondary);
+        transition: color 0.2s;
+        background: none;
+        border: none;
+        min-width: 40px;
+    }
+
+    .file-input-label i {
+        font-size: 20px;
+    }
 }
 
 #sendBtn {
@@ -318,21 +378,140 @@ body {
     padding-right: 25px;
 }
 
-/* Adjustments for smaller screens */
 @media screen and (max-width: 768px) {
+    body {
+        margin: 0;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .navbar {
+        flex-direction: row;
+        padding: 0.5rem 1rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+    }
+
+    .logo-nav h1 {
+        font-size: 20px;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .button {
+        padding: 0.5rem 1rem;
+        font-size: 12px;
+    }
+
     .chat-container {
         flex-direction: column;
-        height: 100vh;
+        height: calc(100vh - 56px); /* Subtract navbar height */
+        margin: 56px 0 0 0; /* Add top margin equal to navbar height */
+        border-radius: 0;
+        position: relative;
     }
 
     .sidebar {
         width: 100%;
-        height: 30%;
+        height: auto;
+        max-height: 60px;
         border-right: none;
         border-bottom: 2px solid var(--border-color);
+        transition: all 0.3s ease;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        z-index: 90;
+        background: var(--card-bg);
+    }
+
+    .search-bar {
+        margin-top: 33px;
+        position: relative;
+        z-index: 91;
+        margin-right: 90px;
+    }
+
+    .search-bar input {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        font-size: 14px;
+        background: var(--background);
+    }
+
+    .chat-list {
+        display: none;
+        max-height: calc(70vh - 120px);
+        overflow-y: auto;
+        background: var(--card-bg);
+        border-radius: 8px;
+        margin-top: 10px;
+        padding: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar.expanded {
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+
+    .sidebar.expanded .chat-list {
+        display: block;
     }
 
     .main-chat {
-        height: 70%;
+        margin-top: 82px; /* Height of collapsed sidebar + border */
+        height: calc(100vh - 118px); /* Subtract navbar + sidebar height */
+        position: relative;
+    }
+
+    .messages {
+        height: calc(100vh - 200px);
+        padding: 15px;
+        padding-bottom: 80px; /* Smaller padding for mobile */
+        overflow-y: auto;
+        background: var(--card-bg);
+        margin-bottom: 0;
+    }
+
+    .message {
+        max-width: 85%;
+        font-size: 14px;
+    }
+
+    .image-overlay img {
+        max-width: 95%;
+        max-height: 80vh;
+    }
+
+    body.overlay-active {
+        overflow: hidden;
+    }
+}
+/* Add new touch-friendly styles */
+@media (hover: none) {
+    .chat-user:active {
+        background-color: rgba(129, 0, 141, 0.2);
+    }
+
+    .button:active {
+        transform: translateY(0);
+        background: #1d4ed8;
+    }
+
+    #sendBtn:active {
+        background: rgb(200, 110, 0);
+    }
+
+    .message-image:active {
+        transform: scale(0.98);
     }
 }

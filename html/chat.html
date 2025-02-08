@@ -29,7 +29,7 @@
     <div class="chat-container">
         <div class="sidebar">
             <div class="search-bar">
-                <input type="text" id="userSearch" placeholder="Search users...">
+                <input type="text" id="userSearch" placeholder="Search users..." onclick="toggleChatList()">
             </div>
             <div class="chat-list" id="chatList"></div>
         </div>
@@ -37,12 +37,14 @@
         <div class="main-chat">
             <div class="messages" id="messagesContainer"></div>
             <div class="input-area">
-                <input type="file" id="fileInput" accept="image/*">
+                <input type="text" id="messageInput" placeholder="Type a message...">
                 <label for="fileInput" class="file-input-label">
                     <i class="fas fa-image"></i>
                 </label>
-                <input type="text" id="messageInput" placeholder="Type a message...">
-                <button id="sendBtn"><i class="fas fa-paper-plane"></i></button>
+                <input type="file" id="fileInput" accept="image/*">
+                <button id="sendBtn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
             </div>
         </div>
     </div>
