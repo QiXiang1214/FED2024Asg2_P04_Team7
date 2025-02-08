@@ -173,3 +173,13 @@ document.querySelectorAll('.product-card').forEach(card => {
         window.location.href = 'product.html';
     });
 });
+
+//Toggle Menu
+document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuToggle.addEventListener("click", function () {
+        navLinks.classList.toggle("active");
+    });
+});

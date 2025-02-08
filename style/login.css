@@ -142,13 +142,21 @@ input:-webkit-autofill {
 }
 
 /* Responsive Design */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .container {
-      padding: 10px;
+    width: 95%;
+    padding: 15px;
   }
 
   .login-container,
-  .signup-container{
-      padding: 30px 10px;
+  .signup-container {
+    padding: 20px 10px;
+  }
+
+  .btn-custom {
+    padding: 10px;
+    font-size: 14px;
   }
 }
+
+

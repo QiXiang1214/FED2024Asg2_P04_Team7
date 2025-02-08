@@ -139,3 +139,62 @@
 }
 
 
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .body-Mokesell {
+        padding: 10px; /* Prevent content from touching edges */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .logo {
+        font-size: 36px; /* Smaller text for mobile */
+        margin-bottom: 20px; /* Less spacing */
+    }
+
+    .login {
+        width: 90%; /* Adjust to fit smaller screens */
+        max-width: 350px; /* Prevent too large */
+        padding: 20px;
+    }
+
+    .google-btn,
+    .email-btn,
+    .login-btn {
+        width: 100%; /* Full width for easier clicks */
+        font-size: 14px; /* Smaller text */
+        padding: 10px;
+    }
+
+    .google-btn img,
+    .email-btn img {
+        width: 25px; /* Smaller icons */
+        height: 25px;
+    }
+
+    .privacy {
+        font-size: 12px; /* Reduce text size */
+        margin-top: 10px; /* Add spacing */
+    }
+}
+
+/* Extra Small Screens (Phones < 480px) */
+@media (max-width: 480px) {
+    .logo {
+        font-size: 28px;
+    }
+
+    .login {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .google-btn,
+    .email-btn,
+    .login-btn {
+        font-size: 13px;
+        padding: 8px;
+    }
+}

@@ -26,6 +26,25 @@ body {
   align-items: center;
 }
 
+.menu-toggle {
+  display: none; /* Hide by default */
+  background: rgb(66, 6, 122);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.menu-toggle:hover {
+  background: var(--secondary);
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
 .logo-nav {
   display: flex;
   align-items: center;
@@ -326,15 +345,160 @@ body {
   transform: scale(1.05); /* ✅ Adds hover effect */
 }
 
-/* Responsive Design */
+/* 📌 Responsive for Tablets (768px and below) */
+/* 📌 Responsive for Tablets & Mobile (768px and below) */
 @media (max-width: 768px) {
+  /* ✅ Navbar Adjustments */
   .navbar {
-      flex-direction: column;
-      gap: 1rem;
-      padding: 1rem;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 0;
   }
 
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding-bottom: 12px;
+  }
+
+  /* ✅ Search Bar Adjustments */
+  .search-container {
+    width: 85%;
+    margin: 12px auto;
+    padding: 0;
+  }
+
+  #searchInput {
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+  }
+
+  /* ✅ Categories Section */
+  .categories {
+    margin-top: 18px;
+  }
+
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+    gap: 50px; /* Small gap between categories */
+    justify-content: center;
+    align-items: center;
+    max-width: 400px; /* Prevents too much stretching */
+    margin: 0 auto; /* Centers the category grid */
+  }
+
+  .category-item {
+    width: 100%;
+    padding: 1rem;
+    height: 140px; /* ✅ Ensures all boxes have the same height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .category-item img {
+    width: 80px; /* ✅ Consistent image size */
+    height: 80px;
+    object-fit: contain;
+  }
+
+  /* ✅ Product Grid */
   .product-grid {
-      grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* Adjust for better spacing */
+    gap: 15px;
+    padding: 15px;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .product-card {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  /* ✅ Footer Adjustments */
+  .bottom-bar {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-logo img {
+    width: 160px;
+  }
+
+  .app-buttons {
+    flex-direction: column;
+    gap: 10px;
   }
 }
+
+/* 📌 Responsive for Mobile (Below 480px) */
+@media (max-width: 480px) {
+  /* ✅ Navbar Fix */
+  .menu-toggle {
+    display: block; /* Show only for mobile */
+    margin: 10px auto; /* Center it */
+  }
+
+  .nav-links {
+    display: none; /* Initially hides nav links */
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-links.active {
+    display: flex; /* Show when menu is toggled */
+  }
+
+  .search-container {
+    width: 90%; /* Adjusted from 100% to 90% */
+    margin: 10px auto;
+  }
+
+  #searchInput {
+    font-size: 14px;
+    padding: 8px;
+    width: calc(100% - 50px); /* Ensures it's not too wide */
+  }
+
+  .search-icon {
+    right: 12px; /* Adjust search icon position */
+  }
+
+  /* ✅ Category Section */
+  .category-grid {
+    grid-template-columns: 1fr; /* Stacks categories vertically */
+    gap: 15px;
+  }
+
+  .category-item {
+    height: 130px;
+  }
+
+  /* ✅ Product Listings */
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+    max-width: 95%;
+  }
+
+  .product-card {
+    font-size: 13px;
+  }
+}
+
+
+
+
+
+
