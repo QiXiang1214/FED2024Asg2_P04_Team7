@@ -68,7 +68,7 @@ function cleanup() {
 window.addEventListener('beforeunload', cleanup);
 
 const formatSGTDate = (date) => {
-    if (!date) return "";  // Return empty string if date is invalid
+    if (!date) return "";  
 
     const day = String(date.getDate()).padStart(2, '0');
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -77,7 +77,7 @@ const formatSGTDate = (date) => {
     const minutes = String(date.getMinutes()).padStart(2, '0');
     const ampm = hours >= 12 ? 'PM' : 'AM';
     hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
+    hours = hours ? hours : 12; 
     
     return `${day}/${month}/${year} ${hours}:${minutes} ${ampm}`;
 };
@@ -122,13 +122,14 @@ userSearch.addEventListener('input', (e) => {
 sendBtn.addEventListener('click', sendMessage);
 messageInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
-        e.preventDefault(); // Prevent form submission
+        e.preventDefault(); 
         sendMessage();
     }
 });
 
+// Create in Cloudinary settings
 const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dhgrd42d5/upload";
-const uploadPreset = "Chatpics"; // Create in Cloudinary settings
+const uploadPreset = "Chatpics"; 
 
 async function uploadToCloudinary(file) {
     const formData = new FormData();
@@ -143,10 +144,10 @@ async function uploadToCloudinary(file) {
 
         const data = await response.json();
         if (response.ok) {
-            return data.secure_url;  // If successful, return URL
+            return data.secure_url;  
         } else {
             console.error("Cloudinary Upload Error:", data.error);
-            alert('Upload failed: ' + data.error.message);  // Provide more context
+            alert('Upload failed: ' + data.error.message);  
             return null;
         }
     } catch (error) {
@@ -300,14 +301,14 @@ imageOverlay.addEventListener('click', (e) => {
 // File Input handler and Send Button handler
 fileInput.addEventListener('change', (e) => {
     if (e.target.files[0]) {
-        sendBtn.disabled = false;  // Enable send button if a file is selected
+        sendBtn.disabled = false;  
     }
 });
 
 // Prevent file input from sending the message automatically
 fileInput.addEventListener('change', (e) => {
     if (e.target.files[0]) {
-        sendBtn.disabled = false;  // Enable send button if a file is selected
+        sendBtn.disabled = false;  
     }
 });
 
@@ -326,8 +327,8 @@ function setupThreadListeners() {
                 const lastMessageTime = lastMessage?.timestamp?.toDate();
 
                 const hasUnread = lastMessageTime > lastRead;
+                // Handle unread messages if needed
                 if (hasUnread) {
-                    // Handle unread messages if needed
                 }
             });
         });

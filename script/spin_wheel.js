@@ -60,8 +60,9 @@ let myChart = new Chart(wheel, {
       datalabels: {
         color: "#ffffff",
         formatter: (_, context) => context.chart.data.labels[context.dataIndex],
+        // Smaller font on mobile
         font: { 
-          size: window.innerWidth <= 768 ? 12 : 24 // Smaller font on mobile
+          size: window.innerWidth <= 768 ? 12 : 24 
         }
       }
     }
@@ -83,7 +84,7 @@ const formatSGTDate = (date) => {
   const minutes = String(date.getMinutes()).padStart(2, '0');
   const ampm = hours >= 12 ? 'PM' : 'AM';
   hours = hours % 12;
-  hours = hours ? hours : 12; // the hour '0' should be '12'
+  hours = hours ? hours : 12; 
   
   return `${day}/${month}/${year} ${hours}:${minutes} ${ampm}`;
 };
@@ -147,7 +148,7 @@ const valueGenerator = (angleValue) => {
       const user = auth.currentUser;
       if (user) {
         const userId = user.uid;
-        const username = user.email; // Use email as the username
+        const username = user.email;
 
         // Log the spin result in Firestore
         logResult(spinResult, userId, username);
@@ -196,7 +197,7 @@ onAuthStateChanged(auth, (user) => {
 });
 
 // Add this check for mobile
-const textSize = window.innerWidth <= 768 ? '14px' : '16px'; // Adjust sizes as needed
+const textSize = window.innerWidth <= 768 ? '14px' : '16px'; 
 
 // Update where you set the text properties
 wheel.style.fontSize = textSize;

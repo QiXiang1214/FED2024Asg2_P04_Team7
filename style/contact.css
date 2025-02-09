@@ -186,10 +186,9 @@ body {
 }
 
 /* Responsive Design */
-/* 📌 Responsive Navbar for Tablets (768px and below) */
 @media (max-width: 768px) {
   .menu-toggle {
-    display: block; /* Show menu button */
+    display: block;
     margin-left: 10px;
   }
 
@@ -200,7 +199,7 @@ body {
   }
 
   .nav-links.active {
-    display: flex; /* Show menu when active */
+    display: flex;
   }
 
   .nav-links a {
@@ -232,10 +231,10 @@ body {
 
 }
 
-/* 📌 Responsive Navbar for Mobile (480px and below) */
+/* Responsive Design */
 @media (max-width: 480px) {
   .menu-toggle {
-    display: block; /* Keep menu button visible */
+    display: block; 
     font-size: 1.8rem;
     padding: 8px;
   }

@@ -1,14 +1,14 @@
 /* Body styles */
 .body-Mokesell {
-    background-image: url('../image/background.jpg'); /* Set the background image */
+    background-image: url('../image/background.jpg'); 
     background-size: cover;
     background-position: center;
     margin: 0;
-    height: 100vh;  /* Ensure the body takes up the full height of the viewport */
+    height: 100vh;  
     display: flex;
-    flex-direction: column; /* Stack content vertically */
-    justify-content: center; /* Center everything vertically */
-    align-items: center; /* Center everything horizontally */
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
     font-family: "Arial", sans-serif;
 }
 
@@ -19,23 +19,23 @@
     font-style: italic;
     color: white;
     font-size: 50px;
-    text-align: center; /* Center the logo text */
-    margin-bottom: 30px; /* Add space below the logo */
+    text-align: center; 
+    margin-bottom: 30px; 
 }
 
 /* Style the login box */
 .login {
     display: flex;
-    flex-direction: column;  /* Arrange content inside the box vertically */
+    flex-direction: column;  
     justify-content: center;
     align-items: center;
     background-color: white;
     width: 500px; 
     height:300px;
-    max-width: 400px; /* Set a max width to prevent it from being too wide */
-    padding: 30px 20px; /* Add padding inside the box */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
-    border-radius: 10px;  /* Optional: Rounded corners */
+    max-width: 400px; 
+    padding: 30px 20px; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); 
+    border-radius: 10px;  
 }
 
 /* Style the heading inside the login box */
@@ -51,11 +51,11 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 350px;  /* Make the button responsive */
-    background-color: #e1d7d6; /* Google blue */
+    max-width: 350px;  
+    background-color: #e1d7d6; 
     color: rgb(0, 0, 0);
     padding: 12px;
-    margin-bottom: 15px; /* Add space between buttons */
+    margin-bottom: 15px; 
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
@@ -64,7 +64,7 @@
 
 .google-btn:hover {
     background-color: #b6aead; 
-    text-decoration: underline; /* Add underline effect */
+    text-decoration: underline; 
 }
 
 .google-btn span {
@@ -77,11 +77,11 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 350px;  /* Make the button responsive */
-    background-color: #e1d7d6; /* Google red for email */
+    max-width: 350px;  
+    background-color: #e1d7d6; 
     color: rgb(0, 0, 0);
     padding: 12px;
-    margin-bottom: 20px; /* Space below the email button */
+    margin-bottom: 20px; 
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
@@ -103,11 +103,11 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 350px;  /* Make the button responsive */
-    background-color: #e1d7d6; /* Google red for email */
+    max-width: 350px;  
+    background-color: #e1d7d6; 
     color: rgb(0, 0, 0);
     padding: 12px;
-    margin-bottom: 20px; /* Space below the email button */
+    margin-bottom: 20px; 
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
@@ -119,7 +119,7 @@
 }
 
 .button:hover {
-    text-decoration: underline; /* Add underline effect */
+    text-decoration: underline; 
 }
 
 .login-btn a {
@@ -139,10 +139,10 @@
 }
 
 
-/* Mobile Responsiveness */
+/* Responsive for Tablets (768px and below) */
 @media (max-width: 768px) {
     .body-Mokesell {
-        padding: 10px; /* Prevent content from touching edges */
+        padding: 10px; 
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -150,37 +150,37 @@
     }
 
     .logo {
-        font-size: 36px; /* Smaller text for mobile */
-        margin-bottom: 20px; /* Less spacing */
+        font-size: 36px; 
+        margin-bottom: 20px; 
     }
 
     .login {
-        width: 90%; /* Adjust to fit smaller screens */
-        max-width: 350px; /* Prevent too large */
+        width: 90%; 
+        max-width: 350px; 
         padding: 20px;
     }
 
     .google-btn,
     .email-btn,
     .login-btn {
-        width: 100%; /* Full width for easier clicks */
-        font-size: 14px; /* Smaller text */
+        width: 100%; 
+        font-size: 14px; 
         padding: 10px;
     }
 
     .google-btn img,
     .email-btn img {
-        width: 25px; /* Smaller icons */
+        width: 25px; 
         height: 25px;
     }
 
     .privacy {
-        font-size: 12px; /* Reduce text size */
-        margin-top: 10px; /* Add spacing */
+        font-size: 12px; 
+        margin-top: 10px;
     }
 }
 
-/* Extra Small Screens (Phones < 480px) */
+/* Responsive for Tablets (480px and below) */
 @media (max-width: 480px) {
     .logo {
         font-size: 28px;

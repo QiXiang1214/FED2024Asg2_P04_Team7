@@ -27,7 +27,7 @@ body {
 }
 
 .menu-toggle {
-  display: none; /* Hide by default */
+  display: none; 
   background: rgb(66, 6, 122);
   color: white;
   border: none;
@@ -103,7 +103,7 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
   padding: 2rem 0;
-  justify-content: center; /* Center the grid items */
+  justify-content: center; 
 }
 
 .product-card {
@@ -242,7 +242,7 @@ body {
   border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   max-width: 600px;
-  display: none; /* Hidden by default */
+  display: none; 
 }
 
 #searchInput {
@@ -279,7 +279,7 @@ body {
 
 /* Create Listing Button */
 .btn-container {
-  text-align: center; /* Centers the button horizontally */
+  text-align: center; 
 }
 
 .create-listing-btn {
@@ -332,20 +332,18 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
   width: 150px;
-  cursor: pointer; /* ✅ Makes it clickable */
+  cursor: pointer; 
   transition: transform 0.2s ease-in-out;
 }
 
 .category-item:hover {
-  transform: scale(1.05); /* ✅ Adds hover effect */
+  transform: scale(1.05);
 }
 
-/* 📌 Responsive for Tablets (768px and below) */
-/* 📌 Responsive for Tablets & Mobile (768px and below) */
+/* Responsive for Tablets (768px and below) */
 @media (max-width: 768px) {
-  /* ✅ Navbar Adjustments */
   .menu-toggle {
-    display: block; /* Show only for mobile */
+    display: block;
     margin: 10px auto; 
   }
 
@@ -381,7 +379,6 @@ body {
       font-size: 30px;
   }
 
-  /* ✅ Search Bar Adjustments */
   .search-container {
     width: 85%;
     margin: 12px auto;
@@ -462,7 +459,7 @@ body {
   }
 }
 
-
+/* Responsive for Tablets (480px and below) */
 @media (max-width: 480px) {
   .menu-toggle {
     display: block; 

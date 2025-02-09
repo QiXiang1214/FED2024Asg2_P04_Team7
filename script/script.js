@@ -130,15 +130,15 @@ document.getElementById("signup-form").addEventListener("submit", async function
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
-        const uid = user.uid; //  Get the UID
+        const uid = user.uid; 
 
-        //  Save user data to Firestore (including UID)
+        //  Save user data to Firestore 
         await setDoc(doc(db, "register", uid), {
-            uid: uid,          //  Store UID
-            email: user.email, // Store email
-            username: username, // Store username
-            password: password, //  Password stored as plain text (not recommended)
-            createdAt: new Date() // Store registration time
+            uid: uid,         
+            email: user.email,
+            username: username, 
+            password: password, 
+            createdAt: new Date() 
         });
 
         alert("Registration successful! You can now log in.");
