@@ -53,18 +53,19 @@ We started the design process by identifying our target users and understanding 
 During the development of this project, we used ChatGPT for various aspects of the process: [ChatGpt](https://chatgpt.com/)
 - **Code Generation:** Mainly used for help related to Firebase and APIs. ChatGPT also assisted with refining CSS for responsive behavior and mobile view optimizations.
 - **Design Suggestions:** Provided ideas to enhance layout and user experience across devices for the Chat page and a few other aspects.
-- **Problem Solving:** Helped debug and refactor sections of code efficiently.  
+- **Problem Solving:** Helped debug and refactor sections of code efficiently. 
+ 
 - **Example images below:**
 
-![Alt Text](../FED2024Asg2_P04_Team7/image/Screenshot%202025-02-09%20171021.png)
+![Code Debug](../FED2024Asg2_P04_Team7/image/Screenshot%202025-02-09%20171021.png)
 
-![Alt Text](../FED2024Asg2_P04_Team7/image/Screenshot%202025-02-09%20170947.png)
+![Help with chat.css](../FED2024Asg2_P04_Team7/image/Screenshot%202025-02-09%20170947.png)
 
-![Alt Text](../FED2024Asg2_P04_Team7/image/Screenshot%202025-02-09%20170818.png)
+![Firestore implementation assist](../FED2024Asg2_P04_Team7/image/Screenshot%202025-02-09%20170818.png)
 
-![Alt Text](../FED2024Asg2_P04_Team7/image/Screenshot%202025-02-09%20202910.png)
+![Home/Product page help](../FED2024Asg2_P04_Team7/image/Screenshot%202025-02-09%20202910.png)
 
-![Alt Text](../FED2024Asg2_P04_Team7/image/Screenshot%202025-02-09%20202959.png)
+![Image styling](../FED2024Asg2_P04_Team7/image/Screenshot%202025-02-09%20202959.png)
 
 ## Testing
 We performed testings to ensure that the application is robust and user-friendly.
