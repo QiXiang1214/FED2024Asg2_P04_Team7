@@ -3,12 +3,11 @@
 ## Your Project's Name : MokeSell
 **MokeSell** is an innovative web application designed to offer users a seamlessly integrated experience for managing their profiles, listings,tracking points, and chatting with other users. Our project is built with a focus on both visual appeal and intuitive navigation so that users can effortlessly interact with all of the site's features, whether they're on desktop or mobile. The application is not only aesthetically pleasing but also optimized for performance and responsiveness, ensuring a consistent user experience across all devices.
 
-
-Our target audience includes tech-savvy individuals, students, and professionals looking for a easy way to manage the sale of their products/pre loved items and benefit from rewards programs. By providing a simple yet powerful platform, we strive to combine functionality with design to enhance everyday digital interactions.
+Our target audience includes tech-savvy individuals, students, and professionals looking for an easy way to manage the sale of their products/pre-loved items and benefit from rewards programs. By providing a simple yet powerful platform, we strive to combine functionality with design to enhance everyday digital interactions.
 
 
 ## Design Process
-We started the design process by identifying our target users and understanding their needs and pain points. The central focus was on creating a layout that is both clean and logical. Early wireframes and mockups were created in Figma. then we watched youtube videos to learn how implement some of the features as well as how to create our database for the APIs.
+We started the design process by identifying our target users and understanding their needs and pain points. The central focus was on creating a layout that is both clean and logical. Early wireframes and mockups were created in Figma. Then we watched YouTube videos to learn how implement some of the features as well as how to create our database for the APIs.
 
 
 ### User Stories
@@ -24,8 +23,10 @@ We started the design process by identifying our target users and understanding 
 - **Profile Management:** Users can view and edit their profile details in a cleanly structured card format.
 - **Points and Rewards Display:** A streamlined Spin The wheel points system with a centered, responsive layout that scales well on different devices.
 - **Interactive Elements:** Easy-to-use buttons and interactive components, enhanced with subtle transitions and hover effects.
-- **Interactive Listings:** Easy to view listings and chat with the seller or even create your own listing for your products/pre loved items.
+- **Interactive Listings:** Easy to view listings and chat with the seller or even create your own listing for your products/pre-loved items.
 - **Chat:** A chat page to chat with the seller or any other users online.
+- **Feedback** A page where users can identify themselves and write a feedback to the support team.
+- **Search & Sort** A feature for users to search and sort all products untill they find their desired item.
 
 
 ### Features Left to Implement
@@ -41,9 +42,9 @@ We started the design process by identifying our target users and understanding 
 - **JavaScript:** Enhancing user interactions and DOM manipulation and linking with APIs.
 - **Firebase:** For storing and retrieving user data and listings as well as to authenticate user registrations and logins. [Firebase](https://firebase.google.com/)
 - **Figma:** For designing and prototyping the user interface using wireframes. [Figma](https://www.figma.com)
-- **Youtube:** For learning how to implement some of the features (Firebase, APIs, image sharing/uploading, etc). 
+- **YouTube:** For learning how to implement some of the features (Firebase, APIs, image sharing/uploading, etc). 
 [YouTube](https://www.youtube.com/)
-- **LottieFiles:** For the animations during Successful Login and when Add to cart button is clicked. 
+- **LottieFiles:** For the animations during Successful Login and when Add to Cart button is clicked. 
 [LottieFiles](https://lottiefiles.com/)
 
 
@@ -55,7 +56,9 @@ During the development of this project, we used ChatGPT for various aspects of t
 - **Example images below:**
 
 ![Alt Text](../FED2024Asg2_P04_Team7/image/Screenshot%202025-02-09%20171021.png)
+
 ![Alt Text](../FED2024Asg2_P04_Team7/image/Screenshot%202025-02-09%20170947.png)
+
 ![Alt Text](../FED2024Asg2_P04_Team7/image/Screenshot%202025-02-09%20170818.png)
 
 
@@ -83,8 +86,14 @@ We performed testings to ensure that the application is robust and user-friendly
 - **Known Issues:**
   - Minor alignment glitches on older mobile browsers.
   - Minor lags in chat page as the conversations need to be loaded and timestamps need to be kept track of.
+  - Sort-By most Popular does not as there is no way to measure the popularity of an item for now. 
+  - Add to Cart does not actually add it to cart as there is no cart feature. It is there for the lottie animation
+
 
 ## Credits
-- **Content:** 
 - **Media:** 
+  - Logo: [deep ai](https://deepai.org/) used to create the MokeSell Logo.
+  - Background: [Background image](https://revistaemprende.cl/aspel-lider-mexicano-de-software-para-mipymes-se-une-a-grupo-siigo-consolidandose-como-lideres-en-america-latina/) taken from this news article.
+  - Other icons: [icons](https://www.flaticon.com/) taken from this website.
+  - Assume images of Product Listings are from users own device.
 
