@@ -142,7 +142,7 @@ input:-webkit-autofill {
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  backdrop-filter: blur(8px); /
+  backdrop-filter: blur(8px);
 }
 
 #lottie-animation {
