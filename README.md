@@ -42,6 +42,7 @@ We started the design process by identifying our target users and understanding 
 - **JavaScript:** Enhancing user interactions and DOM manipulation and linking with APIs.
 - **Firebase:** For storing and retrieving user data and listings as well as to authenticate user registrations and logins. [Firebase](https://firebase.google.com/)
 - **Figma:** For designing and prototyping the user interface using wireframes. [Figma](https://www.figma.com)
+  - This is a link to the actual figma wireframes we came up with: [Wireframes](https://www.figma.com/design/LmTpQFuMDbwHNzMwMumEZ7/Fed-assignment-2?node-id=0-1&t=F3L5F9ZbpBkSBoDU-1)
 - **YouTube:** For learning how to implement some of the features (Firebase, APIs, image sharing/uploading, etc). 
 [YouTube](https://www.youtube.com/)
 - **LottieFiles:** For the animations during Successful Login and when Add to Cart button is clicked. 
@@ -61,6 +62,9 @@ During the development of this project, we used ChatGPT for various aspects of t
 
 ![Alt Text](../FED2024Asg2_P04_Team7/image/Screenshot%202025-02-09%20170818.png)
 
+![Alt Text](../FED2024Asg2_P04_Team7/image/Screenshot%202025-02-09%20202910.png)
+
+![Alt Text](../FED2024Asg2_P04_Team7/image/Screenshot%202025-02-09%20202959.png)
 
 ## Testing
 We performed testings to ensure that the application is robust and user-friendly.
