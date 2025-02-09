@@ -1,17 +1,17 @@
 :root {
-    --primary: bisque; /* Inspired by the spin button */
-    --background: rgba(255, 255, 255, 0.65); /* Semi-transparent white */
-    --card-bg: rgba(255, 240, 253, 0.904); /* Slightly more opaque */
-    --text-primary: #202020; /* Darker text for contrast */
+    --primary: bisque; 
+    --background: rgba(255, 255, 255, 0.65); 
+    --card-bg: rgba(255, 240, 253, 0.904); 
+    --text-primary: #202020; 
     --text-secondary: #505050;
-    --border-color: rgba(0, 110, 141, 0.3); /* Inspired by the return button */
+    --border-color: rgba(0, 110, 141, 0.3); 
 }
 
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
     margin-bottom: 120px;
-    background-color: rgba(90, 0, 135); /* Background image from inspiration */
+    background-color: rgba(90, 0, 135); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -33,7 +33,7 @@ body {
   }
   
   .menu-toggle {
-    display: none; /* Hide by default */
+    display: none;
     background: rgb(66, 6, 122);
     color: white;
     border: none;
@@ -100,8 +100,8 @@ body {
 .chat-container {
     width: 100%;
     max-width: 1200px;
-    height: calc(90vh); /* Adjust height to account for navbar */
-    margin: 30px auto ; /* Push down by navbar height */
+    height: calc(90vh); 
+    margin: 30px auto ;
     background: var(--background);
     border-radius: 10px;
     box-shadow: 0 4em 5em rgba(146, 244, 255, 0.2);
@@ -150,7 +150,7 @@ body {
 }
 
 .chat-user:hover {
-    background-color: rgba(129, 0, 141, 0.1); /* Slightly purple tint */
+    background-color: rgba(129, 0, 141, 0.1); 
 }
 
 .chat-user.selected {
@@ -171,7 +171,7 @@ body {
     padding: 20px;
     overflow-y: auto;
     background: var(--card-bg);
-    padding-bottom: 100px; /* Add extra padding at bottom */
+    padding-bottom: 100px; 
 }
 
 .message {
@@ -224,8 +224,8 @@ body {
     max-width: 250px;
     border-radius: 10px;
     margin: 5px 0;
-    cursor: pointer; /* Add cursor pointer for better UX */
-    transition: transform 0.3s ease; /* Smooth transition for scaling */
+    cursor: pointer; 
+    transition: transform 0.3s ease; 
 }
 
 .image-overlay {
@@ -267,7 +267,6 @@ body {
     to { opacity: 1; }
 }
 
-/* Update existing message-image styles */
 .message-image {
     max-width: 300px;
     max-height: 300px;
@@ -281,12 +280,10 @@ body {
     transform: scale(1.02);
 }
 
-/* Base styles for file input (applies to both desktop and mobile) */
 .input-area input[type="file"] {
     display: none;
 }
 
-/* Desktop styles */
 .input-area {
     padding: 20px;
     display: flex;
@@ -369,7 +366,7 @@ body {
     }
 
     .menu-toggle {
-        display: block; /* Show only for mobile */
+        display: block; 
         margin: 10px auto; 
       }
     
@@ -410,8 +407,8 @@ body {
 
     .chat-container {
         flex-direction: column;
-        height: calc(100vh - 36px); /* Subtract navbar height */
-        margin: 36px 0 0 0; /* Add top margin equal to navbar height */
+        height: calc(100vh - 36px);
+        margin: 36px 0 0 0; 
         border-radius: 0;
         position: relative;
     }
@@ -435,9 +432,9 @@ body {
         position: relative;
         z-index: 91;
         margin-right: 90px;
-        background: none; /* Remove translucent background */
-        box-shadow: none; /* Remove shadow */
-        padding: 0; /* Remove padding */
+        background: none; 
+        box-shadow: none; 
+        padding: 0; 
     }
 
     .search-bar input {
@@ -470,15 +467,15 @@ body {
     }
 
     .main-chat {
-        margin-top: 82px; /* Height of collapsed sidebar + border */
-        height: calc(100vh - 118px); /* Subtract navbar + sidebar height */
+        margin-top: 82px; 
+        height: calc(100vh - 118px); 
         position: relative;
     }
 
     .messages {
         height: calc(100vh - 200px);
         padding: 15px;
-        padding-bottom: 80px; /* Smaller padding for mobile */
+        padding-bottom: 80px; 
         overflow-y: auto;
         background: var(--card-bg);
         margin-bottom: 0;
@@ -487,19 +484,19 @@ body {
     .message {
         max-width: 85%;
         font-size: 14px;
-        padding: 8px; /* Reduce padding for better image fit */
+        padding: 8px; 
     }
 
     .message img {
         
-        margin-bottom: 5px; /* Add some space below image if there's text */
-        border-radius: 8px 8px 0 0; /* Round only top corners if image is at top */
+        margin-bottom: 5px; 
+        border-radius: 8px 8px 0 0; 
         margin: 5px 0;
-        cursor: pointer; /* Add cursor pointer for better UX */
+        cursor: pointer; 
     }
 
     .message-text {
-        margin-top: 5px; /* Add space above text if there's an image */
+        margin-top: 5px; 
     }
 
     .image-overlay img {
@@ -511,7 +508,7 @@ body {
         overflow: hidden;
     }
 }
-/* Add new touch-friendly styles */
+
 @media (hover: none) {
     .chat-user:active {
         background-color: rgba(129, 0, 141, 0.2);
@@ -535,7 +532,7 @@ body {
 
     .menu-toggle {
         display: block; 
-        margin: 10px auto; /
+        margin: 10px auto;
       }
     
       .nav-links {
@@ -547,5 +544,4 @@ body {
       .nav-links.active {
         display: flex; 
       }
-
 }
