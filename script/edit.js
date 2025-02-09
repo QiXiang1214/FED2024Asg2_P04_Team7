@@ -5,11 +5,11 @@ import { doc, getDoc, updateDoc, collection, query, where, getDocs } from "https
 
 console.log("edit-profile.js loaded");
 
-// ✅ Function to Load User Data into the Form
+// Function to Load User Data into the Form
 async function loadUserData(user) {
     if (!user) {
         alert("You must be logged in to edit your profile.");
-        window.location.href = "login.html"; // Redirect if not logged in
+        window.location.href = "login.html"; //Redirect if not logged in
         return;
     }
 
@@ -20,7 +20,7 @@ async function loadUserData(user) {
         if (userDocSnap.exists()) {
             const userData = userDocSnap.data();
 
-            // Populate form fields
+            // Populate form fields 
             document.getElementById("editUsername").value = userData.username || "";
             document.getElementById("editBio").value = userData.bio || "";
         } else {
@@ -32,7 +32,7 @@ async function loadUserData(user) {
     }
 }
 
-// ✅ Function to Update Username in Listings Collection
+//Function to Update Username in Listings Collection
 async function updateListingsUsername(user, newUsername) {
     try {
         const q = query(collection(db, "listings"), where("createdBy.uid", "==", user.uid));
@@ -46,7 +46,7 @@ async function updateListingsUsername(user, newUsername) {
                 updatePromises.push(updateDoc(listingRef, { "createdBy.username": newUsername }));
             });
 
-            await Promise.all(updatePromises); // Wait for all updates to finish
+            await Promise.all(updatePromises);
             console.log("Listings updated successfully.");
         }
     } catch (error) {
@@ -54,7 +54,7 @@ async function updateListingsUsername(user, newUsername) {
     }
 }
 
-// ✅ Function to Save Updated User Data
+//Function to Save Updated User Data
 async function saveUserData(user) {
     const newUsername = document.getElementById("editUsername").value.trim();
     const newBio = document.getElementById("editBio").value.trim();
@@ -65,14 +65,14 @@ async function saveUserData(user) {
     }
 
     try {
-        // ✅ Update username in "register" collection
+        //Update username in "register" collection
         const userDocRef = doc(db, "register", user.uid);
         await updateDoc(userDocRef, {
             username: newUsername,
             bio: newBio
         });
 
-        // ✅ Update username in "listings" collection
+        //Update username in "listings" collection
         await updateListingsUsername(user, newUsername);
 
         alert("Profile updated successfully!");
@@ -83,7 +83,7 @@ async function saveUserData(user) {
     }
 }
 
-// ✅ Handle Auth State & Load User Data
+// Handle Auth State & Load User Data
 onAuthStateChanged(auth, (user) => {
     if (user) {
         loadUserData(user);
@@ -96,7 +96,17 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
-// ✅ Handle Cancel Button
+// Handle Cancel Button
 document.getElementById("cancelEditBtn").addEventListener("click", () => {
     window.location.href = "profile.html"; // Redirect back to profile
+});
+
+//Toggle Menu
+document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuToggle.addEventListener("click", function () {
+        navLinks.classList.toggle("active");
+    });
 });
