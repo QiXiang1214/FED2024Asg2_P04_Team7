@@ -278,8 +278,12 @@ body {
 }
 
 /* Create Listing Button */
+.btn-container {
+  text-align: center; /* Centers the button horizontally */
+}
+
 .create-listing-btn {
-  display: block;
+  display: inline-block;
   margin: 2rem auto;
   padding: 1rem 2rem;
   background: var(--light);
@@ -288,11 +292,8 @@ body {
   border-radius: 10px;
   font-size: 1.2rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.no-underline{
   text-decoration: none;
+  transition: all 0.3s ease;
 }
 
 .create-listing-btn:hover {
@@ -512,4 +513,6 @@ body {
   .product-card {
     font-size: 13px;
   }
+
+  
 }
