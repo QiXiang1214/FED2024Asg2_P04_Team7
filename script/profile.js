@@ -6,7 +6,6 @@ import { doc, getDoc, collection, query, where, getDocs, deleteDoc } from "https
 
 console.log("profile.js is loaded");
 
-// ✅ Function to Load User Profile Data
 async function loadUserProfile(user) {
     if (!user) {
         alert("You must be logged in to view your profile.");
@@ -15,7 +14,7 @@ async function loadUserProfile(user) {
     }
 
     try {
-        // Fetch user profile from Firestore (register collection)
+        
         const userDocRef = doc(db, "register", user.uid);
         const userDocSnap = await getDoc(userDocRef);
 
@@ -32,14 +31,14 @@ async function loadUserProfile(user) {
         }
 
         // Fetch totalPoints from spinTheWheel collection
-        const spinDocRef = doc(db, "spinTheWheel", user.uid); // Use user.uid to fetch from spinTheWheel
+        const spinDocRef = doc(db, "spinTheWheel", user.uid); 
         const spinDocSnap = await getDoc(spinDocRef);
 
         if (spinDocSnap.exists()) {
             const spinData = spinDocSnap.data();
 
             // Update points display
-            const totalPoints = Number(spinData.totalPoints) || 0; // Ensure totalPoints is a number
+            const totalPoints = Number(spinData.totalPoints) || 0; 
             console.log("Fetched totalPoints: ", totalPoints); // Debug log
             document.getElementById("user-points").textContent = totalPoints; // Show totalPoints
         } else {
@@ -52,7 +51,7 @@ async function loadUserProfile(user) {
 }
 
 
-// ✅ Function to Load User Listings
+
 async function loadUserListings(user) {
     const userListingsGrid = document.getElementById("user-listings");
     userListingsGrid.innerHTML = ""; // Clear existing listings
@@ -99,7 +98,6 @@ async function loadUserListings(user) {
     }
 }
 
-// ✅ Function to Delete a Listing
 async function deleteListing(listingId) {
     try {
         await deleteDoc(doc(db, "listings", listingId));
@@ -110,10 +108,20 @@ async function deleteListing(listingId) {
     }
 }
 
-// ✅ Ensure Firestore Loads Profile & Listings on Authentication
+
 onAuthStateChanged(auth, (user) => {
     if (user) {
         loadUserProfile(user);
         loadUserListings(user);
     }
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuToggle.addEventListener("click", function () {
+        navLinks.classList.toggle("active");
+    });
 });
