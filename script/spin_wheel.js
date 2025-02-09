@@ -60,7 +60,6 @@ let myChart = new Chart(wheel, {
       datalabels: {
         color: "#ffffff",
         formatter: (_, context) => context.chart.data.labels[context.dataIndex],
-        // Smaller font on mobile
         font: { 
           size: window.innerWidth <= 768 ? 12 : 24 
         }
@@ -138,6 +137,44 @@ const logResult = async (result, userId, username) => {
   }
 };
 
+// Function to parse date from Firestore string format (e.g., "09/02/2025 6:01 PM")
+const parseSGTDate = (dateString) => {
+  const [datePart, timePart] = dateString.split(" ");
+  const [day, month, year] = datePart.split("/");
+  const [hours, minutes] = timePart.split(":");
+
+  let hour = parseInt(hours);
+  const minute = parseInt(minutes);
+  const ampm = timePart.includes("PM") ? "PM" : "AM";
+
+  // Convert hour to 24-hour format for JavaScript Date
+  if (ampm === "PM" && hour !== 12) hour += 12;
+  if (ampm === "AM" && hour === 12) hour = 0;
+
+  return new Date(year, month - 1, day, hour, minute);
+};
+
+// Function to check spin availability
+const checkSpinAvailability = async (user) => {
+  const userDocRef = doc(db, "spinTheWheel", user.uid);
+  const userDocSnap = await getDoc(userDocRef);
+
+  if (userDocSnap.exists()) {
+    const userData = userDocSnap.data();
+    const now = new Date();
+    const nextSpinTime = parseSGTDate(userData.nextSpinTime); // Use the new parseSGTDate function
+
+    if (now < nextSpinTime) {
+      const timeLeftMs = nextSpinTime - now;
+      const hoursLeft = Math.floor(timeLeftMs / (1000 * 60 * 60));
+      const minutesLeft = Math.floor((timeLeftMs % (1000 * 60 * 60)) / (1000 * 60));
+      finalValue.innerHTML = `<p>Next spin available in ${hoursLeft}h ${minutesLeft}m</p>`;
+      return false;
+    }
+  }
+  return true;
+};
+
 // Function to determine the spin result based on the random angle
 const valueGenerator = (angleValue) => {
   for (let i of rotationValues) {
@@ -163,7 +200,16 @@ let count = 0;
 let resultValue = 101;
 let randomDegree = 0;
 
-spinBtn.addEventListener("click", () => {
+spinBtn.addEventListener("click", async () => {
+  const user = auth.currentUser;
+  if (!user) {
+    finalValue.innerHTML = `<p>Please log in to spin.</p>`;
+    return;
+  }
+
+  const canSpin = await checkSpinAvailability(user);
+  if (!canSpin) return;
+
   spinBtn.disabled = true;
   finalValue.innerHTML = `<p>Good Luck!</p>`;
   randomDegree = Math.floor(Math.random() * 360);
@@ -190,16 +236,7 @@ spinBtn.addEventListener("click", () => {
 onAuthStateChanged(auth, (user) => {
   if (user) {
     console.log(`User logged in: ${user.email}`);
-    // Do something once user is logged in, like show the spin wheel or whatever
   } else {
     console.log("No user logged in");
   }
 });
-
-// Add this check for mobile
-const textSize = window.innerWidth <= 768 ? '14px' : '16px'; 
-
-// Update where you set the text properties
-wheel.style.fontSize = textSize;
-// Or if using d3.js
-wheel.attr('font-size', textSize);
