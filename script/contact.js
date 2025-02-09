@@ -38,8 +38,8 @@ form.addEventListener('submit', async (e) => {
   const subject = form.subject.value;
   const message = form.message.value.trim();
 
-// Function to format dates in dd/mm/yyyy and HH:MM AM/PM format
-const formatSGTDate = (date) => {
+  // Function to format dates in dd/mm/yyyy and HH:MM AM/PM format
+  const formatSGTDate = (date) => {
     const day = String(date.getDate()).padStart(2, '0');
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const year = date.getFullYear();
@@ -55,15 +55,13 @@ const formatSGTDate = (date) => {
   const now = new Date();
   const formattedNow = formatSGTDate(now);
 
-
   try {
-    // Check for existing document with matching email, phone, first name, last name, and subject
+    // Check for existing document with matching email and subject
     const q = query(
       collection(db, 'ContactUs'),
       where('email', '==', email),
       where('subject', '==', subject)
     );
-
     const querySnapshot = await getDocs(q);
 
     if (!querySnapshot.empty) {
@@ -75,10 +73,6 @@ const formatSGTDate = (date) => {
       });
       console.log('Document updated:', docRef.id);
     } else {
-      // Check if email exists (for phone/name validation)
-      const emailQuery = query(collection(db, 'ContactUs'), where('email', '==', email));
-      const emailQuerySnapshot = await getDocs(emailQuery);
-
       // Create new document
       await addDoc(collection(db, 'ContactUs'), {
         email,
@@ -89,10 +83,10 @@ const formatSGTDate = (date) => {
       console.log('New document created.');
     }
 
-    // Show success message
-    successMessage.style.display = 'block';
+    // Show success message as a popup that fades out after 3 seconds
+    successMessage.classList.add("show");
     setTimeout(() => {
-      successMessage.style.display = 'none';
+      successMessage.classList.remove("show");
     }, 3000);
 
     form.reset();
