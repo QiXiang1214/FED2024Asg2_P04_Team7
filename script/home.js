@@ -11,10 +11,10 @@ async function fetchListings(category = null) {
       let q;
 
       if (category) {
-          console.log(`Fetching category: ${category}`); // Debugging log
+          console.log(`Fetching category: ${category}`); 
           q = query(collection(db, "listings"), where("category", "==", category), orderBy("createdAt", "desc"));
       } else {
-          console.log("Fetching all listings"); // Debugging log
+          console.log("Fetching all listings"); 
           q = query(collection(db, "listings"), orderBy("createdAt", "desc"));
       }
 
@@ -28,7 +28,7 @@ async function fetchListings(category = null) {
 
       querySnapshot.forEach((doc) => {
           const listing = doc.data();
-          console.log("Listing found:", listing); // Debugging log
+          console.log("Listing found:", listing); 
 
           const productCard = document.createElement('div');
           productCard.classList.add('product-card');
@@ -79,11 +79,11 @@ async function fetchListings(category = null) {
 document.addEventListener('DOMContentLoaded', () => {
   fetchListings();
 
-  // ✅ Add click event listener for category buttons
+  //Add click event listener for category buttons
   document.querySelectorAll('.category-item').forEach(button => {
       button.addEventListener('click', () => {
           const selectedCategory = button.dataset.category;
-          console.log(`Category clicked: ${selectedCategory}`); // Debugging log
+          console.log(`Category clicked: ${selectedCategory}`); 
           fetchListings(selectedCategory);
       });
   });
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     searchInput.addEventListener('input', () => {
         const query = searchInput.value.toLowerCase().trim();
-        const productCards = document.querySelectorAll('.product-card'); // Dynamic selection
+        const productCards = document.querySelectorAll('.product-card');
         let hasVisibleProducts = false;
 
         productCards.forEach(card => {
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     filterSelect.addEventListener('change', async (event) => {
         const sortBy = event.target.value;
-        const productCards = Array.from(document.querySelectorAll('.product-card')); // Dynamic selection
+        const productCards = Array.from(document.querySelectorAll('.product-card')); 
 
         // Convert to sortable array with price data
         const productsWithPrices = productCards.map(card => ({
@@ -142,7 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 productsWithPrices.sort((a, b) => b.price - a.price);
                 break;
             case 'Most Popular':
-                // Implement popularity sorting logic if available
                 break;
             default:
                 return;

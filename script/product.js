@@ -49,8 +49,9 @@ function handleAddToCart() {
     // Hide after animation completes
     setTimeout(() => {
         lottieContainer.style.display = 'none';
+        // 3 seconds to allow animation to complete
         player.stop();
-    }, 3000); // 3 seconds to allow animation to complete
+    }, 3000); 
 }
 
 // Add click event listener to your add to cart button

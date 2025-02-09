@@ -8,10 +8,10 @@
   /* Body styling */
   body {
     height: 100vh;
-    background-image: url('../image/background.jpg'); /* Add the image URL here */
-    background-size: cover; /* Ensures the image covers the entire screen */
+    background-image: url('../image/background.jpg'); 
+    background-size: cover; 
     background-position: center; 
-    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-repeat: no-repeat; 
   }
   .wrapper {
     width: 90%;
@@ -25,15 +25,14 @@
     padding: 3em;
     border-radius: 1em;
     box-shadow: 0 4em 5em rgba(69, 220, 236, 0.25);
-    margin-top: 20px; /* Add margin to avoid overlap with return button */
+    margin-top: 20px; 
   }
 
   .return-button {
-    /* Positioning */
-    position: fixed; /* Change from absolute to fixed */
+    position: fixed; 
     left: 1.5em;
-    top: 1em; /* Move it higher */
-    z-index: 1000; /* Ensure it's always on top */
+    top: 1em; 
+    z-index: 1000; 
     
     /* Visual styling */
     color: rgb(129, 0, 141);
@@ -65,7 +64,7 @@
     height: 100%;
   }
   
-  /* Wheel canvas styling */
+  /* Wheel styling */
   #wheel {
     max-height: inherit;
     width: inherit;
@@ -97,7 +96,7 @@
         background: radial-gradient(#e96c6c 5%, #e90808 95%);
       }
     
-        /* Arrow image positioning */
+  /* Arrow image positioning */
   img {
     position: absolute;
     width: 4em;
@@ -114,7 +113,7 @@
     font-weight: 500;
   }
 
-  /* For smaller screens */
+  /* Responsive for Tablets (768px and below) */
   @media screen and (max-width: 768px) {
     .wrapper {
       font-size: 12px;
@@ -125,24 +124,23 @@
 
     /* Adjust wheel text size */
     .wheel text {
-        font-size: 5px; /* Reduce from default size */
+        font-size: 5px; 
         font-weight: bold;
         text-anchor: middle;
         fill: #fff;
     }
 
-    /* If you're using a different method to display text, like divs */
     .wheel-item-text {
         font-size: 5px;
     }
 
     .return-button {
-        padding: 0.5em 1.5em; /* Slightly smaller padding on mobile */
-        font-size: 0.9em; /* Slightly smaller font on mobile */
+        padding: 0.5em 1.5em; 
+        font-size: 0.9em; 
     }
   }
 
-   /* For smaller screens */
+   /* Responsive for Tablets (480px and below) */
    @media screen and (max-width: 480px) {
     .wrapper {
       font-size: 12px;
@@ -153,20 +151,19 @@
 
     /* Adjust wheel text size */
     .wheel text {
-        font-size: 5px; /* Reduce from default size */
+        font-size: 5px; 
         font-weight: bold;
         text-anchor: middle;
         fill: #fff;
     }
 
-    /* If you're using a different method to display text, like divs */
     .wheel-item-text {
         font-size: 5px;
     }
 
     .return-button {
-        padding: 0.4em 1.2em; /* Even smaller padding on very small screens */
-        font-size: 0.85em; /* Even smaller font on very small screens */
+        padding: 0.4em 1.2em; 
+        font-size: 0.85em; 
     }
 
     /* Adjust arrow image size */

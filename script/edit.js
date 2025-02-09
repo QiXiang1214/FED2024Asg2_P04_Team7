@@ -9,7 +9,7 @@ console.log("edit-profile.js loaded");
 async function loadUserData(user) {
     if (!user) {
         alert("You must be logged in to edit your profile.");
-        window.location.href = "login.html"; //Redirect if not logged in
+        window.location.href = "login.html"; 
         return;
     }
 
@@ -76,7 +76,7 @@ async function saveUserData(user) {
         await updateListingsUsername(user, newUsername);
 
         alert("Profile updated successfully!");
-        window.location.href = "profile.html"; // Redirect to profile page
+        window.location.href = "profile.html"; 
     } catch (error) {
         console.error("Error updating profile:", error);
         alert("Error updating profile. Please try again.");
@@ -98,7 +98,7 @@ onAuthStateChanged(auth, (user) => {
 
 // Handle Cancel Button
 document.getElementById("cancelEditBtn").addEventListener("click", () => {
-    window.location.href = "profile.html"; // Redirect back to profile
+    window.location.href = "profile.html"; 
 });
 
 //Toggle Menu

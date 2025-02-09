@@ -19,15 +19,15 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// ✅ Check if user is logged in before accessing create.html
+//Check if user is logged in before accessing create.html
 onAuthStateChanged(auth, async (user) => {
     if (!user) {
         alert("You must be logged in to create a listing!");
-        window.location.href = "login.html"; // Redirect to login page
+        window.location.href = "login.html";
         return;
     }
 
-    // ✅ Get Username from Firestore (Now looking in "register" instead of "users")
+    //Get Username from Firestore
     const userDocRef = doc(db, "register", user.uid);
     const userDocSnap = await getDoc(userDocRef);
 
@@ -38,7 +38,7 @@ onAuthStateChanged(auth, async (user) => {
 
     const username = userDocSnap.data().username;
 
-    // ✅ Form submission event listener
+    //Form submission event listener
     document.getElementById('listingForm').addEventListener('submit', async function(event) {
         event.preventDefault();
 
@@ -54,7 +54,7 @@ onAuthStateChanged(auth, async (user) => {
             return;
         }
 
-        // ✅ Image format validation
+        //Image format validation
         const allowedFormats = ["image/jpeg", "image/png", "image/jpg", "image/gif"];
         if (!allowedFormats.includes(productImage.type)) {
             alert("Invalid file type! Please upload a JPG, PNG, or GIF image.");
@@ -63,11 +63,11 @@ onAuthStateChanged(auth, async (user) => {
 
         console.log("Uploading Image to Cloudinary...");
 
-        // ✅ Cloudinary Upload Configuration
-        const cloudinaryUploadUrl = "https://api.cloudinary.com/v1_1/dg9bfkn5e/image/upload"; // Replace with your Cloudinary cloud name
+        //Cloudinary Upload Configuration
+        const cloudinaryUploadUrl = "https://api.cloudinary.com/v1_1/dg9bfkn5e/image/upload";
         const formData = new FormData();
         formData.append("file", productImage);
-        formData.append("upload_preset", "fed_assignment_upload"); // Replace with your Upload Preset name
+        formData.append("upload_preset", "fed_assignment_upload");
 
         try {
             const response = await fetch(cloudinaryUploadUrl, {
@@ -80,27 +80,27 @@ onAuthStateChanged(auth, async (user) => {
             if (!data.secure_url) {
                 throw new Error("Image upload failed.");
             }
-
-            const imageUrl = data.secure_url; // Get the Cloudinary image URL
+            // Get the Cloudinary image URL
+            const imageUrl = data.secure_url; 
 
             console.log("Image Uploaded! URL:", imageUrl);
 
-            // ✅ Save listing to Firestore with `uid` and `username`
+            //Save listing to Firestore with `uid` and `username`
             await addDoc(collection(db, "listings"), {
                 name: productName,
                 price: `$${parseFloat(productPrice).toFixed(2)}`,
                 category: productCategory,
                 description: productDescription,
-                image: imageUrl, // Cloudinary image URL
+                image: imageUrl, 
                 createdBy: {
-                    uid: user.uid, // Store UID
-                    username: username // Store username from "register"
+                    uid: user.uid, 
+                    username: username 
                 },
-                createdAt: serverTimestamp() // Store timestamp
+                createdAt: serverTimestamp() 
             });
 
             alert('Listing Created Successfully!');
-            window.location.href = 'home.html'; // Redirect to home page
+            window.location.href = 'home.html'; 
 
         } catch (error) {
             console.error("Error saving listing:", error);

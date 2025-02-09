@@ -9,7 +9,8 @@ console.log("profile.js is loaded");
 async function loadUserProfile(user) {
     if (!user) {
         alert("You must be logged in to view your profile.");
-        window.location.href = "login.html"; // Redirect if user not logged in
+        // Redirect to login page
+        window.location.href = "login.html";
         return;
     }
 
@@ -39,8 +40,9 @@ async function loadUserProfile(user) {
 
             // Update points display
             const totalPoints = Number(spinData.totalPoints) || 0; 
-            console.log("Fetched totalPoints: ", totalPoints); // Debug log
-            document.getElementById("user-points").textContent = totalPoints; // Show totalPoints
+            console.log("Fetched totalPoints: ", totalPoints); 
+            // Show totalPoints
+            document.getElementById("user-points").textContent = totalPoints; 
         } else {
             console.error("Spin the Wheel data not found for this user.");
             alert("Spin data not found. Please try again.");
@@ -54,7 +56,8 @@ async function loadUserProfile(user) {
 
 async function loadUserListings(user) {
     const userListingsGrid = document.getElementById("user-listings");
-    userListingsGrid.innerHTML = ""; // Clear existing listings
+    // Clear existing listings
+    userListingsGrid.innerHTML = ""; 
 
     try {
         const q = query(collection(db, "listings"), where("createdBy.uid", "==", user.uid));
@@ -86,7 +89,8 @@ async function loadUserListings(user) {
             productCard.querySelector(".delete-btn").addEventListener("click", async (e) => {
                 if (confirm(`Are you sure you want to delete "${listing.name}"?`)) {
                     await deleteListing(listingId);
-                    loadUserListings(user); // Refresh listings
+                    // Refresh listings
+                    loadUserListings(user); 
                 }
             });
 
